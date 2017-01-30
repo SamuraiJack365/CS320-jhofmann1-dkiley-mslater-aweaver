@@ -17,6 +17,7 @@ Students would post the content to the database using their YCP login credential
 
 ## Languages
 We will use the following languages to complete this project developing primarily in Eclipse:
+
 * JSP
 * Java
 * HTML5
