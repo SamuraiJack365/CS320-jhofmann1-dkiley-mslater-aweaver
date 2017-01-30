@@ -1,1 +1,1 @@
-# CS320-jhofmann1-dkiley
+# Group Project Proposal CS320-101: Software Engineering, Spring Semester 2017 Due Date: 1-29-2017 
