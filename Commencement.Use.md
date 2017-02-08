@@ -1,4 +1,4 @@
-> ###MSS
+> ### MSS
 > 1. Student Scans QR Code
 > 2. Student's page is displayed & audio file with name is played
 > 3. Next student scans QR cod
