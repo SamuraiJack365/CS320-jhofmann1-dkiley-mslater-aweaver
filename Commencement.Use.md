@@ -7,3 +7,7 @@
 > 6. First page pushed off screen
 > 7. Third page and audio
 > 8. et al
+
+> ### Extensions
+> <ol start="2" type="1"><li>QR code doesn't scan</li>
+> <ol type="1"><li>test</li></ol></ol>
