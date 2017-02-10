@@ -9,7 +9,11 @@
 > 8. et al
 
 > ### Extensions
-> <ol start="2" type="1"><li>QR code doesn't scan</li>
-> <ol type="1"><li>test</li></ol></ol>
+> <ol start="2" type="1">
+>   <li>QR code doesn't scan</li>
+>   <ol type="1">
+>     <li>test</li>
+>   </ol>
+> </ol>
 
 [Home](./README.md)
