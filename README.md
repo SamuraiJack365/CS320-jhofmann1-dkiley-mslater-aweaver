@@ -5,6 +5,7 @@
 * Alaska K.
 
 [Commencement use case](./Commencement.Use.md)
+
 [UML](./teamUML.class.violet.html)
 
 ## Summary
