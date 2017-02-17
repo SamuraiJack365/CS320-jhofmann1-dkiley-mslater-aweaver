@@ -6,7 +6,8 @@
 
 [Commencement use case](./Commencement.Use.md)
 
-[UML](./teamUML.html)
+[UML](./teamUML.class.violet.html)
+[UML2](./teamUML.html)
 
 ## Summary
 A website and database that would allow graduating students to post personalized content to be presented at their commencement ceremony. As students approached the stage, they would scan a card containing a QR code that would call up their commencement information. That information would be retrieved from the database, and formatted into a web page. The web page could be displayed on monitors positioned throughout the commencement venue(s), as well as included in the live broadcast stream. In addition, a recording of the student’s name would be broadcast over the sound system. The pronunciation of the student’s name could be sourced from the student, or a parent, faculty member, or Yoda or Darth Vader or Stephen Hawking, or anybody else they could get to provide a recorded pronunciation of their name.
