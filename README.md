@@ -7,6 +7,7 @@
 [Commencement use case](./Commencement.Use.md)
 
 [UML](./teamUML.class.violet.html)
+
 [UML2](./teamUML.html)
 
 ## Summary
