@@ -1,4 +1,4 @@
-package edu.ycp.cs320.jhofmann1.servlet.ajax;
+package xyz.jhofmann1.cs320.servlet.ajax;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ycp.cs320.jhofmann1.controller.AddNumbersController;
+import xyz.jhofmann1.cs320.controller.AddNumbersController;
 
 public class AddNumbersAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

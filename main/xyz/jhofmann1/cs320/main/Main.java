@@ -1,4 +1,4 @@
-package edu.ycp.cs320.jhofmann1.main;
+package xyz.jhofmann1.cs320.main;
 
 import java.util.Scanner;
 

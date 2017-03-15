@@ -1,4 +1,4 @@
-package edu.ycp.cs320.jhofmann1.model;
+package xyz.jhofmann1.cs320.model;
 
 public class GuessingGame {
 	private int min, max;

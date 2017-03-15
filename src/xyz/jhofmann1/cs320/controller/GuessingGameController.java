@@ -1,6 +1,6 @@
-package edu.ycp.cs320.jhofmann1.controller;
+package xyz.jhofmann1.cs320.controller;
 
-import edu.ycp.cs320.jhofmann1.model.GuessingGame;
+import xyz.jhofmann1.cs320.model.GuessingGame;
 
 /**
  * Controller for the guessing game.

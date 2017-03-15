@@ -1,4 +1,4 @@
-package edu.ycp.cs320.jhofmann1.servlet;
+package xyz.jhofmann1.cs320.servlet;
 
 import java.io.IOException;
 

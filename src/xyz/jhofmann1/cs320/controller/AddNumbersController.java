@@ -1,4 +1,4 @@
-package edu.ycp.cs320.jhofmann1.controller;
+package xyz.jhofmann1.cs320.controller;
 
 public class AddNumbersController {
 	public Double add(Double first, Double second, Double third) {

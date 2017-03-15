@@ -1,12 +1,12 @@
-package edu.ycp.cs320.jhofmann1.controller;
+package xyz.jhofmann1.cs320.junit.controller;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.ycp.cs320.jhofmann1.controller.GuessingGameController;
-import edu.ycp.cs320.jhofmann1.model.GuessingGame;
+import xyz.jhofmann1.cs320.controller.GuessingGameController;
+import xyz.jhofmann1.cs320.model.GuessingGame;
 
 public class GuessingGameControllerTest {
 	private GuessingGame model;

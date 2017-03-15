@@ -1,4 +1,4 @@
-package edu.ycp.cs320.jhofmann1.servlet;
+package xyz.jhofmann1.cs320.servlet;
 
 import java.io.IOException;
 
@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.ycp.cs320.jhofmann1.controller.GuessingGameController;
-import edu.ycp.cs320.jhofmann1.model.GuessingGame;
+import xyz.jhofmann1.cs320.controller.GuessingGameController;
+import xyz.jhofmann1.cs320.model.GuessingGame;
 
 public class GuessingGameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

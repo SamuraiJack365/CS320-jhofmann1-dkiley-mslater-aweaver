@@ -1,11 +1,11 @@
-package edu.ycp.cs320.jhofmann1.model;
+package xyz.jhofmann1.cs320.junit.model;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.ycp.cs320.jhofmann1.model.GuessingGame;
+import xyz.jhofmann1.cs320.model.GuessingGame;
 
 public class GuessingGameTest {
 	private GuessingGame model;
