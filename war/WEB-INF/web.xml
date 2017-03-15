@@ -8,17 +8,17 @@
   <!-- Servlets -->
   <servlet>
     <servlet-name>IndexServlet</servlet-name>
-    <servlet-class>edu.ycp.cs320.jhofmann1.servlet.IndexServlet</servlet-class>
+    <servlet-class>xyz.jhofmann1.cs320.servlet.IndexServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>GuessingGameServlet</servlet-name>
-    <servlet-class>edu.ycp.cs320.jhofmann1.servlet.GuessingGameServlet</servlet-class>
+    <servlet-class>xyz.jhofmann1.cs320.servlet.GuessingGameServlet</servlet-class>
   </servlet>
   
   <!-- AJAX servlets. -->
   <servlet>
     <servlet-name>NextGuessAjaxServlet</servlet-name>
-    <servlet-class>edu.ycp.cs320.jhofmann1.servlet.ajax.NextGuessAjaxServlet</servlet-class>
+    <servlet-class>xyz.jhofmann1.cs320.servlet.ajax.NextGuessAjaxServlet</servlet-class>
   </servlet>
 
   <!-- Servlet mappings -->
