@@ -1,9 +1,60 @@
 <html>
 	<head>
 		<title>AJAX Demos</title>
+		<script
+			src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+			type="text/javascript">
+		</script>
 	</head>
 	
 	<body>
-		<a href="addNumbersAjax.html">Add numbers</a>
+		<script type="text/javascript">
+		window.gg = {
+				// display the initial UI with a start game button
+				begin : function(msg) {
+					$("body").empty().append(
+						'<div>' + msg + '</div>' +
+						'<div><button id="start">Start game!</button></div>');
+					$("#start").click(function() {
+						gg.startGame();
+					});
+				},
+
+				// start the game
+				startGame: function() {
+					// gg.game is the client-side model object.
+					// The server will send back updates to the model object
+					// using JSON.
+					gg.game = { min: 1, max: 100 };
+					
+					gg.makeUI();
+					gg.guess();
+				},
+				
+				// Make the UI for displaying the current guess and allowing the
+				// user to specify whether it's correct, too bigh, or too low
+				makeUI: function() {
+					$("body").empty().append(
+						'<div><span id="guess">&nbsp;</span></div>' +
+						'<div>' +
+						'<input id="gotIt" type="submit" value="Yes, that\'s it!" />' +
+						'<input id="less" type="submit" value="No, that\'s too big" />' +
+						'<input id="more" type="submit" value="No, that\'s too small" />' +
+						'</div>'
+					);
+					$("#gotIt").click(function() {
+						gg.begin("You were thinking of " + gg.game.guess);
+					});
+					$("#less").click(function() {
+						gg.game.action = "less";
+						gg.guess();
+					});
+					$("#more").click(function() {
+						gg.game.action = "more";
+						gg.guess();
+					});
+				},
+		};
+		</script>
 	</body>
 </html>
