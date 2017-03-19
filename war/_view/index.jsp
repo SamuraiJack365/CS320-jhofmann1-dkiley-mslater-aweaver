@@ -26,6 +26,11 @@
 	<%@include file="../nav.jspf"%>
 	<%-- <jsp:include page="../nav.html" /> --%>
 	<div class="container-fluid">
+		<c:if test="${! empty errorMessage}">
+			<div class="alert alert-danger">
+			${errorMessage}
+			</div>
+		</c:if>
 		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4"><h1>My Commencement</h1></div>
@@ -33,14 +38,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-4"></div>
-				<c:if test="${! empty errorMessage}">
-					<div class="alert alert-danger">
-					${errorMessage}
-					</div>
-				</c:if>
-				<div class="col-sm-4">
-					<input type="button" class="btn btn-default" name="guessing" value="guessing" onclick="location.href='${pageContext.servletContext.contextPath}/guessingGame'">
-				</div>
+			<div class="col-sm-4"></div>
 			<div class="col-sm-4"></div>
 		</div>
 	</div>
