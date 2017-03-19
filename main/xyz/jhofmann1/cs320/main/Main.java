@@ -8,7 +8,7 @@ import org.eclipse.jetty.webapp.WebAppContext;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
-		Server server = new Server(8081);
+		Server server = new Server(8090);
 
 		// Create and register a webapp context
 		WebAppContext handler = new WebAppContext();

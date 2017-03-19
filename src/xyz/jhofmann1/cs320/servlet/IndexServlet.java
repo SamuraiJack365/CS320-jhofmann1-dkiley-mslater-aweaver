@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import xyz.jhofmann1.cs320.controller.AddNumbersController;
+
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
