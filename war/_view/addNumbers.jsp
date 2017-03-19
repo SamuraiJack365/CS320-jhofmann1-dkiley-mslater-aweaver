@@ -23,8 +23,6 @@
 	</head>
 
 	<body>
-	
-		<%@include file="../nav.jspf"%>
 		
 		<c:if test="${! empty errorMessage}">
 			<div class="error">${errorMessage}</div>
