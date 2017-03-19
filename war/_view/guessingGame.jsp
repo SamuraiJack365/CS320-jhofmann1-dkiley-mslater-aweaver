@@ -8,7 +8,7 @@
 	</head>
 
 	<body>
-		<form action="${pageContext.servletContext.contextPath}/guessingGame" method="post">
+		<form action="${pageContext.servletContext.contextPath}/advisor" method="post">
 			<c:if test="${empty game}">
 				<!--<input name="startGame" type="submit" value="Start game" />-->
                 <div class="container-fluid">
