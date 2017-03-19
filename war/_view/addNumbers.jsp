@@ -28,7 +28,6 @@
 			<div class="error">${errorMessage}</div>
 		</c:if>
 		
-		
 		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4"><h1>Student Home Page</h1></div>
