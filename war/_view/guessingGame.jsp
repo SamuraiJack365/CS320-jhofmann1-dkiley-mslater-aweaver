@@ -10,7 +10,15 @@
 	<body>
 		<form action="${pageContext.servletContext.contextPath}/guessingGame" method="post">
 			<c:if test="${empty game}">
-				<input name="startGame" type="submit" value="Start game" />
+				<!--<input name="startGame" type="submit" value="Start game" />-->
+                <div class="container-fluid">
+                    <div class="row">
+			            <div class="col-sm-4"></div>
+			            <div class="col-sm-4"><h1>Advisor Homepage</h1></div>
+			            <div class="col-sm-4"></div>
+		            </div> 
+                </div>
+
 			</c:if>
 			<c:if test="${! empty game}">
 				<c:if test="${game.done}">
