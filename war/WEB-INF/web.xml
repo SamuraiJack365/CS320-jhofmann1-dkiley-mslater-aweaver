@@ -28,7 +28,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>GuessingGameServlet</servlet-name>
-    <url-pattern>/advisor</url-pattern>
+    <url-pattern>/guessingGame</url-pattern>
   </servlet-mapping>
   
   <!--  AJAX servlet mappings. -->

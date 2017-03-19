@@ -5,44 +5,27 @@
 <html>
 	<head>
 		<title>Guessing Game</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 
 	<body>
-		<form action="${pageContext.servletContext.contextPath}/advisor" method="post">
-			<c:if test="${empty game}">
-				<!--<input name="startGame" type="submit" value="Start game" />-->
-                <div class="container-fluid">
-                    <div class="row">
-			            <div class="col-sm-4"></div>
-			            <div class="col-sm-4"><h1>Advisor Homepage</h1></div>
-			            <div class="col-sm-4"></div>
-		            </div> 
-                </div>
-
-			</c:if>
-			<c:if test="${! empty game}">
-				<c:if test="${game.done}">
-					<div>
-						The number you are thinking of is ${game.guess}
-					</div>
-					<div>
-						<input name="startGame" type="submit" value="Play again" />
-					</div>
-				</c:if>
-				<c:if test="${!game.done}">
-					<div>
-						Are you thinking of ${game.guess}?
-					</div>
-					<div>
-						<input name="gotIt" type="submit" value="Yes, that's it!" />
-						<input name="less" type="submit" value="No, that's too big" />
-						<input name="more" type="submit" value="No, that's too small" />
-						
-						<input name="min" type="hidden" value="${game.min}" />
-						<input name="max" type="hidden" value="${game.max}" />
-					</div>
-				</c:if>
-			</c:if>
+		<c:set var="page" scope="session" value="${'advisor'}"/>
+        	<%@include file="../nav.jspf"%>
+            <div class="container-fluid">
+           		<div class="row">
+			   		<div class="col-sm-4"></div>
+			        <div class="col-sm-4"><h1>Advisor Homepage</h1></div>
+			        <div class="col-sm-4"></div>
+		        </div>
+		        <div class="row">
+		        	<div class="col-sm-4"><h2>Assigned Students</h2></div>
+		        	<div class="col-sm-4"></div>
+		        	<div class="col-sm-4"></div>
+		        </div>
+           	</div>
 		</form>
 	</body>
 </html>
