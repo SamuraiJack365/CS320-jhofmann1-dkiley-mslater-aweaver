@@ -38,7 +38,9 @@
 					${errorMessage}
 					</div>
 				</c:if>
-				<div class="col-sm-4"><input type="button" class="btn btn-default" name="guessing" value="guessing" onclick="location.href='${pageContext.servletContext.contextPath}/guessingGame'"></div>
+				<div class="col-sm-4">
+					<input type="button" class="btn btn-default" name="guessing" value="guessing" onclick="location.href='${pageContext.servletContext.contextPath}/guessingGame'">
+				</div>
 			<div class="col-sm-4"></div>
 		</div>
 	</div>
