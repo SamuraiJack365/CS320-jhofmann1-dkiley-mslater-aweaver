@@ -21,7 +21,7 @@
 			        <div class="col-sm-4"></div>
 		        </div>
 		        <div class="row">
-		        	<div class="col-sm-4"><h2>Assigned Students</h2></div>
+		        	<div class="col-sm-4"><h2>Assigned Student(s)</h2></div>
 		        	<div class="col-sm-4"></div>
 		        	<div class="col-sm-4"></div>
 		        </div>
