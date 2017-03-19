@@ -14,6 +14,10 @@
     <servlet-name>GuessingGameServlet</servlet-name>
     <servlet-class>xyz.jhofmann1.cs320.servlet.GuessingGameServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>AddNumbersServlet</servlet-name>
+    <servlet-class>xyz.jhofmann1.cs320.servlet.AddNumbersServlet</servlet-class>
+  </servlet>
   
   <!-- AJAX servlets. -->
   <servlet>
@@ -29,6 +33,10 @@
   <servlet-mapping>
     <servlet-name>GuessingGameServlet</servlet-name>
     <url-pattern>/guessingGame</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddNumbersServlet</servlet-name>
+    <url-pattern>/addNumbers</url-pattern>
   </servlet-mapping>
   
   <!--  AJAX servlet mappings. -->
