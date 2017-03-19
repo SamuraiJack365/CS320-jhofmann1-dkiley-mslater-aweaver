@@ -12,7 +12,7 @@ public class Main {
 
 		// Create and register a webapp context
 		WebAppContext handler = new WebAppContext();
-		handler.setContextPath("/jhofmann1");
+		handler.setContextPath("/commencement");
 		handler.setWar("./war"); // web app is in the war directory of the project
 		server.setHandler(handler);
 		
