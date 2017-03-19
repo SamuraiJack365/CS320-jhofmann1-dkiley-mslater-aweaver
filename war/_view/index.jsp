@@ -22,6 +22,9 @@
 	</head>
 
 	<body>
+    <c:set var="page" scope="session" value="${'home'}"/>
+	<%@include file="../nav.jspf"%>
+	<%-- <jsp:include page="../nav.html" /> --%>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-4"></div>
