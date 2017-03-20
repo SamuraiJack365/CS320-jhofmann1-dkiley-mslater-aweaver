@@ -25,6 +25,66 @@
 		        	<div class="col-sm-4"></div>
 		        	<div class="col-sm-4"></div>
 		        </div>
+		        <table class="table">
+				    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Student ID</th>
+                            <th>Email</th>
+                            <th>Preview</th>
+                            <th>Approve</th>
+                            <th>Reject</th>
+                        </tr>
+				    </thead>
+				    <tbody>
+                        <tr>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>555555555</td>
+                            <td>john@ycp.edu</td>
+                            <td>
+                                <button type="button" class="btn btn-default">Default</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success">Approve</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger">Reject</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mary</td>
+                            <td>Moe</td>
+                            <td>555555555</td>
+                            <td>mary@ycp.edu</td>
+                            <td>
+                                <button type="button" class="btn btn-default">Default</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success">Approve</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger">Reject</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>July</td>
+                            <td>Dooley</td>
+                            <td>555555555</td>
+                            <td>july@ycp.edu</td>
+                            <td>
+                                <button type="button" class="btn btn-default">Default</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success">Approve</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger">Reject</button>
+                            </td>
+                        </tr>
+				    </tbody>
+			    </table>
            	</div>
 		</form>
 	</body>
