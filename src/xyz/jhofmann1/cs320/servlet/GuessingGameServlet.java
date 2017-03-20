@@ -30,10 +30,10 @@ public class GuessingGameServlet extends HttpServlet {
 		if (req.getParameter("startGame") != null) {
 			controller.startGame();
 		} else {
-			// Reconstruct current GuessingGame model object
-			Integer curMin = getInteger(req, "min");
+			//
+			Integer numStu = getInteger(req, "min");
 			
-			model.setNumStudents(curMin);
+			model.setNumStudents(numStu);
 
 			if (req.getParameter("gotIt") != null) {
 				controller.setNumStudents();
