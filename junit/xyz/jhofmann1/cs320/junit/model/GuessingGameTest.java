@@ -16,17 +16,12 @@ public class GuessingGameTest {
 	}
 	
 	@Test
-	public void testSetMin() {
-		model.setMin(1);
-		assertEquals(1, model.getMin());
+	public void testSetNumStudents() {
+		model.setNumStudents(50);
+		assertEquals(50, model.getNumStudents());
 	}
 	@Test
-	public void testSetMax() {
-		model.setMax(100);
-		assertEquals(100, model.getMax());
-	}
-	@Test
-	public void testIsDone()
+	public void testCreateFirstNameList()
 	{
 		model.setMax(100);
 		model.setMin(1);
