@@ -11,8 +11,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="<c:if test="${page == 'home'}">active</c:if>"><a href="#" <c:if test="${page != 'home'}">onclick="location.href='${pageContext.servletContext.contextPath}/home'"</c:if>>Home</a></li>
-        <li class="<c:if test="${page == 'student'}">active</c:if>"><a href="#" <c:if test="${page != 'student'}">onclick="location.href='${pageContext.servletContext.contextPath}/guessingGame'"</c:if>>Student</a></li>
-        <li class="<c:if test="${page == 'advisor'}">active</c:if>"><a href="#">Advisor</a></li>
+        <li class="<c:if test="${page == 'student'}">active</c:if>"><a href="#" <c:if test="${page != 'student'}">onclick="location.href='${pageContext.servletContext.contextPath}/student'"</c:if>>Student</a></li>
+        <li class="<c:if test="${page == 'advisor'}">active</c:if>"><a href="#" <c:if test="${page != 'advisor'}">onclick="location.href='${pageContext.servletContext.contextPath}/advisor'"</c:if>>Advisor</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>

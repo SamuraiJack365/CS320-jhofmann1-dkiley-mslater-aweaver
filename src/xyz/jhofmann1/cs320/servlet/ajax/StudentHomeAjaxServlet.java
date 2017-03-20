@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import xyz.jhofmann1.cs320.controller.AddNumbersController;
+import xyz.jhofmann1.cs320.controller.StudentHomeController;
 
-public class AddNumbersAjaxServlet extends HttpServlet {
+public class StudentHomeAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -37,7 +37,7 @@ public class AddNumbersAjaxServlet extends HttpServlet {
 		}
 		
 		// Use a controller to process the request
-		AddNumbersController controller = new AddNumbersController();
+		StudentHomeController controller = new StudentHomeController();
 		Double result = controller.add(first, second, third);
 		
 		// Send back a response

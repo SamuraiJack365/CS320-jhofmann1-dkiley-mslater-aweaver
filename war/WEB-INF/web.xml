@@ -11,12 +11,12 @@
     <servlet-class>xyz.jhofmann1.cs320.servlet.IndexServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>GuessingGameServlet</servlet-name>
-    <servlet-class>xyz.jhofmann1.cs320.servlet.GuessingGameServlet</servlet-class>
+    <servlet-name>AdvisorHomeServlet</servlet-name>
+    <servlet-class>xyz.jhofmann1.cs320.servlet.AdvisorHomeServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>AddNumbersServlet</servlet-name>
-    <servlet-class>xyz.jhofmann1.cs320.servlet.AddNumbersServlet</servlet-class>
+    <servlet-name>StudentHomeServlet</servlet-name>
+    <servlet-class>xyz.jhofmann1.cs320.servlet.StudentHomeServlet</servlet-class>
   </servlet>
   
   <!-- AJAX servlets. -->
@@ -31,12 +31,12 @@
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>GuessingGameServlet</servlet-name>
-    <url-pattern>/guessingGame</url-pattern>
+    <servlet-name>AdvisorHomeServlet</servlet-name>
+    <url-pattern>/advisor</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>AddNumbersServlet</servlet-name>
-    <url-pattern>/addNumbers</url-pattern>
+    <servlet-name>StudentHomeServlet</servlet-name>
+    <url-pattern>/student</url-pattern>
   </servlet-mapping>
   
   <!--  AJAX servlet mappings. -->

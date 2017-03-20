@@ -1,20 +1,21 @@
 package xyz.jhofmann1.cs320.controller;
 
-import xyz.jhofmann1.cs320.model.GuessingGame;
+import xyz.jhofmann1.cs320.model.AdvisorHome;
 
 //Controller for the guessing game.
-public class GuessingGameController {
-	private GuessingGame model;
+public class AdvisorHomeController {
+	private AdvisorHome model;
 	private int numStudents;
 
 	//Set the model.
 	  
 	//@param model the model to set
-	public void setModel(GuessingGame model) {
+	public void setModel(AdvisorHome model) {
 		this.model = model;
 	}
 
 	//Setting the number of students and creating all lists
+	//most of these methods should be done in the controller, not the model
 	public void startGame() {
 		model.setNumStudents(numStudents);
 		model.createFirstNameList();
@@ -25,7 +26,7 @@ public class GuessingGameController {
 
 	//set the number of students if numStudents is null
 	public void setNumStudents() {
-		numStudents = model.getnumStudents();
+		numStudents = model.getNumStudents();
 		model.setNumStudents(numStudents);
 	}
 }

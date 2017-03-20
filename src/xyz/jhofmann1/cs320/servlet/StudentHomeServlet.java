@@ -7,15 +7,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import xyz.jhofmann1.cs320.controller.AddNumbersController;
+import xyz.jhofmann1.cs320.controller.StudentHomeController;
 
-public class AddNumbersServlet extends HttpServlet {
+public class StudentHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.getRequestDispatcher("/_view/addNumbers.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/studentHome.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -33,7 +33,7 @@ public class AddNumbersServlet extends HttpServlet {
 			if (first == null || second == null || third == null) {
 				errorMessage = "Please specify three numbers";
 			} else {
-				AddNumbersController controller = new AddNumbersController();
+				StudentHomeController controller = new StudentHomeController();
 				result = controller.add(first, second, third);
 			}
 		} catch (NumberFormatException e) {
@@ -50,7 +50,7 @@ public class AddNumbersServlet extends HttpServlet {
 		req.setAttribute("result", result);
 		
 		// Forward to view to render the result HTML document
-		req.getRequestDispatcher("/_view/addNumbers.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/StudentHome.jsp").forward(req, resp);
 	}
 
 	private Double getDoubleFromParameter(String s) {

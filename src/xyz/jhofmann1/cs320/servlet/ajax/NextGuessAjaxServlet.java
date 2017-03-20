@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import xyz.jhofmann1.cs320.controller.GuessingGameController;
-import xyz.jhofmann1.cs320.model.GuessingGame;
+import xyz.jhofmann1.cs320.controller.AdvisorHomeController;
+import xyz.jhofmann1.cs320.model.AdvisorHome;
 
 public class NextGuessAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -36,14 +36,14 @@ public class NextGuessAjaxServlet extends HttpServlet {
 			return;
 		}
 		
-		GuessingGame model = new GuessingGame();
+		AdvisorHome model = new AdvisorHome();
 		model.setMin(min);
 		model.setMax(max);
 		
 		// If an action was specified, use a GuessingGameController to carry it out
 		String action = req.getParameter("action");
 		if (action != null) {
-			GuessingGameController controller = new GuessingGameController();
+			AdvisorHomeController controller = new AdvisorHomeController();
 			controller.setModel(model);
 			
 			if (action.equals("less")) {

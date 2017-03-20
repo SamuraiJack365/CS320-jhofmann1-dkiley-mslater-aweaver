@@ -2,7 +2,7 @@ package xyz.jhofmann1.cs320.model;
 
 import java.util.ArrayList;
 
-public class GuessingGame {
+public class AdvisorHome {
 	
 	// set up variables
 	private int numStudents;
@@ -12,7 +12,7 @@ public class GuessingGame {
 	private ArrayList<String> email;
 	
 	// initialize variables
-	public GuessingGame() {
+	public AdvisorHome() {
 		firstNames = new ArrayList<String>();
 		lastNames = new ArrayList<String>();
 		ID = new ArrayList<Integer>();
@@ -25,21 +25,21 @@ public class GuessingGame {
 	}
 	
 	// get number of students
-	public int getnumStudents() {
+	public int getNumStudents() {
 		return numStudents;
 	}
 	
 	// populate the first name list
 	public void createFirstNameList() {
 		for(int i = 0; i < numStudents; i++) {
-			firstNames.add("Joe " + i);
+			firstNames.add("Joe" + i);
 		}
 	}
 	
 	// populate the last name list
 	public void createLastNameList() {
 		for(int i = 0; i < numStudents; i++) {
-			lastNames.add("Smith");
+			lastNames.add("Smith" + i);
 		}
 	}
 	
@@ -53,7 +53,7 @@ public class GuessingGame {
 	// populate the email list
 	public void createEmailList() {
 		for(int i = 0; i < numStudents; i++) {
-			lastNames.add(getFirstName(i)+"@ycp.edu");
+			email.add(getLastName(i)+"@ycp.edu");
 		}
 	}
 	
@@ -78,6 +78,8 @@ public class GuessingGame {
 	}
 	
 	// create and return the master list containing all of the students' information
+	//need to create a student type for all this because this is adding each field to the array list and won't have all 
+	//the information without having it run while i < numStudents*4 or using an ArrayList of ArrayLists
 	public ArrayList<String> getMasterList() {
 		ArrayList<String> tempList = new ArrayList<String>();
 		for(int i = 0; i < numStudents; i++) {
