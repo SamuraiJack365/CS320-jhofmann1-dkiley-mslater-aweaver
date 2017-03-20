@@ -25,7 +25,7 @@
 
 	<body>
 		<c:set var="page" scope="session" value="${'student'}"/>
-		<%@include file="../includes/nav.jspf"%>
+		<%@include file="../../includes/nav.jspf"%>
 		
 		<c:if test="${! empty errorMessage}">
 			<div class="error">${errorMessage}</div>

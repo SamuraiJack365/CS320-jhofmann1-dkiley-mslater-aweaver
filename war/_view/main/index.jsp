@@ -23,7 +23,7 @@
 
 	<body>
     <c:set var="page" scope="session" value="${'home'}"/>
-	<%@include file="../includes/nav.jspf"%>
+	<%@include file="../../includes/nav.jspf"%>
 	<div class="container-fluid">
 		<c:if test="${! empty errorMessage}">
 			<div class="alert alert-danger">
