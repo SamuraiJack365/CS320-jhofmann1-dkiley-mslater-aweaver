@@ -2,52 +2,30 @@ package xyz.jhofmann1.cs320.controller;
 
 import xyz.jhofmann1.cs320.model.GuessingGame;
 
-/**
- * Controller for the guessing game.
- */
+//Controller for the guessing game.
 public class GuessingGameController {
 	private GuessingGame model;
+	private int numStudents;
 
-	/**
-	 * Set the model.
-	 * 
-	 * @param model the model to set
-	 */
+	//Set the model.
+	  
+	//@param model the model to set
 	public void setModel(GuessingGame model) {
 		this.model = model;
 	}
 
-	/**
-	 * Start a new guessing game by setting the minimum to 1 and the maximum to 100.
-	 */
+	//Setting the number of students and creating all lists
 	public void startGame() {
-		model.setMin(1);
-		model.setMax(100);
+		model.setNumStudents(numStudents);
+		model.createFirstNameList();
+		model.createLastNameList();
+		model.createIDList();
+		model.createEmailList();
 	}
 
-	/**
-	 * Called to indicate that the current guess is correct.
-	 * Set the min and max to the current guess.
-	 */
-	public void setNumberFound() {
-		int guess = model.getGuess();
-		model.setMax(guess);
-		model.setMin(guess);
-	}
-
-	/**
-	 * Called to indicate that the user is thinking of a number that
-	 * is less than the current guess.
-	 */
-	public void setNumberIsLessThanGuess() {
-		model.setIsLessThan(model.getGuess());
-	}
-
-	/**
-	 * Called to indicate that the user is thinking of a number that
-	 * is greater than the current guess.
-	 */
-	public void setNumberIsGreaterThanGuess() {
-		model.setIsGreaterThan(model.getGuess());
+	//set the number of students if numStudents is null
+	public void setNumStudents() {
+		numStudents = model.getnumStudents();
+		model.setNumStudents(numStudents);
 	}
 }

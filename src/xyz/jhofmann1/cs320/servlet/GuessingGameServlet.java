@@ -32,17 +32,11 @@ public class GuessingGameServlet extends HttpServlet {
 		} else {
 			// Reconstruct current GuessingGame model object
 			Integer curMin = getInteger(req, "min");
-			Integer curMax = getInteger(req, "max");
 			
-			model.setMin(curMin);
-			model.setMax(curMax);
+			model.setNumStudents(curMin);
 
 			if (req.getParameter("gotIt") != null) {
-				controller.setNumberFound();
-			} else if (req.getParameter("less") != null) {
-				controller.setNumberIsLessThanGuess();
-			} else if (req.getParameter("more") != null) {
-				controller.setNumberIsGreaterThanGuess();
+				controller.setNumStudents();
 			} else {
 				throw new ServletException("Unknown command");
 			}
