@@ -1,4 +1,4 @@
-package xyz.jhofmann1.cs320.model;
+package xyz.jhofmann1.cs320.model.advisor;
 
 import java.util.ArrayList;
 

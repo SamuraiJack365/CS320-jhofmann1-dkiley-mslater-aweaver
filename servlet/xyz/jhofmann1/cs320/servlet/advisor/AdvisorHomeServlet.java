@@ -1,4 +1,4 @@
-package xyz.jhofmann1.cs320.servlet;
+package xyz.jhofmann1.cs320.servlet.advisor;
 
 import java.io.IOException;
 
@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import xyz.jhofmann1.cs320.controller.AdvisorHomeController;
-import xyz.jhofmann1.cs320.model.AdvisorHome;
+import xyz.jhofmann1.cs320.controller.advisor.AdvisorHomeController;
+import xyz.jhofmann1.cs320.model.advisor.AdvisorHome;
 
 public class AdvisorHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -16,7 +16,10 @@ public class AdvisorHomeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.getRequestDispatcher("/_view/advisorHome.jsp").forward(req, resp);
+		
+		System.out.println("In the Advisor Home servlet");
+		
+		req.getRequestDispatcher("/_view/advisor/advisorHome.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -44,7 +47,7 @@ public class AdvisorHomeServlet extends HttpServlet {
 		
 		req.setAttribute("game", model);
 		
-		req.getRequestDispatcher("/_view/advisorHome.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/advisor/advisorHome.jsp").forward(req, resp);
 	}
 
 	private int getInteger(HttpServletRequest req, String name) {

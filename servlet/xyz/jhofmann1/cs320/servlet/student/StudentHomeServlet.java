@@ -1,4 +1,4 @@
-package xyz.jhofmann1.cs320.servlet;
+package xyz.jhofmann1.cs320.servlet.student;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import xyz.jhofmann1.cs320.controller.StudentHomeController;
+import xyz.jhofmann1.cs320.controller.student.StudentHomeController;
 
 public class StudentHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -15,7 +15,9 @@ public class StudentHomeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.getRequestDispatcher("/_view/studentHome.jsp").forward(req, resp);
+		System.out.println("In the Student Home servlet");
+		
+		req.getRequestDispatcher("/_view/student/studentHome.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -50,7 +52,7 @@ public class StudentHomeServlet extends HttpServlet {
 		req.setAttribute("result", result);
 		
 		// Forward to view to render the result HTML document
-		req.getRequestDispatcher("/_view/StudentHome.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/student/StudentHome.jsp").forward(req, resp);
 	}
 
 	private Double getDoubleFromParameter(String s) {

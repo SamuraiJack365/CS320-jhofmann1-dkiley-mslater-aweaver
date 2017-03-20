@@ -1,4 +1,4 @@
-package xyz.jhofmann1.cs320.servlet;
+package xyz.jhofmann1.cs320.servlet.main;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import xyz.jhofmann1.cs320.controller.StudentHomeController;
+import xyz.jhofmann1.cs320.controller.student.StudentHomeController;
 
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -18,6 +18,6 @@ public class IndexServlet extends HttpServlet {
 		
 		System.out.println("In the Index servlet");
 		
-		req.getRequestDispatcher("/_view/index.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/main/index.jsp").forward(req, resp);
 	}
 }

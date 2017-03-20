@@ -1,4 +1,4 @@
-package xyz.jhofmann1.cs320.servlet.ajax;
+package xyz.jhofmann1.cs320.servlet.ajax.advisor;
 
 import java.io.IOException;
 
@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import xyz.jhofmann1.cs320.controller.AdvisorHomeController;
-import xyz.jhofmann1.cs320.model.AdvisorHome;
+import xyz.jhofmann1.cs320.controller.advisor.AdvisorHomeController;
+import xyz.jhofmann1.cs320.model.advisor.AdvisorHome;
 
 public class AdvisorHomeAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -1,6 +1,6 @@
-package xyz.jhofmann1.cs320.controller;
+package xyz.jhofmann1.cs320.controller.advisor;
 
-import xyz.jhofmann1.cs320.model.AdvisorHome;
+import xyz.jhofmann1.cs320.model.advisor.AdvisorHome;
 
 //Controller for the guessing game.
 public class AdvisorHomeController {

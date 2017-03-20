@@ -3,6 +3,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" output="test-bin" path="junit"/>
 	<classpathentry kind="src" output="bin" path="main"/>
+	<classpathentry kind="src" path="controller"/>
+	<classpathentry kind="src" path="model"/>
+	<classpathentry kind="src" path="servlet"/>
+	<classpathentry kind="src" path="ajax"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/CS320_Jetty"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>

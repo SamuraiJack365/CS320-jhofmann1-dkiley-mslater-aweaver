@@ -5,8 +5,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import xyz.jhofmann1.cs320.controller.AdvisorHomeController;
-import xyz.jhofmann1.cs320.model.AdvisorHome;
+import xyz.jhofmann1.cs320.controller.advisor.AdvisorHomeController;
+import xyz.jhofmann1.cs320.model.advisor.AdvisorHome;
 
 public class AdvisorHomeControllerTest {
 //	private GuessingGame model;
