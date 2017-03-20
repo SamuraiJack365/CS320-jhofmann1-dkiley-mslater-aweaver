@@ -13,7 +13,7 @@
 
 	<body>
 		<c:set var="page" scope="session" value="${'advisor'}"/>
-       	<%@include file="../nav.jspf"%>
+       	<%@include file="../includes/nav.jspf"%>
            <div class="container-fluid">
           		<div class="row">
 		   		<div class="col-sm-4"></div>
