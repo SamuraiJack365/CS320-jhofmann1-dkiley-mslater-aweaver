@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import xyz.jhofmann1.cs320.controller.AdvisorHomeController;
 import xyz.jhofmann1.cs320.model.AdvisorHome;
 
-public class NextGuessAjaxServlet extends HttpServlet {
+public class AdvisorHomeAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
