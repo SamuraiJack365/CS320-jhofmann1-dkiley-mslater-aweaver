@@ -1,40 +1,91 @@
 package xyz.jhofmann1.cs320.model;
 
+import java.util.ArrayList;
+
 public class GuessingGame {
-	private int min, max;
 	
+	// set up variables
+	private int numStudents;
+	private ArrayList<String> firstNames;
+	private ArrayList<String> lastNames;
+	private ArrayList<Integer> ID;
+	private ArrayList<String> email;
+	
+	// initialize variables
 	public GuessingGame() {
+		firstNames = new ArrayList<String>();
+		lastNames = new ArrayList<String>();
+		ID = new ArrayList<Integer>();
+		email = new ArrayList<String>();
 	}
 	
-	public void setMin(int min) {
-		this.min = min;
+	// set number of students
+	public void setNumStudents(int numStudents) {
+		this.numStudents = numStudents;
 	}
 	
-	public int getMin() {
-		return min;
+	// get number of students
+	public int getnumStudents() {
+		return numStudents;
 	}
 	
-	public void setMax(int max) {
-		this.max = max;
+	// populate the first name list
+	public void createFirstNameList() {
+		for(int i = 0; i < numStudents; i++) {
+			firstNames.add("Joe " + i);
+		}
 	}
 	
-	public int getMax() {
-		return max;
+	// populate the last name list
+	public void createLastNameList() {
+		for(int i = 0; i < numStudents; i++) {
+			lastNames.add("Smith");
+		}
 	}
 	
-	public boolean isDone() {
-		return min == max;
+	// populate the id list
+	public void createIDList() {
+		for(int i = 0; i < numStudents; i++) {
+			ID.add(i);
+		}
 	}
 	
-	public int getGuess() {
-		return min + (max-min)/2;
+	// populate the email list
+	public void createEmailList() {
+		for(int i = 0; i < numStudents; i++) {
+			lastNames.add(getFirstName(i)+"@ycp.edu");
+		}
 	}
 	
-	public void setIsLessThan(int guess) {
-		this.max = guess-1;
+	// get the first name list
+	public String getFirstName(int num) {
+		return firstNames.get(num);
 	}
 	
-	public void setIsGreaterThan(int guess) {
-		this.min = guess+1;
+	// get the last name list
+	public String getLastName(int num) {
+		return lastNames.get(num);
+	}
+	
+	// get the id list
+	public int getID(int num) {
+		return ID.get(num);
+	}
+	
+	// get the email list
+	public String getEmail(int num) {
+		return email.get(num);
+	}
+	
+	// create and return the master list containing all of the students' information
+	public ArrayList<String> getMasterList() {
+		ArrayList<String> tempList = new ArrayList<String>();
+		for(int i = 0; i < numStudents; i++) {
+			tempList.add(getFirstName(i));
+			tempList.add(getLastName(i));
+			tempList.add(Integer.toString(getID(i)));
+			tempList.add(getEmail(i));
+		}
+		return tempList;
 	}
 }
