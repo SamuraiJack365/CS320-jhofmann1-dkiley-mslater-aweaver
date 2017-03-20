@@ -10,7 +10,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="<c:if test="${page == 'home'}">active</c:if>"><a href="#">Home</a></li>
+        <li class="<c:if test="${page == 'home'}">active</c:if>"><a href="#" <c:if test="${page != 'home'}">onclick="location.href='${pageContext.servletContext.contextPath}/home'"</c:if>>Home</a></li>
         <li class="<c:if test="${page == 'student'}">active</c:if>"><a href="#" <c:if test="${page != 'student'}">onclick="location.href='${pageContext.servletContext.contextPath}/guessingGame'"</c:if>>Student</a></li>
         <li class="<c:if test="${page == 'advisor'}">active</c:if>"><a href="#">Advisor</a></li>
       </ul>
