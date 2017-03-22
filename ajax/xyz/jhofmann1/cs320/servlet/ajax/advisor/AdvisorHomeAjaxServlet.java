@@ -39,7 +39,7 @@ public class AdvisorHomeAjaxServlet extends HttpServlet {
 		AdvisorHome model = new AdvisorHome();
 		model.setNumStudents(5);
 		
-		// If an action was specified, use a GuessingGameController to carry it out
+		// If an action was specified, use a GuessingGameController to carryy it out
 		String action = req.getParameter("action");
 		if (action != null) {
 			AdvisorHomeController controller = new AdvisorHomeController();
