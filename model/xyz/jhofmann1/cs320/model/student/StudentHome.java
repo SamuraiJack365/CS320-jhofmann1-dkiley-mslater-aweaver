@@ -8,12 +8,25 @@ public class StudentHome {
 	private int[] activities;	// This holds the IDs for all the clubs 
 								// and sports the student were part of
 	private int[] officer; 		// Contains the int IDs of the offices the student held
+	private int studentIDNum; 	// 903 or 902 number for each student
 	private double GPA;			
 	private boolean displayGPA;
 	private boolean reviewed;	// Shows whether or not the advisor has seen student's submissions
 	private int approvalState; 	// Shows how close the student is to finishing their submissions
 	
-	//TODO: Add Constructors and Add methods
+	public StudentHome(String studentID, String accolades, int[] majors, int[] minors, int[] activities, int[] officer, int studentIDNum, double GPA, boolean displayGPA, boolean reviewed, int approvalState){
+		this.studentID = studentID;
+		this.accolades = accolades;
+		this.majors = majors;
+		this.minors = minors;
+		this.activities = activities;
+		this.officer = officer;
+		this.studentIDNum = studentIDNum;
+		this.GPA = GPA;
+		this.displayGPA = displayGPA;
+		this.reviewed = reviewed;
+		this.approvalState = approvalState;
+	}
 	
 	public String getStudentID() {
 		return studentID;
