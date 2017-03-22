@@ -9,6 +9,7 @@ import edu.ycp.cs320.booksdb.model.Author;
 import edu.ycp.cs320.booksdb.model.Book;
 import edu.ycp.cs320.booksdb.model.Pair;
 
+@SuppressWarnings("unused")
 public class FakeDatabase implements IDatabase {
 	
 	private List<Author> authorList;
@@ -53,5 +54,25 @@ public class FakeDatabase implements IDatabase {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public List<Pair<Author, Book>> findAuthorAndBookByAuthorLastName(String lastname) {
+		List<Pair<Author, Book>> result = new ArrayList<Pair<Author,Book>>();
+		int author_id = 0;
+		for(Author author : authorList)
+		{
+			if(author.getLastname().equalsIgnoreCase(lastname))
+			{
+				author_id = author.getAuthorId();
+			}
+		}
+		for (Book book : bookList) {
+			if (book.getAuthorId() == author_id) {
+				Author author = findAuthorByAuthorId(book.getAuthorId());
+				result.add(new Pair<Author, Book>(author, book));
+			}
+		}
+		return result;
 	}
 }

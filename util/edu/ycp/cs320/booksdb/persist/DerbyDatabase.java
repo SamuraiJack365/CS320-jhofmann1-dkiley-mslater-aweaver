@@ -250,4 +250,59 @@ public class DerbyDatabase implements IDatabase {
 		
 		System.out.println("Success!");
 	}
+
+	@Override
+	public List<Pair<Author, Book>> findAuthorAndBookByAuthorLastName(String lastname) {
+		return executeTransaction(new Transaction<List<Pair<Author,Book>>>() {
+			@Override
+			public List<Pair<Author, Book>> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null;
+				ResultSet resultSet = null;
+				
+				try {
+					// retreive all attributes from both Books and Authors tables
+					stmt = conn.prepareStatement(
+							"select authors.*, books.* " +
+							"  from authors, books " +
+							" where authors.author_id = books.author_id " +
+							"   and authors.lastname = ?"
+					);
+					stmt.setString(1, lastname);
+					
+					List<Pair<Author, Book>> result = new ArrayList<Pair<Author,Book>>();
+					
+					resultSet = stmt.executeQuery();
+					
+					// for testing that a result was returned
+					Boolean found = false;
+					
+					while (resultSet.next()) {
+						found = true;
+						
+						// create new Author object
+						// retrieve attributes from resultSet starting with index 1
+						Author author = new Author();
+						loadAuthor(author, resultSet, 1);
+						
+						// create new Book object
+						// retrieve attributes from resultSet starting at index 4
+						Book book = new Book();
+						loadBook(book, resultSet, 4);
+						
+						result.add(new Pair<Author, Book>(author, book));
+					}
+					
+					// check if the author was found
+					if (!found) {
+						System.out.println("A book by an author with the name <" + lastname + "> was not found in the books table");
+					}
+					
+					return result;
+				} finally {
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(stmt);
+				}
+			}
+		});
+	}
 }
