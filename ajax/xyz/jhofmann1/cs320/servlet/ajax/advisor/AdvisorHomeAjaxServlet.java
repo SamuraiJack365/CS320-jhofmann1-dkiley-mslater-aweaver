@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import xyz.jhofmann1.cs320.controller.advisor.AdvisorHomeController;
-import xyz.jhofmann1.cs320.model.advisor.AdvisorHome;
+import xyz.jhofmann1.cs320.model.advisor.Advisor;
 
 public class AdvisorHomeAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -36,7 +36,7 @@ public class AdvisorHomeAjaxServlet extends HttpServlet {
 //			return;
 //		}
 		
-		AdvisorHome model = new AdvisorHome();
+		Advisor model = new Advisor();
 		model.setNumStudents(5);
 		
 		// If an action was specified, use a GuessingGameController to carryy it out

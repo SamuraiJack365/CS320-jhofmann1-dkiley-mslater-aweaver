@@ -1,6 +1,6 @@
 package xyz.jhofmann1.cs320.model.student;
 
-public class StudentHome {
+public class Student {
 	private String studentID; 	// This holds the student's YCP Username
 	private String accolades; 	// This holds misc. achievements of the student
 	private int[] majors; 		// This holds the IDs of the student's major(s)
@@ -14,7 +14,7 @@ public class StudentHome {
 	private boolean reviewed;	// Shows whether or not the advisor has seen student's submissions
 	private int approvalState; 	// Shows how close the student is to finishing their submissions
 	
-	public StudentHome(String studentID, String accolades, int[] majors, int[] minors, int[] activities, int[] officer, int studentIDNum, double GPA, boolean displayGPA, boolean reviewed, int approvalState){
+	public Student(String studentID, String accolades, int[] majors, int[] minors, int[] activities, int[] officer, int studentIDNum, double GPA, boolean displayGPA, boolean reviewed, int approvalState){
 		this.studentID = studentID;
 		this.accolades = accolades;
 		this.majors = majors;

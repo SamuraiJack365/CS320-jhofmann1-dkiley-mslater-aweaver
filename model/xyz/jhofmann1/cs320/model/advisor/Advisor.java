@@ -2,7 +2,7 @@ package xyz.jhofmann1.cs320.model.advisor;
 
 import java.util.ArrayList;
 
-public class AdvisorHome {
+public class Advisor {
 	
 	// set up variables
 	private int numStudents;
@@ -12,7 +12,7 @@ public class AdvisorHome {
 	private ArrayList<String> email;
 	
 	// initialize variables
-	public AdvisorHome() {
+	public Advisor() {
 		firstNames = new ArrayList<String>();
 		lastNames = new ArrayList<String>();
 		ID = new ArrayList<Integer>();

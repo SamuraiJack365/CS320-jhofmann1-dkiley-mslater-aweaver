@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import xyz.jhofmann1.cs320.controller.advisor.AdvisorHomeController;
-import xyz.jhofmann1.cs320.model.advisor.AdvisorHome;
+import xyz.jhofmann1.cs320.model.advisor.Advisor;
 
 public class AdvisorHomeControllerTest {
 //	private GuessingGame model;
