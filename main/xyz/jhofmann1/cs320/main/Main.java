@@ -21,7 +21,6 @@ public class Main {
 		
 		// Start the server
 		server.start();
-		
 		// Wait for the user to type "quit"
 		System.out.println("Web server started, type quit to shut down");
 		Scanner keyboard = new Scanner(System.in);

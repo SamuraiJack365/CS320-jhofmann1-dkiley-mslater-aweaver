@@ -4,6 +4,8 @@
 package xyz.jhofmann1.cs320.servlet.main;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import xyz.jhofmann1.cs320.controller.main.LoginController;
+import xyz.jhofmann1.cs320.model.main.PasswordEncryptionService;
 
 /**
  * @author Jackson
@@ -35,14 +38,19 @@ public class LoginServlet extends HttpServlet {
 		// Decode form parameters and dispatch to controller
 		String errorMessage = null;
 		boolean result = false;
-		String first = getStringFromParameter(req.getParameter("username"));
-		String second = getStringFromParameter(req.getParameter("password"));
+		String username = getStringFromParameter(req.getParameter("username"));
+		String password = getStringFromParameter(req.getParameter("password"));
 
-		if (first == null || second == null) {
+		if (username == null || password == null) {
 			errorMessage = "Please specify both username and password";
 		} else {
 			LoginController controller = new LoginController();
-			result = controller.verifyUserData(first, second);
+			try {
+				result = controller.verifyUserData(username, password);
+			} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		// Add parameters as request attributes

@@ -3,17 +3,32 @@
  */
 package xyz.jhofmann1.cs320.controller.main;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
+import xyz.jhofmann1.cs320.model.main.Credentials;
+import xyz.jhofmann1.cs320.model.main.PasswordEncryptionService;
 /**
  * @author Jackson
  *
  */
 public class LoginController {
-	String username = "user";
-	String password = "pass";
-	public boolean verifyUserData(String username, String password)
+	String username = "username";
+	String password = "password";
+	PasswordEncryptionService encrypt;
+	Credentials cred;
+	public boolean verifyUserData(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException
 	{
+		encrypt = new PasswordEncryptionService();
+		try {
+			cred = new Credentials(this.username, this.password);
+		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(password);
 		boolean result = false;
-		if(username.equals(this.username) && password.equals(this.password))
+		if(encrypt.authenticate(password, cred.getEncryptedPassword(), cred.getSalt()))
 		{
 			result = true;
 		}
