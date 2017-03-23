@@ -46,14 +46,14 @@
 			</div>
 			<div class="col-sm-2 well">
 				<h3>Login:</h3>
-				<form>
+				<form action="${pageContext.servletContext.contextPath}/login" method="post">
 					<div class="form-group">
-						<label for="email">Email address:</label>
-						<input type="email" class="form-control" id="email">
+						<label for="username">Username:</label>
+						<input type="username" name="username" class="form-control" id="username">
 					</div>
 					<div class="form-group">
 						<label for="pwd">Password:</label>
-						<input type="password" class="form-control" id="pwd">
+						<input type="password" name="password" class="form-control" id="pwd">
 					</div>
 					<div class="checkbox">
 						<label><input type="checkbox"> Remember me</label>
