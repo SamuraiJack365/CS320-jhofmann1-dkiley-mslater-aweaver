@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import xyz.jhofmann1.cs320.controller.advisor.AdvisorHomeController;
-import xyz.jhofmann1.cs320.model.advisor.AdvisorHome;
+import xyz.jhofmann1.cs320.model.advisor.Advisor;
 
 public class AdvisorHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,7 +25,7 @@ public class AdvisorHomeServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		AdvisorHome model = new AdvisorHome();
+		Advisor model = new Advisor();
 
 		AdvisorHomeController controller = new AdvisorHomeController();
 		controller.setModel(model);

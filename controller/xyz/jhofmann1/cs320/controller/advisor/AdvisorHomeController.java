@@ -1,16 +1,16 @@
 package xyz.jhofmann1.cs320.controller.advisor;
 
-import xyz.jhofmann1.cs320.model.advisor.AdvisorHome;
+import xyz.jhofmann1.cs320.model.advisor.Advisor;
 
 //Controller for the guessing game.
 public class AdvisorHomeController {
-	private AdvisorHome model;
+	private Advisor model;
 	private int numStudents;
 
 	//Set the model.
 	  
 	//@param model the model to set
-	public void setModel(AdvisorHome model) {
+	public void setModel(Advisor model) {
 		this.model = model;
 	}
 

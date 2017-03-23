@@ -5,14 +5,14 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import xyz.jhofmann1.cs320.model.advisor.AdvisorHome;
+import xyz.jhofmann1.cs320.model.advisor.Advisor;
 
 public class AdvisorHomeTest {
-	private AdvisorHome model;
+	private Advisor model;
 	
 	@Before
 	public void setUp() {
-		model = new AdvisorHome();
+		model = new Advisor();
 		model.setNumStudents(50);
 		model.createFirstNameList();
 		model.createLastNameList();
