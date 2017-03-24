@@ -13,10 +13,12 @@ import xyz.jhofmann1.cs320.model.main.PasswordEncryptionService;
  *
  */
 public class LoginController {
-	String username = "username";
-	String password = "password";
-	PasswordEncryptionService encrypt;
-	Credentials cred;
+	
+	private String username = "username";
+	private String password = "password";
+	private PasswordEncryptionService encrypt;
+	private Credentials cred;
+	
 	public boolean verifyUserData(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException
 	{
 		encrypt = new PasswordEncryptionService();

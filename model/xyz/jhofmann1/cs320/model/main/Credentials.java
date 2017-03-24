@@ -5,9 +5,9 @@ import java.security.spec.InvalidKeySpecException;
 
 public class Credentials {
 
-	byte[] encryptedPassword, salt;
-	String username;
-	PasswordEncryptionService encrypt;
+	private byte[] encryptedPassword, salt;
+	private String username;
+	private PasswordEncryptionService encrypt;
 	
 	public Credentials(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		
