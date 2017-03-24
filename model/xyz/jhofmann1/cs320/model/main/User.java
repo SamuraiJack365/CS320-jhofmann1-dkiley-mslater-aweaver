@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 import javax.sql.rowset.serial.SerialException;
 
+import xyz.jhofmann1.cs320.controller.main.PasswordEncryptionService;
+
 /**
  * 
  * @author jhofmann1

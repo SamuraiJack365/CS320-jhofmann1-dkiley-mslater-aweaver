@@ -1,0 +1,15 @@
+xyz.jhofmann1.cs320.controller.advisor
+xyz.jhofmann1.cs320.controller.main
+xyz.jhofmann1.cs320.controller.student
+xyz.jhofmann1.cs320.junit.controller
+xyz.jhofmann1.cs320.junit.model
+xyz.jhofmann1.cs320.main
+xyz.jhofmann1.cs320.model.advisor
+xyz.jhofmann1.cs320.model.main
+xyz.jhofmann1.cs320.model.student
+xyz.jhofmann1.cs320.servlet.advisor
+xyz.jhofmann1.cs320.servlet.ajax.advisor
+xyz.jhofmann1.cs320.servlet.ajax.main
+xyz.jhofmann1.cs320.servlet.ajax.student
+xyz.jhofmann1.cs320.servlet.main
+xyz.jhofmann1.cs320.servlet.student

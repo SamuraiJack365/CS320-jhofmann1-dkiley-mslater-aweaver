@@ -1,4 +1,4 @@
-package xyz.jhofmann1.cs320.model.main;
+package xyz.jhofmann1.cs320.controller.main;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

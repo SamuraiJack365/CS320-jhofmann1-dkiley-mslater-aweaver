@@ -3,6 +3,8 @@ package xyz.jhofmann1.cs320.model.main;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
+import xyz.jhofmann1.cs320.controller.main.PasswordEncryptionService;
+
 public class Credentials {
 
 	private byte[] encryptedPassword, salt;
