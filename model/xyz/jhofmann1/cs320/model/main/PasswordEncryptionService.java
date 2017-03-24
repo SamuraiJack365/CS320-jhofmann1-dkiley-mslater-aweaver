@@ -8,7 +8,11 @@ import java.util.Arrays;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-
+/**
+ * pulled from https://www.javacodegeeks.com/2012/05/secure-password-storage-donts-dos-and.html
+ * @author jhofmann1
+ *
+ */
 public class PasswordEncryptionService {
 	public boolean authenticate(String attemptedPassword, byte[] encryptedPassword, byte[] salt)
 			throws NoSuchAlgorithmException, InvalidKeySpecException 
