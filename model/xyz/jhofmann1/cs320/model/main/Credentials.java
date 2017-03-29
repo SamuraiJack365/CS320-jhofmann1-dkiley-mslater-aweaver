@@ -27,7 +27,7 @@ public class Credentials {
 	public byte[] getSalt() {
 		return salt;
 	}
-
+ 
 	public String getUsername() {
 		return username;
 	}
