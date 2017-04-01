@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import xyz.jhofmann1.cs320.controller.student.StudentHomeController;
+import xyz.jhofmann1.cs320.controller.student.StudentController;
 
 public class StudentHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,7 +35,7 @@ public class StudentHomeServlet extends HttpServlet {
 			if (first == null || second == null || third == null) {
 				errorMessage = "Please specify three numbers";
 			} else {
-				StudentHomeController controller = new StudentHomeController();
+				StudentController controller = new StudentController();
 				result = controller.add(first, second, third);
 			}
 		} catch (NumberFormatException e) {

@@ -30,6 +30,14 @@
 			${errorMessage}
 			</div>
 		</c:if>
+		<c:if test="${! empty result}">
+			<c:if test="${result eq 'true'}">
+				<div class="alert alert-success alert-dismissable">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				Login of ${username} successful! Not that it matters because nothing is secure and everything is a lie!
+				</div>
+			</c:if>
+		</c:if>
 		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4"><h1>My Commencement</h1></div>
@@ -45,34 +53,29 @@
 				<p>Possit atomorum salutandi vix ut. Ne pri mollis probatus hendrerit, ne usu adhuc sonet. Ei qui graece invidunt intellegat. No qui maluisset aliquando. Choro exerci prodesset duo eu, agam paulo deleniti te mea. Illum veniam nam ut.</p>
 			</div>
 			<div class="col-sm-2 well">
-				<h3>Login:</h3>
-				<form action="${pageContext.servletContext.contextPath}/login" method="post">
-					<div class="form-group">
-						<label for="username">Username:</label>
-						<input type="username" name="username" class="form-control" id="username">
-					</div>
-					<div class="form-group">
-						<label for="pwd">Password:</label>
-						<input type="password" name="password" class="form-control" id="pwd">
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox"> Remember me</label>
-					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
+				<c:if test="${loggedin ne 'true'}">
+					<h3>Login:</h3>
+					<form action="${pageContext.servletContext.contextPath}/login" method="post">
+						<div class="form-group">
+							<label for="username">Username:</label>
+							<input type="username" name="username" class="form-control" id="username">
+						</div>
+						<div class="form-group">
+							<label for="pwd">Password:</label>
+							<input type="password" name="password" class="form-control" id="pwd">
+						</div>
+						<div class="checkbox">
+							<label><input type="checkbox"> Remember me</label>
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form>
+				</c:if>
+				<c:if test="${loggedin eq 'true'}">
+					<h3>Welcome:</h3>
+					<p>${username}</p>
+				</c:if>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-4"></div>
-			<div class="col-sm-4">
-				<div class="list-group">
-					<a href="#" class="list-group-item">- Home</a>
-					<a href="#" class="list-group-item">- Login</a>
-					<a href="#" class="list-group-item">- About</a>
-				</div>
-			</div>
-			<div class="col-sm-4"></div>
-		</div>
+			<%@include file="../../includes/nav2.jspf"%>
 	</div>
 	</body>
 </html>
