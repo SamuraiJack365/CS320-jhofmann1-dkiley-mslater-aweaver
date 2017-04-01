@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import xyz.jhofmann1.cs320.controller.main.LoginController;
 
@@ -51,17 +52,22 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
 		// Add parameters as request attributes
 		req.setAttribute("username", req.getParameter("username"));
 		req.setAttribute("password", req.getParameter("password"));
-		
 		// Add result objects as request attributes
 		req.setAttribute("errorMessage", errorMessage);
 		req.setAttribute("result", result);
-		
-		// Forward to view to render the result HTML document
-		req.getRequestDispatcher("/_view/main/login.jsp").forward(req, resp);
+		if (!result) {
+			// Forward to view to render the result HTML document
+			req.getRequestDispatcher("/_view/main/login.jsp").forward(req, resp);
+		}
+		else
+		{
+			req.setAttribute("loggedin", true);
+			// Forward to view to render the result HTML document
+			req.getRequestDispatcher("/_view/main/index.jsp").forward(req, resp);
+		}
 	}
 	
 	private String getStringFromParameter(String s) {
