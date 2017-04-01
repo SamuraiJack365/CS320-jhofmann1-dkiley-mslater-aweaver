@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import xyz.jhofmann1.cs320.controller.main.LoginController;
-import xyz.jhofmann1.cs320.controller.main.PasswordEncryptionService;
 
 /**
  * @author Jackson
