@@ -1,4 +1,4 @@
-package xyz.jhofmann1.cs320.model.main;
+package xyz.jhofmann1.cs320.model.main; // Is this in the right spot?
 
 public enum Officer {
 	MEMBER		("Member", 0),
