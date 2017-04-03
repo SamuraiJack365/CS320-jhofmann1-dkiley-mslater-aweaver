@@ -23,5 +23,7 @@ public enum Officer {
 		return ID;
 	}
 	
-	
+	public String toString() {
+		return title;
+	}
 }
