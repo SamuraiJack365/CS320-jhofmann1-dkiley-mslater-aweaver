@@ -58,10 +58,12 @@ public class LoginServlet extends HttpServlet {
 		// Add result objects as request attributes
 		req.setAttribute("errorMessage", errorMessage);
 		req.setAttribute("result", result);
+		//bad username or password directs to the login page again
 		if (!result) {
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/main/login.jsp").forward(req, resp);
 		}
+		//good username and password directs to the home page
 		else
 		{
 			req.setAttribute("loggedin", true);
