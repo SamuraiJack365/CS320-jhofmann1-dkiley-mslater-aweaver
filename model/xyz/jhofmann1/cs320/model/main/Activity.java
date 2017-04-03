@@ -65,4 +65,18 @@ public enum Activity { //54 Activities added, we should probably do a sweep and 
 		this.ID = ID;
 		this.title = title;
 	}
+
+	/**
+	 * @return the title
+	 */
+	public String getTitle() {
+		return title;
+	}
+
+	/**
+	 * @return the iD
+	 */
+	public int getID() {
+		return ID;
+	}
 }
