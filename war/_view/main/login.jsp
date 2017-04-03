@@ -32,10 +32,18 @@
 			</div>
 		</c:if>
 		<c:if test="${! empty result}">
-			<div class="alert alert-info alert-dismissable">
-			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			${result}
-			</div>
+			<c:if test="${result eq 'true'}">
+				<div class="alert alert-success alert-dismissable">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				${result}
+				</div>
+			</c:if>
+			<c:if test="${result eq 'false'}">
+				<div class="alert alert-danger alert-dismissable">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				${result}
+				</div>
+			</c:if>
 		</c:if>
 		<div class="row">
 			<div class="col-sm-4"></div>
