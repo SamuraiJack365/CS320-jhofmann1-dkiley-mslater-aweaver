@@ -47,6 +47,7 @@ public class LoginServlet extends HttpServlet {
 			LoginController controller = new LoginController();
 			try {
 				result = controller.verifyUserData(username, password);
+				req.setAttribute("result", result);
 			} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -57,7 +58,6 @@ public class LoginServlet extends HttpServlet {
 		req.setAttribute("password", req.getParameter("password"));
 		// Add result objects as request attributes
 		req.setAttribute("errorMessage", errorMessage);
-		req.setAttribute("result", result);
 		//bad username or password directs to the login page again
 		if (!result) {
 			// Forward to view to render the result HTML document
