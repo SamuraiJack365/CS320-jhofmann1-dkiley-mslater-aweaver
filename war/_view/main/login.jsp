@@ -26,16 +26,18 @@
 	<%@include file="../../includes/nav.jspf"%>
 	<div class="container-fluid">
 		<c:if test="${! empty errorMessage}">
-			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			<div class="alert alert-danger alert-dismissable">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			${errorMessage}
 			</div>
 		</c:if>
 		<c:if test="${! empty result}">
-			<div class="alert alert-info alert-dismissable">
-			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			${result}
-			</div>
+			<c:if test="${result eq 'false'}">
+				<div class="alert alert-danger alert-dismissable text-center">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<span class="glyphicon glyphicon-alert"></span> Username and/or password incorrect! <span class="glyphicon glyphicon-alert"></span>
+				</div>
+			</c:if>
 		</c:if>
 		<div class="row">
 			<div class="col-sm-4"></div>
@@ -44,11 +46,11 @@
 				<form action="${pageContext.servletContext.contextPath}/login" method="post">
 					<div class="form-group">
 						<label for="username">Username:</label>
-						<input type="text" name="username" class="form-control" id="username" required>
+						<input type="text" name="username" class="form-control" id="username"  value="${username}" required>
 					</div>
 					<div class="form-group">
 						<label for="password">Password:</label>
-						<input type="password" name="password" class="form-control" id="password" required>
+						<input type="password" name="password" class="form-control" id="password" value="${password}" required>
 					</div>
 					<div class="checkbox">
 						<label><input type="checkbox"> Remember me</label>
@@ -58,17 +60,7 @@
 			</div>
 			<div class="col-sm-4"></div>
 		</div>
-		<div class="row">
-			<div class="col-sm-4"></div>
-			<div class="col-sm-4">
-				<div class="list-group">
-					<a href="#" class="list-group-item">- Home</a>
-					<a href="#" class="list-group-item">- Login</a>
-					<a href="#" class="list-group-item">- About</a>
-				</div>
-			</div>
-			<div class="col-sm-4"></div>
-		</div>
+			<%@include file="../../includes/nav2.jspf"%>
 	</div>
 	</body>
 </html>
