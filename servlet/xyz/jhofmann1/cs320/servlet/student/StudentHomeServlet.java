@@ -40,6 +40,7 @@ public class StudentHomeServlet extends HttpServlet {
 			double gpa = getDoubleFromParameter(req.getParameter("gpa"));
 			String sports = getStringFromParameter(req.getParameter("sports"));
 			String clubs = getStringFromParameter(req.getParameter("clubs"));
+			Double layout = getDoubleFromParameter(req.getParameter("layout"));
 
 			if (firstName == null || lastName == null || majors == null || "gpa" == null) {
 				errorMessage = "Rquired fields are marked with a *";

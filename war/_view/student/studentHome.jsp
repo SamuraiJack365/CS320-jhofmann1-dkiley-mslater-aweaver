@@ -107,8 +107,17 @@
 		</div>
    		</div>
 	  	
-	  	
-	  	
+	  	<div class="btn-group col-sm-offset-2" data-toggle="buttons">
+  			<label class="btn btn-primary active">
+    			<input type="radio" name="layout" id="layout1" autocomplete="off"> Layout 1
+  			</label>
+ 			<label class="btn btn-primary">
+   				<input type="radio" name="layout" id="layout2" autocomplete="off"> Layout 2
+ 			</label>
+  			<label class="btn btn-primary">
+    			<input type="radio" name="layout" id="layout3" autocomplete="off"> Layout 3
+  			</label>
+		</div>
 	  	
 	  	<div class="row">
 	    <div class="form-group">
