@@ -15,7 +15,7 @@ public class StudentController {
 	private ArrayList<Credentials> users;
 	
 	public StudentController() {
-
+		
 	}
 	
 	@SuppressWarnings("finally")
@@ -32,9 +32,11 @@ public class StudentController {
 	/**
 	 * 
 	 * @param model, sets the model
+	 * generates a temporary table
 	 */
 	public void setModel(Student model) {
 		this.model = model;
+		generateUserTable();
 	}
 	
 	/**
