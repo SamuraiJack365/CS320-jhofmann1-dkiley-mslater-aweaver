@@ -3,7 +3,8 @@
 		<div class="col-sm-4">
 			<div class="list-group">
 				<a href="#" class="list-group-item<c:if test="${page == 'home'}"> active</c:if>" <c:if test="${page != 'home'}">onclick="location.href='${pageContext.servletContext.contextPath}/home'"</c:if>>- Home</a>
-				<a href="#" class="list-group-item<c:if test="${page == 'login'}"> active</c:if>" <c:if test="${page != 'login'}">onclick="location.href='${pageContext.servletContext.contextPath}/login'"</c:if>>- Login</a>
+				<c:if test="${loggedin ne true}"><a href="#" class="list-group-item<c:if test="${page == 'login'}"> active</c:if>" <c:if test="${page != 'login'}">onclick="location.href='${pageContext.servletContext.contextPath}/login'"</c:if>>- Login</a></c:if>
+				<c:if test="${loggedin eq true}"><a href="#" class="list-group-item<c:if test="${page == 'logout'}"> active</c:if>" <c:if test="${page != 'logout'}">onclick="location.href='${pageContext.servletContext.contextPath}/logout'"</c:if>>- Logout</a></c:if>
 				<a href="http://cs320t.jhofmann1.xyz" target="_blank" class="list-group-item<c:if test="${page == 'about'}"> active</c:if>" <c:if test="${page == 'about'}">onclick="location.href='${pageContext.servletContext.contextPath}/about'"</c:if>>- About</a>
 			</div>
 		</div>

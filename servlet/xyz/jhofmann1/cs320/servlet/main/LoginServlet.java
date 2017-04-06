@@ -66,9 +66,10 @@ public class LoginServlet extends HttpServlet {
 		//good username and password directs to the home page
 		else
 		{
-			req.setAttribute("loggedin", true);
+			req.getSession().setAttribute("loggedin", true);
+			req.getSession().setAttribute("user", username);
 			// Forward to view to render the result HTML document
-			req.getRequestDispatcher("/_view/main/index.jsp").forward(req, resp);
+			resp.sendRedirect(req.getContextPath() + "/home");
 		}
 	}
 	
