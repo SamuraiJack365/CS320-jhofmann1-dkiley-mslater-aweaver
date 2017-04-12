@@ -115,7 +115,7 @@ public class DerbyDatabase implements IDatabase {
 						"create table majors (" +
 						" 	major_id integer primary key " +
 						"		generated always as identity (start with 1, increment by 1), " +
-						"	major varchar(40)" +
+						"	major varchar(50)" +
 						")"
 					);
 					
