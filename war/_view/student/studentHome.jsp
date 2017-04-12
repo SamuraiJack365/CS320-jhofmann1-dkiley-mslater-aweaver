@@ -106,32 +106,26 @@
 	  		</form>
 		</div>
    		</div>
-   		
-   		<div class="row">
-   		<form class="form-vertical">
-   		<div class="form-group">
-   			<div class="col-sm-offset-2 col-sm-10">
-   				<h2>Commencement Media</h2>
-   			</div>
-	    </div>
-	    </div>
-	  
+	  	
+	  	<div class="btn-group col-sm-offset-2" data-toggle="buttons">
+  			<label class="btn btn-primary active">
+    			<input type="radio" name="layout" id="layout1" autocomplete="off"> Layout 1
+  			</label>
+ 			<label class="btn btn-primary">
+   				<input type="radio" name="layout" id="layout2" autocomplete="off"> Layout 2
+ 			</label>
+  			<label class="btn btn-primary">
+    			<input type="radio" name="layout" id="layout3" autocomplete="off"> Layout 3
+  			</label>
+		</div>
+	  	
 	  	<div class="row">
 	    <div class="form-group">
-	    	<div class="col-sm-offset-3 col-sm-10">
-	    		<button type="button" class="btn btn-primary btn-lg">Upload Pictures</button>
+	    	<div class="col-sm-offset-5 col-sm-10">
+	    		<button type="button" class="btn btn-primary btn-lg">Upload Commencment Media</button>
 	    	</div>
     	</div>
-		<div class="form-group">
-			<div class="col-sm-offset-3 col-sm-10">
-   				<button type="button" class="btn btn-primary btn-lg">Upload Video Clip</button>
-   			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-3 col-sm-10">
-    			<button type="button" class="btn btn-primary btn-lg">Upload Audio Clip</button>
-    		</div>
-		</div>
+    	
 		</div>
 		</form>
 		</form>
