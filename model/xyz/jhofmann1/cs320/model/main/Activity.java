@@ -1,7 +1,10 @@
 package xyz.jhofmann1.cs320.model.main;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum Activity { //54 Activities added, we should probably do a sweep and check if I missed some. I hope I didn't.
-	TEST	("TEST", 0),
+	TEST	(null, 0),
 	AIGA 	("AIGA", 1),
 	AC 		("Alpha Chi", 2),
 	ACJA 	("American Criminal Justice Association", 3),
@@ -61,6 +64,15 @@ public enum Activity { //54 Activities added, we should probably do a sweep and 
 	private final String title;
 	private final int ID;
 	
+	//reverse lookup map for int to String
+	private static final Map<Integer, Activity> reverse = new HashMap<Integer, Activity>();
+	
+	static {
+		for(Activity a : Activity.values()){
+			reverse.put(a.getID(), a);
+		}
+	}
+	
 	Activity(String title, int ID){
 		this.ID = ID;
 		this.title = title;
@@ -78,5 +90,13 @@ public enum Activity { //54 Activities added, we should probably do a sweep and 
 	 */
 	public int getID() {
 		return ID;
+	}
+	
+	public String toString() {
+		return title;
+	}
+	
+	public String toString(int ID){
+		return reverse.get(ID).getTitle();
 	}
 }
