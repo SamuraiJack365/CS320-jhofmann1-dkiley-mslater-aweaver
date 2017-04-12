@@ -26,8 +26,8 @@
 	<%@include file="../../includes/nav.jspf"%>
 	<div class="container-fluid">
 		<c:if test="${! empty errorMessage}">
-			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			<div class="alert alert-danger alert-dismissable">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			${errorMessage}
 			</div>
 		</c:if>
