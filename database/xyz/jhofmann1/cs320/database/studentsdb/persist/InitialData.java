@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import xyz.jhofmann1.cs320.database.studentsdb.model.Student;
+import xyz.jhofmann1.cs320.database.studentsdb.model.Major;
 
 public class InitialData {
 	// reads initial Author data from CSV file and returns a List of Authors
@@ -45,6 +46,36 @@ public class InitialData {
 			return studentList;
 		} finally {
 			readStudents.close();
+		}
+	}
+	
+	public static List<Major> getMajors() throws IOException {
+		List<Major> majorList = new ArrayList<Major>();
+		ReadCSV readMajors = new ReadCSV("majors.csv");
+		try {
+			// auto-generated primary key for authors table
+			Integer majorId = 1;
+			while (true) {
+				List<String> tuple = readMajors.next();
+				if (tuple == null) {
+					break;
+				}
+				Iterator<String> i = tuple.iterator();
+				Major major = new Major();
+
+				// read author ID from CSV file, but don't use it
+				// it's there for reference purposes, just make sure that it is correct
+				// when setting up the BookAuthors CSV file				
+				Integer.parseInt(i.next());
+				// auto-generate author ID, instead
+				major.setMajorId(majorId++);	
+				major.setMajor(i.next());
+				majorList.add(major);
+			}
+			System.out.println("majorList loaded from CSV file");
+			return majorList;
+		} finally {
+			readMajors.close();
 		}
 	}
 }
