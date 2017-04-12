@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import xyz.jhofmann1.cs320.database.studentsdb.model.Student;;
+import xyz.jhofmann1.cs320.database.studentsdb.model.Student;
+import xyz.jhofmann1.cs320.database.studentsdb.model.Major;
 
 public class DerbyDatabase implements IDatabase {
 	static {
@@ -86,7 +87,8 @@ public class DerbyDatabase implements IDatabase {
 		executeTransaction(new Transaction<Boolean>() {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
-				PreparedStatement stmt1 = null;		
+				PreparedStatement stmt1 = null;	
+				PreparedStatement stmt2 = null;
 			
 				try {
 					stmt1 = conn.prepareStatement(
@@ -109,9 +111,22 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Students table created");
 					
+					stmt2 = conn.prepareStatement(
+						"create table majors (" +
+						" 	major_id integer primary key " +
+						"		generated always as identity (start with 1, increment by 1), " +
+						"	major varchar(50)" +
+						")"
+					);
+					
+					stmt2.executeUpdate();
+					
+					System.out.println("Majors table created");
+					
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
+					DBUtil.closeQuietly(stmt2);
 				}
 			}
 		});
@@ -123,14 +138,18 @@ public class DerbyDatabase implements IDatabase {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
 				List<Student> studentList;
+				List<Major> majorList;
 				
 				try {
-					studentList     = InitialData.getStudents();				
+					studentList     = InitialData.getStudents();
+					majorList		= InitialData.getMajors();
+					
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
 				}
 
 				PreparedStatement insertStudent     = null;
+				PreparedStatement insertMajor		= null;
 
 				try {
 					// must completely populate Authors table before populating BookAuthors table because of primary keys
@@ -153,19 +172,15 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Students table populated");
 					
-//					// must completely populate Books table before populating BookAuthors table because of primary keys
-//					insertBook = conn.prepareStatement("insert into books (title, isbn, published) values (?, ?, ?)");
-//					for (Book book : bookList) {
-////							insertBook.setInt(1, book.getBookId());		// auto-generated primary key, don't insert this
-////							insertBook.setInt(1, book.getAuthorId());	// this is now in the BookAuthors table
-//						insertBook.setString(1, book.getTitle());
-//						insertBook.setString(2, book.getIsbn());
-//						insertBook.setInt(3, book.getPublished());
-//						insertBook.addBatch();
-//					}
-//					insertBook.executeBatch();
-//					
-//					System.out.println("Books table populated");					
+					// must completely populate Books table before populating BookAuthors table because of primary keys
+					insertMajor = conn.prepareStatement("insert into majors (major) values (?)");
+					for (Major major : majorList) {
+						insertMajor.setString(1, major.getMajor());
+						insertMajor.addBatch();
+					}
+					insertMajor.executeBatch();
+					
+					System.out.println("Majors table populated");					
 //					
 //					// must wait until all Books and all Authors are inserted into tables before creating BookAuthor table
 //					// since this table consists entirely of foreign keys, with constraints applied
@@ -181,7 +196,8 @@ public class DerbyDatabase implements IDatabase {
 					
 					return true;
 				} finally {
-					DBUtil.closeQuietly(insertStudent);				
+					DBUtil.closeQuietly(insertStudent);	
+					DBUtil.closeQuietly(insertMajor);
 				}
 			}
 		});
