@@ -107,7 +107,7 @@ public class DerbyDatabase implements IDatabase {
 						"   sport integer," +
 						"   club integer," +
 						"   gpa double," +
-						"   displaygpa boolean," +
+						"   displaygpa boolean," + 
 						"   isreviewed boolean" +
 						"   CONSTRAINT STUDENTS_MAJORS FOREIGN KEY (MAJOR) REFERENCES MAJORS (MAJOR_ID)" +
 						")"
