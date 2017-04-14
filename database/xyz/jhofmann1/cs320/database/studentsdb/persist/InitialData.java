@@ -7,6 +7,7 @@ import java.util.List;
 
 import xyz.jhofmann1.cs320.database.studentsdb.model.Student;
 import xyz.jhofmann1.cs320.database.studentsdb.model.Major;
+import xyz.jhofmann1.cs320.database.studentsdb.model.Minor;
 
 public class InitialData {
 	// reads initial Author data from CSV file and returns a List of Authors
@@ -76,6 +77,36 @@ public class InitialData {
 			return majorList;
 		} finally {
 			readMajors.close();
+		}
+	}
+	
+	public static List<Minor> getMinors() throws IOException {
+		List<Minor> minorList = new ArrayList<Minor>();
+		ReadCSV readMinors = new ReadCSV("minors.csv");
+		try {
+			// auto-generated primary key for authors table
+			Integer minorId = 1;
+			while (true) {
+				List<String> tuple = readMinors.next();
+				if (tuple == null) {
+					break;
+				}
+				Iterator<String> i = tuple.iterator();
+				Minor minor = new Minor();
+
+				// read author ID from CSV file, but don't use it
+				// it's there for reference purposes, just make sure that it is correct
+				// when setting up the BookAuthors CSV file				
+				Integer.parseInt(i.next());
+				// auto-generate author ID, instead
+				minor.setMinorId(minorId++);	
+				minor.setMinor(i.next());
+				minorList.add(minor);
+			}
+			System.out.println("majorList loaded from CSV file");
+			return minorList;
+		} finally {
+			readMinors.close();
 		}
 	}
 }
