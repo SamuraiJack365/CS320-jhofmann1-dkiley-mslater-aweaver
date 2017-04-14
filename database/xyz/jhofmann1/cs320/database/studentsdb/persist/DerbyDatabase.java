@@ -11,6 +11,7 @@ import java.util.List;
 
 import xyz.jhofmann1.cs320.database.studentsdb.model.Student;
 import xyz.jhofmann1.cs320.database.studentsdb.model.Major;
+import xyz.jhofmann1.cs320.database.studentsdb.model.Minor;
 
 public class DerbyDatabase implements IDatabase {
 	static {
@@ -89,6 +90,9 @@ public class DerbyDatabase implements IDatabase {
 			public Boolean execute(Connection conn) throws SQLException {
 				PreparedStatement stmt1 = null;	
 				PreparedStatement stmt2 = null;
+				PreparedStatement stmt3 = null;
+				//PreparedStatement stmt4 = null;
+				//PreparedStatement stmt5 = null;
 			
 				try {
 					stmt1 = conn.prepareStatement(
@@ -123,10 +127,23 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Majors table created");
 					
+					stmt3 = conn.prepareStatement(
+							"create table minors (" +
+							" 	minor_id integer primary key " +
+							"		generated always as identity (start with 1, increment by 1), " +
+							"	minor varchar(50)" +
+							")"
+						);
+					
+					stmt3.executeUpdate();
+					
+					System.out.println("Minors table created");
+					
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
 					DBUtil.closeQuietly(stmt2);
+					DBUtil.closeQuietly(stmt3);
 				}
 			}
 		});
@@ -139,10 +156,12 @@ public class DerbyDatabase implements IDatabase {
 			public Boolean execute(Connection conn) throws SQLException {
 				List<Student> studentList;
 				List<Major> majorList;
+				List<Minor>	minorList;
 				
 				try {
 					studentList     = InitialData.getStudents();
 					majorList		= InitialData.getMajors();
+					minorList		= InitialData.getMinors();
 					
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
@@ -150,6 +169,8 @@ public class DerbyDatabase implements IDatabase {
 
 				PreparedStatement insertStudent     = null;
 				PreparedStatement insertMajor		= null;
+				PreparedStatement insertMinor 		= null;
+				
 
 				try {
 					// must completely populate Authors table before populating BookAuthors table because of primary keys
@@ -182,6 +203,15 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Majors table populated");					
 //					
+					// must completely populate Books table before populating BookAuthors table because of primary keys
+					insertMinor = conn.prepareStatement("insert into minors (minor) values (?)");
+					for (Minor minor : minorList) {
+						insertMinor.setString(1, minor.getMinor());
+						insertMinor.addBatch();
+					}
+					insertMinor.executeBatch();
+					
+					System.out.println("Minors table populated");	
 //					// must wait until all Books and all Authors are inserted into tables before creating BookAuthor table
 //					// since this table consists entirely of foreign keys, with constraints applied
 //					insertBookAuthor = conn.prepareStatement("insert into bookAuthors (book_id, author_id) values (?, ?)");
@@ -198,6 +228,7 @@ public class DerbyDatabase implements IDatabase {
 				} finally {
 					DBUtil.closeQuietly(insertStudent);	
 					DBUtil.closeQuietly(insertMajor);
+					DBUtil.closeQuietly(insertMinor);
 				}
 			}
 		});
