@@ -75,7 +75,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	private Connection connect() throws SQLException {
-		Connection conn = DriverManager.getConnection("jdbc:derby:D:/Users/Mitch/CS320/CS320-jhofmann1-dkiley-mslater-aweaver/students.db;create=true");		
+		Connection conn = DriverManager.getConnection("jdbc:derby:students.db;create=true");		
 		
 		// Set autocommit() to false to allow the execution of
 		// multiple queries/statements as part of the same transaction.
@@ -108,8 +108,9 @@ public class DerbyDatabase implements IDatabase {
 						"   sport integer," +
 						"   club integer," +
 						"   gpa double," +
-						"   displaygpa boolean," +
+						"   displaygpa boolean," + 
 						"   isreviewed boolean" +
+						"   CONSTRAINT STUDENTS_MAJORS FOREIGN KEY (MAJOR) REFERENCES MAJORS (MAJOR_ID)" +
 						")"
 					);
 					stmt1.executeUpdate();

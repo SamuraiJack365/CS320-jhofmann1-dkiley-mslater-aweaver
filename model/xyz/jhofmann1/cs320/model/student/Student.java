@@ -21,6 +21,9 @@ public class Student extends User {
 	private boolean displayGPA;
 	private boolean reviewed;	// Shows whether or not the advisor has seen student's submissions
 	private int approvalState; 	// Shows how close the student is to finishing their submissions
+	private String email;
+	private String studentLastName;
+	private String studentFirstName; 
 
 	public Student() throws NoSuchAlgorithmException, InvalidKeySpecException {
 		// TODO Auto-generated constructor stub
@@ -63,6 +66,9 @@ public class Student extends User {
 		setDisplayGPA((boolean) fields.get(8));
 		setReviewed((boolean) fields.get(9));
 		setApprovalState((int) fields.get(10));
+		setEmail((String) fields.get(11));
+		setStudentFirstName((String) fields.get(12));
+		setStudentLastName((String) fields.get(13));
 	}
 
 	/**
@@ -239,6 +245,30 @@ public class Student extends User {
 	 */
 	public void setApprovalState(int approvalState) {
 		this.approvalState = approvalState;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getStudentLastName() {
+		return studentLastName;
+	}
+
+	public void setStudentLastName(String studentLastName) {
+		this.studentLastName = studentLastName;
+	}
+
+	public String getStudentFirstName() {
+		return studentFirstName;
+	}
+
+	public void setStudentFirstName(String studentFirstName) {
+		this.studentFirstName = studentFirstName;
 	}
 
 }

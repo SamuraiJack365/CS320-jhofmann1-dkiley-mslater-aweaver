@@ -1,5 +1,8 @@
 package xyz.jhofmann1.cs320.model.main; // Is this in the right spot?
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum Officer {
 	MEMBER		("Member", 0),
 	PRESIDENT	("President", 1),
@@ -9,6 +12,15 @@ public enum Officer {
 	
 	private final String title;
 	private final int ID;
+	
+	//reverse lookup hashmap times
+	private static final Map<Integer, Officer> reverse = new HashMap<Integer, Officer>();
+	
+	static {
+		for(Officer o : Officer.values()){
+			reverse.put(o.getID(), o);
+		}
+	}
 	
 	Officer (String title, int ID){
 		this.title = title;
@@ -25,5 +37,9 @@ public enum Officer {
 	
 	public String toString() {
 		return title;
+	}
+	
+	public String toString(int ID) {
+		return reverse.get(ID).getTitle();
 	}
 }

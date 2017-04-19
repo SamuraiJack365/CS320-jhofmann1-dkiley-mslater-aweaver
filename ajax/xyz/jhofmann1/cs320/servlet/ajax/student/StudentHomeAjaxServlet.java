@@ -26,23 +26,24 @@ public class StudentHomeAjaxServlet extends HttpServlet {
 
 	private void doRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// Get parameters
-		Double first = getDouble(req, "first");
-		Double second = getDouble(req, "second");
-		Double third = getDouble(req, "third");
+		String firstName = getString(req, "firstName");
+		String lastName = getString(req, "lastName");
+		String majors = getString(req, "majors");
+		double gpa = getDouble(req, "gpa");
 		
 		// Check whether parameters are valid
-		if (first == null || second == null || third == null) {
+		if (firstName == null || lastName == null || majors == null) {
 			badRequest("Bad parameters", resp);
 			return;
 		}
 		
 		// Use a controller to process the request
 		StudentController controller = new StudentController();
-		Double result = controller.add(first, second, third);
+		boolean result = controller.addUser(firstName, lastName, majors);
 		
 		// Send back a response
 		resp.setContentType("text/plain");
-		resp.getWriter().println(result.toString());
+		resp.getWriter().println(result);
 	}
 
 	private Double getDouble(HttpServletRequest req, String name) {
@@ -55,6 +56,16 @@ public class StudentHomeAjaxServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			return null;
 		}
+	}
+	
+	private String getString(HttpServletRequest req, String name) {
+		String val = req.getParameter(name);
+		if (val == null || val == "") {
+			return null;
+		}else{
+			return name;
+		}
+		
 	}
 
 	private void badRequest(String message, HttpServletResponse resp) throws IOException {

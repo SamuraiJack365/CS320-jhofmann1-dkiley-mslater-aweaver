@@ -72,7 +72,7 @@
 				</c:if>
 				<c:if test="${loggedin eq 'true'}">
 					<h3>Welcome:</h3>
-					<p>${username}</p>
+					<p>${user}</p>
 				</c:if>
 			</div>
 			<%@include file="../../includes/nav2.jspf"%>
