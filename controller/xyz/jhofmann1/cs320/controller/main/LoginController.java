@@ -14,7 +14,7 @@ import xyz.jhofmann1.cs320.model.main.Credentials;
  */
 public class LoginController {
 	
-	private PasswordEncryptionService encrypt;
+	private PasswordHashingService encrypt;
 	private ArrayList<Credentials> users;
 	/**
 	 * Constructor initiates arraylist of users then generates list of users
@@ -37,7 +37,7 @@ public class LoginController {
 	public boolean verifyUserData(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException
 	{
 		//creates new encryption service
-		encrypt = new PasswordEncryptionService();
+		encrypt = new PasswordHashingService();
 		//sets return to default to false
 		boolean result = false;
 		
@@ -47,7 +47,7 @@ public class LoginController {
 		{
 			if(cred.getUsername().equalsIgnoreCase(username))
 			{
-				if(encrypt.authenticate(password, cred.getEncryptedPassword(), cred.getSalt()))
+				if(encrypt.checkPassword(password, cred.getHashedPassword()))
 				{
 					result = true;
 				}

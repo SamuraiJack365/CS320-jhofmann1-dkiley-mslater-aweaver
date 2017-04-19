@@ -1,6 +1,5 @@
 package xyz.jhofmann1.cs320.database.studentsdb.model;
 
-import java.sql.Blob;
 
 public class Student {
 	
