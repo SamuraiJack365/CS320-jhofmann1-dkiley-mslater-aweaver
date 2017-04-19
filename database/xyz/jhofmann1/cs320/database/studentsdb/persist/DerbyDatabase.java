@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.jhofmann1.cs320.database.studentsdb.model.Student;
+import xyz.jhofmann1.cs320.database.studentsdb.model.Club;
 import xyz.jhofmann1.cs320.database.studentsdb.model.Major;
 import xyz.jhofmann1.cs320.database.studentsdb.model.Minor;
 import xyz.jhofmann1.cs320.database.studentsdb.model.Sport;
@@ -93,7 +94,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt2 = null;
 				PreparedStatement stmt3 = null;
 				PreparedStatement stmt4 = null;
-				//PreparedStatement stmt5 = null;
+				PreparedStatement stmt5 = null;
 			
 				try {
 					stmt1 = conn.prepareStatement(
@@ -153,12 +154,25 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Sports table created");
 					
+					stmt5 = conn.prepareStatement(
+							"create table clubs (" +
+							" 	club_id integer primary key " +
+							"		generated always as identity (start with 1, increment by 1), " +
+							"	club varchar(40)" +
+							")"
+						);
+					
+					stmt5.executeUpdate();
+					
+					System.out.println("Clubs table created");
+					
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
 					DBUtil.closeQuietly(stmt2);
 					DBUtil.closeQuietly(stmt3);
 					DBUtil.closeQuietly(stmt4);
+					DBUtil.closeQuietly(stmt5);
 				}
 			}
 		});
@@ -173,12 +187,14 @@ public class DerbyDatabase implements IDatabase {
 				List<Major> majorList;
 				List<Minor>	minorList;
 				List<Sport>	sportList;
+				List<Club>	clubList;
 				
 				try {
 					studentList     = InitialData.getStudents();
 					majorList		= InitialData.getMajors();
 					minorList		= InitialData.getMinors();
 					sportList 		= InitialData.getSports();
+					clubList		= InitialData.getClubs();
 					
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
@@ -188,6 +204,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement insertMajor		= null;
 				PreparedStatement insertMinor 		= null;
 				PreparedStatement insertSport		= null;
+				PreparedStatement insertClub		= null;
 				
 
 				try {
@@ -239,6 +256,15 @@ public class DerbyDatabase implements IDatabase {
 					insertSport.executeBatch();
 					
 					System.out.println("Sports table populated");
+					
+					insertClub = conn.prepareStatement("insert into clubs (club) values (?)");
+					for (Club club : clubList) {
+						insertClub.setString(1, club.getClub());
+						insertClub.addBatch();
+					}
+					insertClub.executeBatch();
+					
+					System.out.println("Clubs table populated");
 //					// must wait until all Books and all Authors are inserted into tables before creating BookAuthor table
 //					// since this table consists entirely of foreign keys, with constraints applied
 //					insertBookAuthor = conn.prepareStatement("insert into bookAuthors (book_id, author_id) values (?, ?)");
@@ -257,6 +283,7 @@ public class DerbyDatabase implements IDatabase {
 					DBUtil.closeQuietly(insertMajor);
 					DBUtil.closeQuietly(insertMinor);
 					DBUtil.closeQuietly(insertSport);
+					DBUtil.closeQuietly(insertClub);
 				}
 			}
 		});
