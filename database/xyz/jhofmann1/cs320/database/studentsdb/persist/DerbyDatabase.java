@@ -271,7 +271,6 @@ public class DerbyDatabase implements IDatabase {
 //					for (BookAuthor bookAuthor : bookAuthorList) {
 //						insertBookAuthor.setInt(1, bookAuthor.getBookId());
 //						insertBookAuthor.setInt(2, bookAuthor.getAuthorId());
-//						insertBookAuthor.addBatch();
 //					}
 //					insertBookAuthor.executeBatch();	
 //					
