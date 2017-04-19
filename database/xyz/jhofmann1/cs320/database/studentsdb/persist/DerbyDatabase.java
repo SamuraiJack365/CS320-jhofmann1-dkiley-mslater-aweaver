@@ -110,7 +110,6 @@ public class DerbyDatabase implements IDatabase {
 						"   gpa double," +
 						"   displaygpa boolean," + 
 						"   isreviewed boolean" +
-						"   CONSTRAINT STUDENTS_MAJORS FOREIGN KEY (MAJOR) REFERENCES MAJORS (MAJOR_ID)" +
 						")"
 					);
 					stmt1.executeUpdate();
