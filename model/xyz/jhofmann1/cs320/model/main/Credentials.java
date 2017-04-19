@@ -2,8 +2,7 @@ package xyz.jhofmann1.cs320.model.main;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-
-import xyz.jhofmann1.cs320.controller.main.PasswordEncryptionService;
+import xyz.jhofmann1.cs320.controller.main.PasswordHashingService;
 
 /**
  * 
@@ -12,9 +11,9 @@ import xyz.jhofmann1.cs320.controller.main.PasswordEncryptionService;
  */
 public class Credentials {
 
-	private byte[] encryptedPassword, salt;
+	String hashededPassword;
 	private String username;
-	private PasswordEncryptionService encrypt;
+	private PasswordHashingService encrypt;
 	
 	/**
 	 * Constructor for credential storage
@@ -26,34 +25,19 @@ public class Credentials {
 	public Credentials(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		
 		//initializes password service
-		encrypt = new PasswordEncryptionService();
-		//generates a salt for the password so two passwords wont hash to the same value
-		salt = encrypt.generateSalt();
+		encrypt = new PasswordHashingService();
 		
 		//hashes the password and sets it to the encryptedPasswordField
-		encryptedPassword = encrypt.getEncryptedPassword(password, salt);
+		hashededPassword = encrypt.hashPassword(password);
 		this.username = username;
-	}
-
-	public Credentials(String username, byte[] password) {
-		this.username = username;
-		this.encryptedPassword = password;
 	}
 
 	/**
 	 * Getter for the hashed password
 	 * @return the hashed password as a byte array
 	 */
-	public byte[] getEncryptedPassword() {
-		return encryptedPassword;
-	}
-
-	/**
-	 * Getter for the user's salt
-	 * @return the user's salt as a byte array
-	 */
-	public byte[] getSalt() {
-		return salt;
+	public String getHashedPassword() {
+		return hashededPassword;
 	}
  
 	/**
@@ -67,15 +51,8 @@ public class Credentials {
 	/**
 	 * @param encryptedPassword the encryptedPassword to set
 	 */
-	public void setEncryptedPassword(byte[] encryptedPassword) {
-		this.encryptedPassword = encryptedPassword;
-	}
-
-	/**
-	 * @param salt the salt to set
-	 */
-	public void setSalt(byte[] salt) {
-		this.salt = salt;
+	public void setEncryptedPassword(String encryptedPassword) {
+		this.hashededPassword = encryptedPassword;
 	}
 
 	/**

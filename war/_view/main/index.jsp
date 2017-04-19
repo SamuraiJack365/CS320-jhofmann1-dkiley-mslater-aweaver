@@ -80,6 +80,7 @@
                         </div>
                         <%@include file="../../includes/nav2.jspf"%>
                     </div>
+                </div>
         </body>
 
         </html>

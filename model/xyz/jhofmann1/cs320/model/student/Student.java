@@ -2,7 +2,6 @@ package xyz.jhofmann1.cs320.model.student;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.sql.Blob;
 import java.util.ArrayList;
 
 import xyz.jhofmann1.cs320.model.main.User;
@@ -30,18 +29,6 @@ public class Student extends User {
 	}
 
 	public Student(String username, String password, ArrayList<Object> fields) throws NoSuchAlgorithmException, InvalidKeySpecException {
-		super(username, password);
-		setFields(fields);
-		// TODO Auto-generated constructor stub
-	}
-
-	public Student(String username, byte[] password, ArrayList<Object> fields) {
-		super(username, password);
-		setFields(fields);
-		// TODO Auto-generated constructor stub
-	}
-
-	public Student(String username, Blob password, ArrayList<Object> fields) {
 		super(username, password);
 		setFields(fields);
 		// TODO Auto-generated constructor stub

@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import xyz.jhofmann1.cs320.controller.main.LoginController;
-import xyz.jhofmann1.cs320.controller.main.PasswordEncryptionService;
 
 public class LoginControllerTest {
 
@@ -35,16 +34,6 @@ public class LoginControllerTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	@Test
-	public void testGenerateUserTable() throws NoSuchAlgorithmException, InvalidKeySpecException
-	{
-		PasswordEncryptionService encrypt = new PasswordEncryptionService();
-		assertEquals(login.getUsers().get(0).getUsername(), "username0");
-		assertTrue(encrypt.authenticate("password0", login.getUsers().get(0).getEncryptedPassword(), login.getUsers().get(0).getSalt()));
-		assertEquals(login.getUsers().get(9).getUsername(), "username9");
-		assertTrue(encrypt.authenticate("password9", login.getUsers().get(9).getEncryptedPassword(), login.getUsers().get(9).getSalt()));
 	}
 
 }
