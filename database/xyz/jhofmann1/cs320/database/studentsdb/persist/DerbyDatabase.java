@@ -95,7 +95,6 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt3 = null;
 				PreparedStatement stmt4 = null;
 				PreparedStatement stmt5 = null;
-				PreparedStatement stmt6 = null;
 			
 				try {
 					stmt1 = conn.prepareStatement(

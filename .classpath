@@ -11,5 +11,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/CS320_Derby"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jBCrypt-0.4.zip_expanded"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

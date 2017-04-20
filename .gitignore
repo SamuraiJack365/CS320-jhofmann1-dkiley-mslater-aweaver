@@ -1,9 +1,7 @@
-/xyz/
-
-**/*.class
-/students.db
-.classpath
-.project
-derby.log
 /.idea
-**.csv
+<<<<<<< HEAD
+=======
+war/**/*.class
+*.class
+/*.class
+>>>>>>> Jack
