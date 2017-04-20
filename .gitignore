@@ -1,7 +1,5 @@
 /.idea
-<<<<<<< HEAD
-=======
+/students.db
 war/**/*.class
 *.class
 /*.class
->>>>>>> Jack
