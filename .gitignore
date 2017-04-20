@@ -1,1 +1,7 @@
 /.idea
+<<<<<<< HEAD
+=======
+war/**/*.class
+*.class
+/*.class
+>>>>>>> Jack
