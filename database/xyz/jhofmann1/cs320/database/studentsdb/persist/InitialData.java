@@ -6,8 +6,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import xyz.jhofmann1.cs320.database.studentsdb.model.Student;
+import xyz.jhofmann1.cs320.database.studentsdb.model.Club;
 import xyz.jhofmann1.cs320.database.studentsdb.model.Major;
 import xyz.jhofmann1.cs320.database.studentsdb.model.Minor;
+import xyz.jhofmann1.cs320.database.studentsdb.model.Sport;
 
 public class InitialData {
 	// reads initial Author data from CSV file and returns a List of Authors
@@ -103,10 +105,70 @@ public class InitialData {
 				minor.setMinor(i.next());
 				minorList.add(minor);
 			}
-			System.out.println("majorList loaded from CSV file");
+			System.out.println("minorList loaded from CSV file");
 			return minorList;
 		} finally {
 			readMinors.close();
+		}
+	}
+	
+	public static List<Sport> getSports() throws IOException {
+		List<Sport> sportList = new ArrayList<Sport>();
+		ReadCSV readSports = new ReadCSV("sports.csv");
+		try {
+			// auto-generated primary key for authors table
+			Integer sportId = 1;
+			while (true) {
+				List<String> tuple = readSports.next();
+				if (tuple == null) {
+					break;
+				}
+				Iterator<String> i = tuple.iterator();
+				Sport sport = new Sport();
+
+				// read author ID from CSV file, but don't use it
+				// it's there for reference purposes, just make sure that it is correct
+				// when setting up the BookAuthors CSV file				
+				Integer.parseInt(i.next());
+				// auto-generate author ID, instead
+				sport.setSportId(sportId++);	
+				sport.setSport(i.next());
+				sportList.add(sport);
+			}
+			System.out.println("sportList loaded from CSV file");
+			return sportList;
+		} finally {
+			readSports.close();
+		}
+	}
+	
+	public static List<Club> getClubs() throws IOException {
+		List<Club> clubList = new ArrayList<Club>();
+		ReadCSV readClubs = new ReadCSV("clubs.csv");
+		try {
+			// auto-generated primary key for authors table
+			Integer clubId = 1;
+			while (true) {
+				List<String> tuple = readClubs.next();
+				if (tuple == null) {
+					break;
+				}
+				Iterator<String> i = tuple.iterator();
+				Club club = new Club();
+
+				// read author ID from CSV file, but don't use it
+				// it's there for reference purposes, just make sure that it is correct
+				// when setting up the BookAuthors CSV file				
+				Integer.parseInt(i.next());
+				// auto-generate author ID, instead
+				club.setClubId(clubId++);	
+				club.setClub(i.next());
+				clubList.add(club);
+			}
+			System.out.println("clubList loaded from CSV file");
+			return clubList;
+		} finally {
+			readClubs.close();
 		}
 	}
 }
