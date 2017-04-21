@@ -6,6 +6,7 @@ public class Advisor {
 		private int advisor_Id;
 		private String firstName;
 		private String lastName;
+		private String userName;
 		//private String email;
 		
 		// initialize variables
@@ -37,6 +38,14 @@ public class Advisor {
 		// get the last name list
 		public String getLastName() {
 			return lastName;
+		}
+		
+		public void setUserName(String userName) {
+			this.userName = userName;
+		}
+
+		public String getUserName() {
+			return userName;
 		}
 		
 //		public void setEmail(String email) {
