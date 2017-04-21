@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class IndexServlet extends HttpServlet {
+public class IndexServlet extends MasterServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Override
@@ -16,7 +16,7 @@ public class IndexServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("In the Index servlet");
-		
+		checkLogged(req);
 		req.getRequestDispatcher("/_view/main/index.jsp").forward(req, resp);
 	}
 }

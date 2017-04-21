@@ -23,6 +23,7 @@ public class Student extends User {
 	private String email;
 	private String studentLastName;
 	private String studentFirstName; 
+	private String studentPic;
 
 	public Student() throws NoSuchAlgorithmException, InvalidKeySpecException {
 		// TODO Auto-generated constructor stub
@@ -258,4 +259,11 @@ public class Student extends User {
 		this.studentFirstName = studentFirstName;
 	}
 
+	public String getStudentPic() {
+		return studentPic;
+	}
+
+	public void setStudentPic(String studentPic) {
+		this.studentPic = studentPic;
+	}
 }

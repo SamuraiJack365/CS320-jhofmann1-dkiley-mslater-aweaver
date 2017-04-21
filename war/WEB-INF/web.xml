@@ -26,6 +26,10 @@
     <servlet-name>StudentHomeServlet</servlet-name>
     <servlet-class>xyz.jhofmann1.cs320.servlet.student.StudentHomeServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>LayoutDemoServlet</servlet-name>
+    <servlet-class>xyz.jhofmann1.cs320.servlet.student.LayoutDemoServlet</servlet-class>
+  </servlet>
   
   <!-- AJAX servlets. -->
   <servlet>
@@ -53,6 +57,10 @@
   <servlet-mapping>
     <servlet-name>StudentHomeServlet</servlet-name>
     <url-pattern>/student</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LayoutDemoServlet</servlet-name>
+    <url-pattern>/layouts</url-pattern>
   </servlet-mapping>
   
   <!--  AJAX servlet mappings. -->
