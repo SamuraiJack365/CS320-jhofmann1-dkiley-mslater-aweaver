@@ -3,7 +3,7 @@ package xyz.jhofmann1.cs320.database.studentsdb.model;
 
 public class Student {
 	
-	private int Id;
+	private int student_Id;
 	private int ycp_Id;
 	private String firstName;
 	private String lastName;
@@ -29,17 +29,18 @@ public class Student {
 	private double GPA;
 	private boolean displayGPA;
 	private boolean isReviewed;
+	private String userName;
 	
 	public Student() {
 		
 	}
 	
-	public void setId(int Id) {
-		this.Id = Id;
+	public void setStudentId(int student_Id) {
+		this.student_Id = student_Id;
 	}
 	
-	public int getId() {
-		return Id;
+	public int getStudentId() {
+		return student_Id;
 	}
 	
 	public void setYcpId(int ycp_Id) {
@@ -120,5 +121,13 @@ public class Student {
 	
 	public boolean getIsReviewed() {
 		return isReviewed;
+	}
+	
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserName() {
+		return userName;
 	}
 }
