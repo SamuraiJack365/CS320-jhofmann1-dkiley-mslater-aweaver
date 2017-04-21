@@ -1,7 +1,4 @@
-/**
- * 
- */
-package xyz.jhofmann1.cs320.servlet.main;
+package xyz.jhofmann1.cs320.servlet.student;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -14,24 +11,60 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import xyz.jhofmann1.cs320.controller.main.LoginController;
+import xyz.jhofmann1.cs320.controller.student.LayoutDemoController;
+import xyz.jhofmann1.cs320.model.main.Major;
+import xyz.jhofmann1.cs320.model.student.Student;
+import xyz.jhofmann1.cs320.servlet.main.MasterServlet;
 
 /**
  * @author Jackson
  *
  */
-public class LoginServlet extends HttpServlet {
+public class LayoutDemoServlet extends MasterServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		System.out.println("In the Login servlet");
-		
-		req.getRequestDispatcher("/_view/main/login.jsp").forward(req, resp);
+		System.out.println("In the LayoutDemo servlet");
+		checkLogged(req);
+		boolean loggedin = (boolean) req.getSession().getAttribute("loggedin");
+		if(loggedin)
+		{
+			LayoutDemoController controller = new LayoutDemoController();
+			Student student = controller.getStudent(getStringFromParameter((String) req.getSession().getAttribute("user")));
+			req.setAttribute("firstname", student.getStudentFirstName());
+			req.setAttribute("lastname", student.getStudentLastName());
+			req.setAttribute("major1", Major.CompSci.toString(student.getMajors()[0]));
+			if(student.getMajors().length > 1)
+			{
+				req.setAttribute("major2", student.getMajors()[1]);
+			}
+			if(student.getMinors() != null)
+			{
+				switch(student.getMinors().length)
+				{
+					case 1:
+						req.setAttribute("minor1", student.getMinors()[0]);
+						break;
+					case 2:
+						req.setAttribute("minor1", student.getMinors()[0]);
+						req.setAttribute("minor2", student.getMinors()[1]);
+						break;
+				}
+			}
+			System.out.println(req.getAttribute("minor1"));
+			req.setAttribute("studentpic", student.getStudentPic());
+			req.setAttribute("club", "Temp");
+			req.getRequestDispatcher("/_view/layouts/layout1.jsp").forward(req, resp);
+		}
+		else
+		{
+			req.getSession().setAttribute("origin", "layouts");
+			resp.sendRedirect(req.getContextPath() + "/login");
+		}
 	}
 	
-	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
@@ -69,23 +102,9 @@ public class LoginServlet extends HttpServlet {
 			req.getSession().setAttribute("loggedin", true);
 			req.getSession().setAttribute("user", username);
 			// Forward to view to render the result HTML document
-			if(req.getSession().getAttribute("origin") == null)
-			{
-				resp.sendRedirect(req.getContextPath() + "/home");
-			}
-			else
-			{
-				resp.sendRedirect(req.getContextPath() + "/" + req.getSession().getAttribute("origin"));
-			}
+			resp.sendRedirect(req.getContextPath() + "/home");
 		}
 	}
 	
-	private String getStringFromParameter(String s) {
-		if (s == null || s.equals("")) {
-			return null;
-		} else {
-			return s;
-		}
-	}
 
 }

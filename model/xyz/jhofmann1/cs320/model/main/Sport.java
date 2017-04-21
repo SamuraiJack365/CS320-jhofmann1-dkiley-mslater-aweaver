@@ -22,7 +22,7 @@ public enum Sport {
 	private final int ID;
 	
 	//Reverse look up map for int into String
-	private static final Map<Integer, Sport> reverse = new HashMap<Integer, Major>();
+	private static final Map<Integer, Sport> reverse = new HashMap<Integer, Sport>();
 	
 	static {
 		for(Sport m : Sport.values())

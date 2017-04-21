@@ -1,6 +1,8 @@
 package xyz.jhofmann1.cs320.database.studentsdb.persist;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -298,6 +300,83 @@ public class DerbyDatabase implements IDatabase {
 		db.loadInitialData();
 		
 		System.out.println("Student DB successfully initialized!");
+	}
+
+	private void loadStudent(xyz.jhofmann1.cs320.model.student.Student student, ResultSet rs, int index) throws SQLException
+	{
+		student.setStudentIDNum(rs.getInt(index++));
+		student.setStudentFirstName(rs.getString(index++));
+		student.setStudentLastName(rs.getString(index++));
+		String studentID = student.getStudentFirstName().substring(0, 1).toLowerCase() + student.getStudentLastName().toLowerCase();
+		student.setStudentID(studentID);
+		int[] majors = {rs.getInt(index++)};
+		student.setMajors(majors);
+		student.setStudentPic(rs.getString(index++));
+		int[] act = {rs.getInt(index++), rs.getInt(index++)};
+		student.setActivities(act);
+		student.setGPA((double) rs.getFloat(index++));
+		student.setDisplayGPA(rs.getBoolean(index++));
+		student.setReviewed(rs.getBoolean(index++));
+		student.setUsername(student.getStudentID());
+		student.setPasswordPlain(student.getStudentFirstName()+student.getStudentLastName());
+	}
+	@Override
+	public List<xyz.jhofmann1.cs320.model.student.Student> findStudentByUsername(String username) {
+		return executeTransaction(new Transaction<List<xyz.jhofmann1.cs320.model.student.Student>>() {
+
+			@Override
+			public List<xyz.jhofmann1.cs320.model.student.Student> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt = null; 
+				ResultSet resultSet = null;
+				
+				List<xyz.jhofmann1.cs320.model.student.Student> result = new ArrayList<xyz.jhofmann1.cs320.model.student.Student>();
+				
+				try
+				{
+					stmt = conn.prepareStatement(
+							"SELECT * "
+							+ "FROM STUDENTS "
+							+ "WHERE USERNAME = ?"
+							);
+					
+					stmt.setString(1, username);
+					
+					resultSet = stmt.executeQuery();
+					
+					Boolean found = false; 
+					
+					while(resultSet.next())
+					{
+						found = true;
+						
+						xyz.jhofmann1.cs320.model.student.Student student = null;
+						try {
+							student = new xyz.jhofmann1.cs320.model.student.Student();
+						} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						loadStudent(student, resultSet, 2);
+						
+						result.add(student);
+					}
+					
+					if(!found)
+					{
+						System.out.println("No student found with that username");
+					}
+					
+				}
+				finally
+				{
+					DBUtil.closeQuietly(stmt);
+					DBUtil.closeQuietly(resultSet);
+					DBUtil.closeQuietly(conn);
+				}
+				return result;
+			} 
+			
+		});
 	}
 			
 

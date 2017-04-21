@@ -3,3 +3,5 @@
 war/**/*.class
 *.class
 /*.class
+.classpath
+.project

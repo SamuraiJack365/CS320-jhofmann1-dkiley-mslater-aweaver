@@ -2,6 +2,8 @@ package xyz.jhofmann1.cs320.database.studentsdb.persist;
 
 import java.util.List;
 
+import xyz.jhofmann1.cs320.model.student.Student;
+
 public interface IDatabase {
-	// no methods yet
+	public List<Student> findStudentByUsername(String username);
 }
