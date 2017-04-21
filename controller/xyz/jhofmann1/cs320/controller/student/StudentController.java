@@ -9,6 +9,7 @@ import xyz.jhofmann1.cs320.model.student.Student;
 
 /**
  * @author Andy
+ * @contributor Alaska
  */
 public class StudentController {
 	private Student model;
@@ -65,8 +66,7 @@ public class StudentController {
 	
 	public void uploadPics(){
 		
-	}
-
+	} 
 	
 	public void uploadVideo(){
 		
