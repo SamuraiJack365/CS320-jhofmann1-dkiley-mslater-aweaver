@@ -7,10 +7,10 @@
 	<classpathentry kind="src" path="servlet"/>
 	<classpathentry kind="src" path="ajax"/>
 	<classpathentry kind="src" path="database"/>
+	<classpathentry kind="src" path="jbcrypt"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/CS320_Jetty"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/CS320_Derby"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/jBCrypt-0.4.zip_expanded"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
