@@ -69,7 +69,14 @@ public class LoginServlet extends HttpServlet {
 			req.getSession().setAttribute("loggedin", true);
 			req.getSession().setAttribute("user", username);
 			// Forward to view to render the result HTML document
-			resp.sendRedirect(req.getContextPath() + "/home");
+			if(req.getSession().getAttribute("origin") == null)
+			{
+				resp.sendRedirect(req.getContextPath() + "/home");
+			}
+			else
+			{
+				resp.sendRedirect(req.getContextPath() + "/" + req.getSession().getAttribute("origin"));
+			}
 		}
 	}
 	

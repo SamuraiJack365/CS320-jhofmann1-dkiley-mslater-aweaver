@@ -2,7 +2,7 @@ package xyz.jhofmann1.cs320.model.main;
 
 import java.util.HashMap;
 import java.util.Map;
-
+//random comment to push with
 public enum Major 
 {
 	TEST	(null, 0),
