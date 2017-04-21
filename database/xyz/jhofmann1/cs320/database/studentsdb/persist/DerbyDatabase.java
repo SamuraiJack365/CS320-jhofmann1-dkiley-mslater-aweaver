@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.jhofmann1.cs320.database.studentsdb.model.Student;
+import xyz.jhofmann1.cs320.database.studentsdb.model.Advisor;
 import xyz.jhofmann1.cs320.database.studentsdb.model.Club;
 import xyz.jhofmann1.cs320.database.studentsdb.model.Major;
 import xyz.jhofmann1.cs320.database.studentsdb.model.Minor;
@@ -95,6 +96,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt3 = null;
 				PreparedStatement stmt4 = null;
 				PreparedStatement stmt5 = null;
+				PreparedStatement stmt6 = null;
 			
 				try {
 					stmt1 = conn.prepareStatement(
@@ -166,6 +168,19 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Clubs table created");
 					
+					stmt6 = conn.prepareStatement(
+							"create table advisors (" +
+							" 	advisor_id integer primary key " +
+							"		generated always as identity (start with 1, increment by 1), " +
+							"	firstname varchar(40)," +
+							"   lastname varchar(40)" +
+ 							")"
+						);
+					
+					stmt6.executeUpdate();
+					
+					System.out.println("Advisors table created");
+					
 					return true;
 				} finally {
 					DBUtil.closeQuietly(stmt1);
@@ -173,6 +188,7 @@ public class DerbyDatabase implements IDatabase {
 					DBUtil.closeQuietly(stmt3);
 					DBUtil.closeQuietly(stmt4);
 					DBUtil.closeQuietly(stmt5);
+					DBUtil.closeQuietly(stmt6);
 				}
 			}
 		});
@@ -188,6 +204,7 @@ public class DerbyDatabase implements IDatabase {
 				List<Minor>	minorList;
 				List<Sport>	sportList;
 				List<Club>	clubList;
+				List<Advisor> advisorList;
 				
 				try {
 					studentList     = InitialData.getStudents();
@@ -195,6 +212,7 @@ public class DerbyDatabase implements IDatabase {
 					minorList		= InitialData.getMinors();
 					sportList 		= InitialData.getSports();
 					clubList		= InitialData.getClubs();
+					advisorList 	= InitialData.getAdvisors();
 					
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
@@ -205,6 +223,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement insertMinor 		= null;
 				PreparedStatement insertSport		= null;
 				PreparedStatement insertClub		= null;
+				PreparedStatement insertAdvisor		= null;
 				
 
 				try {
@@ -265,6 +284,17 @@ public class DerbyDatabase implements IDatabase {
 					insertClub.executeBatch();
 					
 					System.out.println("Clubs table populated");
+					
+					insertAdvisor = conn.prepareStatement("insert into advisors (firstname, lastname) values (?,?)");
+					for (Advisor advisor : advisorList) {
+						insertAdvisor.setString(1, advisor.getFirstName());
+						insertAdvisor.setString(2, advisor.getLastName());
+						//insertAdvisor.setString(3,  advisor.getEmail());
+						insertAdvisor.addBatch();
+					}
+					insertAdvisor.executeBatch();
+					
+					System.out.println("Advisors table populated");
 //					// must wait until all Books and all Authors are inserted into tables before creating BookAuthor table
 //					// since this table consists entirely of foreign keys, with constraints applied
 //					insertBookAuthor = conn.prepareStatement("insert into bookAuthors (book_id, author_id) values (?, ?)");
@@ -283,6 +313,7 @@ public class DerbyDatabase implements IDatabase {
 					DBUtil.closeQuietly(insertMinor);
 					DBUtil.closeQuietly(insertSport);
 					DBUtil.closeQuietly(insertClub);
+					DBUtil.closeQuietly(insertAdvisor);
 				}
 			}
 		});

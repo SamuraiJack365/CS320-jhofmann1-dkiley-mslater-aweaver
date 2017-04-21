@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import xyz.jhofmann1.cs320.database.studentsdb.model.Student;
+import xyz.jhofmann1.cs320.database.studentsdb.model.Advisor;
+import xyz.jhofmann1.cs320.model.main.User;
 import xyz.jhofmann1.cs320.database.studentsdb.model.Club;
 import xyz.jhofmann1.cs320.database.studentsdb.model.Major;
 import xyz.jhofmann1.cs320.database.studentsdb.model.Minor;
@@ -169,6 +171,38 @@ public class InitialData {
 			return clubList;
 		} finally {
 			readClubs.close();
+		}
+	}
+	
+	public static List<Advisor> getAdvisors() throws IOException {
+		List<Advisor> advisorList = new ArrayList<Advisor>();
+		ReadCSV readAdvisors = new ReadCSV("advisors.csv");
+		try {
+			// auto-generated primary key for authors table
+			Integer advisorId = 1;
+			while (true) {
+				List<String> tuple = readAdvisors.next();
+				if (tuple == null) {
+					break;
+				}
+				Iterator<String> i = tuple.iterator();
+				Advisor advisor = new Advisor();
+
+				// read author ID from CSV file, but don't use it
+				// it's there for reference purposes, just make sure that it is correct
+				// when setting up the BookAuthors CSV file				
+				Integer.parseInt(i.next());
+				// auto-generate author ID, instead
+				advisor.setAdvisorId(advisorId);	
+				advisor.setFirstName(i.next());
+				advisor.setLastName(i.next());
+				//advisor.setEmail(i.next());
+				advisorList.add(advisor);
+			}
+			System.out.println("advisorList loaded from CSV file");
+			return advisorList;
+		} finally {
+			readAdvisors.close();
 		}
 	}
 }

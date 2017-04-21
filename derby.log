@@ -1,18 +1,13 @@
 ----------------------------------------------------------------
-<<<<<<< HEAD
-Wed Apr 19 13:29:09 EDT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-8742-bb4f-00001d3de960 
-=======
-Wed Apr 19 13:34:17 EDT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-8747-6dc2-00001d3dcf28 
->>>>>>> Jack
-on database directory P:\OneDrive\Documents\Eclipse\CS320-jhofmann1-dkiley-mslater-aweaver\students.db with class loader sun.misc.Launcher$AppClassLoader@c387f44 
-Loaded from file:/P:/OneDrive/Documents/Eclipse/CS320_Derby/lib/derby.jar
+Thu Apr 20 22:25:11 EDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-8e53-d828-00000e24a958 
+on database directory D:\Users\Mitch\CS320\CS320-jhofmann1-dkiley-mslater-aweaver\students.db with class loader sun.misc.Launcher$AppClassLoader@4e0e2f2a 
+Loaded from file:/D:/Users/Mitch/CS320/CS320_Derby/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_51-b16
-user.dir=P:\OneDrive\Documents\Eclipse\CS320-jhofmann1-dkiley-mslater-aweaver
-os.name=Windows 8.1
+java.runtime.version=1.8.0_60-b27
+user.dir=D:\Users\Mitch\CS320\CS320-jhofmann1-dkiley-mslater-aweaver
+os.name=Windows 10
 os.arch=amd64
-os.version=6.3
+os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
