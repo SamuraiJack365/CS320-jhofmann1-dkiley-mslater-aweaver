@@ -364,6 +364,7 @@ public class DerbyDatabase implements IDatabase {
 						insertStudent.setDouble(9, student.getGPA());
 						insertStudent.setBoolean(10, student.isDisplayGPA());
 						insertStudent.setBoolean(11, student.isReviewed());
+						System.out.println(insertStudent);
 						insertStudent.addBatch();
 					}
 					insertStudent.executeBatch();

@@ -221,6 +221,8 @@ public class InitialData {
 					// it's there for reference purposes, just make sure that it is correct
 					// when setting up the BookAuthors CSV file		
 					// auto-generate author ID, instead
+					
+					i.next();
 					student.setStudentIDNum(Integer.parseInt(i.next()));
 					student.setUsername(i.next());
 					student.setStudentFirstName(i.next());
