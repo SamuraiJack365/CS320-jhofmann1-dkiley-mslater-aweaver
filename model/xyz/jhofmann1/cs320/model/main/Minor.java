@@ -54,11 +54,14 @@ public enum Minor {
 	private final int ID;
 	
 	//Reverse look up map for int into String
-	private static final Map<Integer, Major> reverse = new HashMap<Integer, Major>();
+	private static final Map<Integer, Minor> reverse = new HashMap<Integer, Minor>();
+	private static final Map<Integer, String> reverseString = new HashMap<Integer, String>();
 	
 	static {
-		for(Major m : Major.values())
+		for(Minor m : Minor.values()){
 			reverse.put(m.getID(), m);
+			reverseString.put(m.getID(), m.getTitle());
+		}
 	}
 	
 	Minor(String title, int ID){
@@ -76,5 +79,12 @@ public enum Minor {
 	
 	public String toString(int ID){
 		return reverse.get(ID).getTitle();
+	}
+	
+	public Map<Integer, Minor> getReverse(){
+		return reverse;
+	}
+	public Map<Integer, String> getReverseString(){
+		return reverseString;
 	}
 }

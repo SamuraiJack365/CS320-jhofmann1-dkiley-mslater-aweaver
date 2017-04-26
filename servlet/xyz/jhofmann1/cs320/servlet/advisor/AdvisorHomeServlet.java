@@ -22,10 +22,8 @@ public class AdvisorHomeServlet extends HttpServlet {
 		
 		if(loggedin)
 		{
-			System.out.println("hit 1");
 			req.getRequestDispatcher("/_view/advisor/advisorHome.jsp").forward(req, resp);
 		} else {
-			System.out.println("hit 2");
 			resp.sendRedirect(req.getContextPath() + "/login");
 		}
 	}
@@ -42,7 +40,6 @@ public class AdvisorHomeServlet extends HttpServlet {
 		
 		if(loggedin)
 		{
-			System.out.println("HIT");
 			Advisor model = new Advisor();
 	
 			AdvisorHomeController controller = new AdvisorHomeController();
@@ -68,7 +65,6 @@ public class AdvisorHomeServlet extends HttpServlet {
 			req.getRequestDispatcher("/_view/advisor/advisorHome.jsp").forward(req, resp);
 		}
 		else{
-			System.out.println("Not Logged In");
 			resp.sendRedirect(req.getContextPath() + "/login");
 		}
 	}

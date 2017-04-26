@@ -29,9 +29,6 @@ public enum Sport {
 		for(Sport m : Sport.values())
 		{
 			reverse.put(m.getID(), m);
-		}
-		for(Sport m : Sport.values())
-		{
 			reverseString.put(m.getID(), m.getTitle());
 		}
 	}
