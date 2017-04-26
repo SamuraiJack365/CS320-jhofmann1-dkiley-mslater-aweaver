@@ -9,19 +9,19 @@ import xyz.jhofmann1.cs320.model.main.User;
 public class Student extends User {
 
 	private int studentIDNum; 	// 903 or 902 number for each student
-	private String studentID; 	// This holds the student's YCP Username eg. jhofmann1
 	private String studentLastName;
 	private String studentFirstName; 
 	private int[] majors; 		// This holds the IDs of the student's major(s)
 	private String accolades; 	// This holds misc. achievements of the student
 	private int[] minors; 		// This holds the IDs of the student's minor(s)
-	private int[] activities;	// This holds the IDs for all the clubs 
-								// and sports the student were part of
+	private int[] sports;
+	private int[] clubs;
+	
 	private int[] officer; 		// Contains the int IDs of the offices the student held
 	private double GPA;			
 	private boolean displayGPA;
 	private boolean reviewed;	// Shows whether or not the advisor has seen student's submissions
-	private int approvalState; 	// Shows how close the student is to finishing their submissions
+	private boolean approvalState; 	// Shows how close the student is to finishing their submissions
 	private String studentPic;
 
 	public Student() throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -42,35 +42,20 @@ public class Student extends User {
 	 * @param fields
 	 */
 	private void setFields(ArrayList<Object> fields) {
-		setStudentID((String) fields.get(0));
+		setUsername((String) fields.get(0));
 		setAccolades((String) fields.get(1));
 		setMajors((int[]) fields.get(2));
 		setMinors((int[]) fields.get(3));
-		setActivities((int[]) fields.get(4));
+		setSports((int[]) fields.get(4));
+		setClubs((int[]) fields.get(13));
 		setOfficer((int[]) fields.get(5));
 		setStudentIDNum((int) fields.get(6));
 		setGPA((double) fields.get(7));
 		setDisplayGPA((boolean) fields.get(8));
 		setReviewed((boolean) fields.get(9));
-		setApprovalState((int) fields.get(10));
+		setApprovalState((boolean) fields.get(10));
 		setStudentFirstName((String) fields.get(11));
 		setStudentLastName((String) fields.get(12));
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public String getStudentID() {
-		return studentID;
-	}
-
-	/**
-	 * 
-	 * @param studentID
-	 */
-	public void setStudentID(String studentID) {
-		this.studentID = studentID;
 	}
 
 	/**
@@ -119,22 +104,6 @@ public class Student extends User {
 	 */
 	public void setMinors(int[] minors) {
 		this.minors = minors;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public int[] getActivities() {
-		return activities;
-	}
-	
-	/**
-	 * 
-	 * @param activities
-	 */
-	public void setActivities(int[] activities) {
-		this.activities = activities;
 	}
 
 	/**
@@ -221,7 +190,7 @@ public class Student extends User {
 	 * 
 	 * @return
 	 */
-	public int getApprovalState() {
+	public boolean getApprovalState() {
 		return approvalState;
 	}
 
@@ -229,7 +198,7 @@ public class Student extends User {
 	 * 
 	 * @param approvalState
 	 */
-	public void setApprovalState(int approvalState) {
+	public void setApprovalState(boolean approvalState) {
 		this.approvalState = approvalState;
 	}
 
@@ -255,5 +224,21 @@ public class Student extends User {
 
 	public void setStudentPic(String studentPic) {
 		this.studentPic = studentPic;
+	}
+
+	public int[] getSports() {
+		return sports;
+	}
+
+	public void setSports(int[] sports) {
+		this.sports = sports;
+	}
+
+	public int[] getClubs() {
+		return clubs;
+	}
+
+	public void setClubs(int[] clubs) {
+		this.clubs = clubs;
 	}
 }

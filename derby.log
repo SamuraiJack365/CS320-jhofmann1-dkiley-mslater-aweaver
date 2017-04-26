@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Fri Apr 21 09:38:26 EDT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-90bc-3b12-00000dde0858 
-on database directory C:\Users\AlaskaJay\git\CS320-jhofmann1-dkiley-mslater-aweaver\students.db with class loader sun.misc.Launcher$AppClassLoader@c387f44 
-Loaded from file:/C:/Users/AlaskaJay/Dropbox/CS320/CS320_Derby/lib/derby.jar
+Wed Apr 26 14:13:34 EDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-015b-ab77-e832-00001d3da6d0 
+on database directory P:\OneDrive\Documents\CS 320\Projects\group\CS320-jhofmann1-dkiley-mslater-aweaver\students.db with class loader sun.misc.Launcher$AppClassLoader@c387f44 
+Loaded from file:/P:/OneDrive/Documents/Eclipse/CS320_Derby/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_51-b16
-user.dir=C:\Users\AlaskaJay\git\CS320-jhofmann1-dkiley-mslater-aweaver
+user.dir=P:\OneDrive\Documents\CS 320\Projects\group\CS320-jhofmann1-dkiley-mslater-aweaver
 os.name=Windows 8.1
 os.arch=amd64
 os.version=6.3
