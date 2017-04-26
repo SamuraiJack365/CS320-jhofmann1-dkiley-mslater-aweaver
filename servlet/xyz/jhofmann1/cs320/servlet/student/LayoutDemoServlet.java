@@ -53,7 +53,7 @@ public class LayoutDemoServlet extends MasterServlet {
 						break;
 				}
 			}
-			System.out.println(req.getAttribute("minor1"));
+			System.out.println(req.getAttribute("major2"));
 			req.setAttribute("studentpic", student.getStudentPic());
 			req.setAttribute("club", "Temp");
 			req.getRequestDispatcher("/_view/layouts/layout1.jsp").forward(req, resp);

@@ -27,7 +27,7 @@
                                 <tr>
                                     <td>${major1}</td>
                                 </tr>
-                                <c:if test="${not empty major2}">
+                                <c:if test="${not empty major2 && major2 != 0}">
                                     <tr>
                                         <td>${major2}</td>
                                     </tr>

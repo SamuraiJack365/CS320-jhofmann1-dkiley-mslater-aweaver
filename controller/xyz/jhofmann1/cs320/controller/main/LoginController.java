@@ -70,6 +70,12 @@ public class LoginController {
 				e.printStackTrace();
 			}
 		}
+		try {
+			users.add(new Credentials("jhofmann1", "derp"));
+		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	//used only for junit, will be removed once database is implemented

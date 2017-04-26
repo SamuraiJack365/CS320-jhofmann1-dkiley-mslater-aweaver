@@ -456,7 +456,7 @@ public class DerbyDatabase implements IDatabase {
 					stmt = conn.prepareStatement(
 							"SELECT * "
 							+ "FROM STUDENTS "
-							+ "WHERE USERNAME = ?"
+							+ "WHERE YCPUSERNAME = ?"
 							);
 					
 					stmt.setString(1, username);
