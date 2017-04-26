@@ -87,14 +87,25 @@
    		 <div class="form-group">
 	   	 <label class="control-label col-sm-2" for="sports">Sports:</label>
 	   	    <div class="col-sm-10">          
-	        	<input type="string" class="form-control" id="sports" placeholder="Sports (if applicable)">
+	        	<select name="sport1" class="form-control" id="sport1">
+	        		<option value="">Optional first sport</option>
+	        		<c:forEach items="${sport}" var="i" begin="1" end="13"> 
+	        			<option value="$i">${sport}</option>
+	        		</c:forEach>
+        		</select>
+        		
+        		<select name="sport2" class="form-control" id="sport2">
+        			<option value="">Optional second sport</option>
+	        		<option value="0">Does this work?</option>
+        		</select>
     	 	</div>
    		 </div>
    		 
    		 <div class="form-group">
 	   	 <label class="control-label col-sm-2" for="clubs">Clubs:</label>
 	   	    <div class="col-sm-10">          
-	        	<input type="string" class="form-control" id="clubs" placeholder="Clubs (if applicable)">
+	        	<select name="club">
+	        	</select>
     	 	</div>
    		 </div>  
    		 

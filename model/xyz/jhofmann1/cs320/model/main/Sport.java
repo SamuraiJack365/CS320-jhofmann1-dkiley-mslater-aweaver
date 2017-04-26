@@ -50,4 +50,8 @@ public enum Sport {
 	public String toString(int ID){
 		return reverse.get(ID).getTitle();
 	}
+	
+	public Map getReverse(){
+		return reverse;
+	}
 }
