@@ -3,6 +3,7 @@ package xyz.jhofmann1.cs320.servlet.student;
 import java.awt.List;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -33,10 +34,11 @@ public class StudentHomeServlet extends HttpServlet {
 		if(loggedin)
 		{
 			System.out.println("Logged In");
-			ArrayList<String> sport = new ArrayList<String>();
-			for(int i = 0; i < Sport.BASE.getReverse().size(); i++){
-				sport.add(Sport.BASE.toString(i));
-			}
+//			ArrayList<String> sport = new ArrayList<String>();
+//			for(int i = 1; i < Sport.BASE.getReverse().size(); i++){
+//				sport.add(Sport.BASE.toString(i));
+//			} 
+			HashMap sport = (HashMap) Sport.BASE.getReverseString();
 			req.setAttribute("sport", sport);
 			System.out.println("doGet set sport");
 			req.getRequestDispatcher("/_view/student/studentHome.jsp").forward(req, resp);

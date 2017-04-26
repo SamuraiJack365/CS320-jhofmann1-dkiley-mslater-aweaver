@@ -23,12 +23,18 @@ public enum Sport {
 	
 	//Reverse look up map for int into String
 	private static final Map<Integer, Sport> reverse = new HashMap<Integer, Sport>();
+	private static final Map<Integer, String> reverseString = new HashMap<Integer, String>();
 	
 	static {
 		for(Sport m : Sport.values())
+		{
 			reverse.put(m.getID(), m);
+		}
+		for(Sport m : Sport.values())
+		{
+			reverseString.put(m.getID(), m.getTitle());
+		}
 	}
-	
 	Sport(String title, int ID){
 		this.title = title;
 		this.ID = ID;
@@ -51,7 +57,10 @@ public enum Sport {
 		return reverse.get(ID).getTitle();
 	}
 	
-	public Map getReverse(){
+	public Map<Integer, Sport> getReverse(){
 		return reverse;
+	}
+	public Map<Integer, String> getReverseString(){
+		return reverseString;
 	}
 }

@@ -89,8 +89,8 @@
 	   	    <div class="col-sm-10">          
 	        	<select name="sport1" class="form-control" id="sport1">
 	        		<option value="">Optional first sport</option>
-	        		<c:forEach items="${sport}" var="i" begin="1" end="13"> 
-	        			<option value="$i">${sport}</option>
+	        		<c:forEach var="sport" items="${sport}"> 
+	        			<option value="${sport.key}">${sport.value}</option>
 	        		</c:forEach>
         		</select>
         		
