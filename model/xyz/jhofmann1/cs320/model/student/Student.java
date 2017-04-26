@@ -7,22 +7,21 @@ import java.util.ArrayList;
 import xyz.jhofmann1.cs320.model.main.User;
 
 public class Student extends User {
-	
-	private String studentID; 	// This holds the student's YCP Username
-	private String accolades; 	// This holds misc. achievements of the student
+
+	private int studentIDNum; 	// 903 or 902 number for each student
+	private String studentID; 	// This holds the student's YCP Username eg. jhofmann1
+	private String studentLastName;
+	private String studentFirstName; 
 	private int[] majors; 		// This holds the IDs of the student's major(s)
+	private String accolades; 	// This holds misc. achievements of the student
 	private int[] minors; 		// This holds the IDs of the student's minor(s)
 	private int[] activities;	// This holds the IDs for all the clubs 
 								// and sports the student were part of
 	private int[] officer; 		// Contains the int IDs of the offices the student held
-	private int studentIDNum; 	// 903 or 902 number for each student
 	private double GPA;			
 	private boolean displayGPA;
 	private boolean reviewed;	// Shows whether or not the advisor has seen student's submissions
 	private int approvalState; 	// Shows how close the student is to finishing their submissions
-	private String email;
-	private String studentLastName;
-	private String studentFirstName; 
 	private String studentPic;
 
 	public Student() throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -54,9 +53,8 @@ public class Student extends User {
 		setDisplayGPA((boolean) fields.get(8));
 		setReviewed((boolean) fields.get(9));
 		setApprovalState((int) fields.get(10));
-		setEmail((String) fields.get(11));
-		setStudentFirstName((String) fields.get(12));
-		setStudentLastName((String) fields.get(13));
+		setStudentFirstName((String) fields.get(11));
+		setStudentLastName((String) fields.get(12));
 	}
 
 	/**
@@ -233,14 +231,6 @@ public class Student extends User {
 	 */
 	public void setApprovalState(int approvalState) {
 		this.approvalState = approvalState;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getStudentLastName() {

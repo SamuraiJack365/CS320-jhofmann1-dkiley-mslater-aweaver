@@ -44,7 +44,6 @@ public class StudentTest {
 		fields.add(true);
 		fields.add(false);
 		fields.add(1);
-		fields.add("jsmith@ycp.edu");
 		fields.add("Joe");
 		fields.add("Smith");
 		
@@ -63,7 +62,6 @@ public class StudentTest {
 		assertEquals(16,model.getStudentIDNum());
 		assertEquals(true,model.isDisplayGPA());
 		assertEquals(false,model.isReviewed());
-		assertEquals("jsmith@ycp.edu",model.getEmail());
 		assertEquals("Joe",model.getStudentFirstName());
 		assertEquals("Smith",model.getStudentLastName());
 	}

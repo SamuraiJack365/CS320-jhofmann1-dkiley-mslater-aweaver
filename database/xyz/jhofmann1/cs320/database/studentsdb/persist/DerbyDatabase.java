@@ -183,17 +183,19 @@ public class DerbyDatabase implements IDatabase {
 							"create table students (" +
 							"	student_id integer primary key " +
 							"		generated always as identity (start with 1, increment by 1), " +
-							"	ycp_id integer," +
+							"	studentIDNum integer," +
+							"	username varchar(40) references users(username)" +
 							"	firstname varchar(40)," +
 							"	lastname varchar(40)," +
-							"   major_id integer references majors(major_id)," +
+							"   major_id1 integer references majors(major_id)," +
+							"   major_id2 integer references majors(major_id)," +
+							"   major_id3 integer references majors(major_id)," +
 							"   picture varchar(40),"+
 							"   sport_id integer references sports(sport_id)," +
 							"   club_id integer references clubs(club_id)," +
 							"   gpa double," +
 							"   displaygpa boolean," + 
 							"   isreviewed boolean," +
-							"	username varchar(40) references users(username)" +
 //							"   FOREIGN KEY (MAJOR) REFERENCES MAJORS (MAJOR_ID)" +
 							")"
 						);
