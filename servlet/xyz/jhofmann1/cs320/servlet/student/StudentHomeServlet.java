@@ -23,6 +23,7 @@ public class StudentHomeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) //SOMETHING IS NULL HERE AND I AM UPSET
 			throws ServletException, IOException, NullPointerException {
+		System.out.println("WHY DOES THIS NOT WORK");
 		System.out.println("In the Student Home servlet Yes"); //This doesn't display correctly
 		if(req.getSession().getAttribute("loggedin") == null)
 		{
