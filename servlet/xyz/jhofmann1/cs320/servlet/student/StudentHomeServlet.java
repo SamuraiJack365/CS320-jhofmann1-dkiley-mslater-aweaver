@@ -1,6 +1,10 @@
 package xyz.jhofmann1.cs320.servlet.student;
 
+import java.awt.List;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import xyz.jhofmann1.cs320.controller.student.StudentController;
+import xyz.jhofmann1.cs320.model.main.Club;
+import xyz.jhofmann1.cs320.model.main.Major;
+import xyz.jhofmann1.cs320.model.main.Minor;
+import xyz.jhofmann1.cs320.model.main.Sport;
+import xyz.jhofmann1.cs320.servlet.main.MasterServlet;
 /**
  * @author Andy
  */
@@ -15,13 +24,32 @@ public class StudentHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		System.out.println("In the Student Home servlet");
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) //SOMETHING IS NULL HERE AND I AM UPSET
+			throws ServletException, IOException, NullPointerException {
+		System.out.println("In the Student Home servlet"); //This doesn't display correctly
+		if(req.getSession().getAttribute("loggedin") == null)
+		{
+			req.getSession().setAttribute("loggedin", false);
+		}
+		
 		boolean loggedin = (boolean) req.getSession().getAttribute("loggedin");
+		
 		if(loggedin)
 		{
-		req.getRequestDispatcher("/_view/student/studentHome.jsp").forward(req, resp);
+			System.out.println("Logged In");
+//			ArrayList<String> sport = new ArrayList<String>();
+//			for(int i = 1; i < Sport.BASE.getReverse().size(); i++){
+//				sport.add(Sport.BASE.toString(i));
+//			} 
+			HashMap sport = (HashMap) Sport.BASE.getReverseString();
+			req.setAttribute("sport", sport);
+			HashMap club = (HashMap) Club.AC.getReverseString();
+			req.setAttribute("club", club);
+			HashMap major = (HashMap) Major.AaDM.getReverseString();
+			req.setAttribute("major", major);
+			HashMap minor = (HashMap) Minor.AAAS.getReverseString();
+			req.setAttribute("minor", minor);
+			req.getRequestDispatcher("/_view/student/studentHome.jsp").forward(req, resp);
 		}
 		else
 		{
@@ -38,22 +66,27 @@ public class StudentHomeServlet extends HttpServlet {
 		boolean result = false;
 		if(req.getSession().getAttribute("loggedin").equals(true))
 		{
-			try {
+			try {				
 				String firstName = getStringFromParameter(req.getParameter("firstName"));
 				String lastName = getStringFromParameter(req.getParameter("lastName"));
-				String majors = getStringFromParameter(req.getParameter("majors"));
-				String minors = getStringFromParameter(req.getParameter("minors"));
+				String major1 = getStringFromParameter(req.getParameter("major1"));
+				String major2 = getStringFromParameter(req.getParameter("major2"));
+				String minor1 = getStringFromParameter(req.getParameter("minor1"));
+				String minor2 = getStringFromParameter(req.getParameter("minor2"));
 				String honors = getStringFromParameter(req.getParameter("honors"));
 				double gpa = getDoubleFromParameter(req.getParameter("gpa"));
-				String sports = getStringFromParameter(req.getParameter("sports"));
-				String clubs = getStringFromParameter(req.getParameter("clubs"));
+				String sport1 = getStringFromParameter(req.getParameter("sport1"));
+				String sport2 = getStringFromParameter(req.getParameter("sport2"));
+				String club1 = getStringFromParameter(req.getParameter("club1"));
+				String club2 = getStringFromParameter(req.getParameter("club2"));
+				String club3 = getStringFromParameter(req.getParameter("club3"));
 				Double layout = getDoubleFromParameter(req.getParameter("layout"));
 	
-				if (firstName == null || lastName == null || majors == null || "gpa" == null) {
-					errorMessage = "Rquired fields are marked with a *";
+				if (firstName == null || lastName == null || major1 == null || "gpa" == null) {
+					errorMessage = "Required fields are marked with a *";
 				} else {
 					StudentController controller = new StudentController();
-					result = controller.addUser(firstName, lastName, majors);
+					result = controller.addUser(firstName, lastName, major1);
 				}
 			} catch (NumberFormatException e) {
 				errorMessage = "Invalid double";
@@ -62,17 +95,26 @@ public class StudentHomeServlet extends HttpServlet {
 			// Add parameters as request attributes
 			req.setAttribute("firstName", req.getParameter("firstName"));
 			req.setAttribute("lastName", req.getParameter("lastName"));
-			req.setAttribute("majors", req.getParameter("majors"));
+			req.setAttribute("major1", req.getParameter("major1"));
 			req.setAttribute("gpa", req.getParameter("gpa"));
 			if("minors" != null){		req.setAttribute("minors", req.getParameter("minors"));}
 			if("honors" != null){		req.setAttribute("honors", req.getParameter("honors"));}
 			if("sports" != null){		req.setAttribute("sports", req.getParameter("sports"));}
 			if("clubs" != null){		req.setAttribute("clubs", req.getParameter("clubs"));}
 			
+			HashMap sport = (HashMap) Sport.BASE.getReverseString();
+			req.setAttribute("sport", sport);
+			HashMap club = (HashMap) Club.AC.getReverseString();
+			req.setAttribute("club", club);
+			HashMap major = (HashMap) Major.AaDM.getReverseString();
+			req.setAttribute("major", major);
+			HashMap minor = (HashMap) Minor.AAAS.getReverseString();
+			req.setAttribute("minor", minor);
+			
 			// Add result objects as request attributes
 			req.setAttribute("errorMessage", errorMessage);
 			req.setAttribute("result", result);
-			
+			req.setAttribute("sport", sport);
 			// Forward to view to render the result HTML document
 			req.getRequestDispatcher("/_view/student/StudentHome.jsp").forward(req, resp);
 		}

@@ -61,7 +61,7 @@ public class StudentTest {
 		assertEquals(16,model.getStudentIDNum());
 		assertEquals(true,model.isDisplayGPA());
 		assertEquals(false,model.isReviewed());
-		assertEquals("Joe",model.getStudentFirstName());
-		assertEquals("Smith",model.getStudentLastName());
+		assertEquals("Joe",model.getFirstName());
+		assertEquals("Smith",model.getLastName());
 	}
 }
