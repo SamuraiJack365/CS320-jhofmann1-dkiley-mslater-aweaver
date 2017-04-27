@@ -27,37 +27,7 @@ public class AdvisorHomeAjaxServlet extends HttpServlet {
 
 	private void doRequest(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// Read client's model
-//		Integer min = getInteger(req, "min");
-//		Integer max = getInteger(req, "max");
-//		
-//		if (min == null || max == null) {
-//			badRequest("Invalid min/max values", resp);
-//			return;
-//		}
-		
-		Advisor model = new Advisor();
-		model.setNumStudents(5);
-		
-		// If an action was specified, use a GuessingGameController to carryy it out
-		String action = req.getParameter("action");
-		if (action != null) {
-			AdvisorHomeController controller = new AdvisorHomeController();
-			controller.setModel(model);
-			
-//			if (action.equals("less")) {
-//				controller.setNumberIsLessThanGuess();
-//			} else if (action.equals("more")) {
-//				controller.setNumberIsGreaterThanGuess();
-//			}
-		}
-		
-//		int guess = model.getGuess();
-		
-		// Send back updated model to client
-		resp.setContentType("application/json");
-		resp.getWriter().println(
-				"{ \"min\": " + model.getNumStudents() + "}" );
+
 	}
 
 	private Integer getInteger(HttpServletRequest req, String name) {

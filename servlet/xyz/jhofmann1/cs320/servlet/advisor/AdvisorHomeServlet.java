@@ -1,6 +1,8 @@
 package xyz.jhofmann1.cs320.servlet.advisor;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,25 +27,16 @@ public class AdvisorHomeServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		Advisor model = new Advisor();
+		Advisor model = null;
+		try {
+			model = new Advisor();
+		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		AdvisorHomeController controller = new AdvisorHomeController();
 		controller.setModel(model);
-		
-		if (req.getParameter("startGame") != null) {
-			controller.startGame();
-		} else {
-			//
-			Integer numStu = getInteger(req, "min");
-			
-			model.setNumStudents(numStu);
-
-			if (req.getParameter("gotIt") != null) {
-				controller.setNumStudents();
-			} else {
-				throw new ServletException("Unknown command");
-			}
-		}
 		
 		req.setAttribute("game", model);
 		

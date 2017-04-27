@@ -33,8 +33,8 @@ public class LayoutDemoServlet extends MasterServlet {
 		{
 			LayoutDemoController controller = new LayoutDemoController();
 			Student student = controller.getStudent(getStringFromParameter((String) req.getSession().getAttribute("user")));
-			req.setAttribute("firstname", student.getStudentFirstName());
-			req.setAttribute("lastname", student.getStudentLastName());
+			req.setAttribute("firstname", student.getFirstName());
+			req.setAttribute("lastname", student.getLastName());
 			req.setAttribute("major1", Major.CompSci.toString(student.getMajors()[0]));
 			if(student.getMajors().length > 1)
 			{
@@ -53,7 +53,7 @@ public class LayoutDemoServlet extends MasterServlet {
 						break;
 				}
 			}
-			System.out.println(req.getAttribute("minor1"));
+			System.out.println(req.getAttribute("major2"));
 			req.setAttribute("studentpic", student.getStudentPic());
 			req.setAttribute("club", "Temp");
 			req.getRequestDispatcher("/_view/layouts/layout1.jsp").forward(req, resp);
