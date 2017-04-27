@@ -14,7 +14,40 @@ public class User {
 	
 	
 	private Credentials cred;
-	
+	private String firstName, lastName;
+	private int UserID;
+	public Credentials getCred() {
+		return cred;
+	}
+
+	public void setCred(Credentials cred) {
+		this.cred = cred;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public int getUserID() {
+		return UserID;
+	}
+
+	public void setUserID(int userID) {
+		UserID = userID;
+	}
+
 	/**
 	 * Constructor with default values, shouldn't really be used for anything but testing
 	 * @throws NoSuchAlgorithmException

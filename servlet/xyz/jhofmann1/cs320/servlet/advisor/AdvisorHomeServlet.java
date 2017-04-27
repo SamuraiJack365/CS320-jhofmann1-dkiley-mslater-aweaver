@@ -1,6 +1,8 @@
 package xyz.jhofmann1.cs320.servlet.advisor;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,55 +20,27 @@ public class AdvisorHomeServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		System.out.println("In the Advisor Home servlet");
-		boolean loggedin = (boolean) req.getSession().getAttribute("loggedin");
 		
-		if(loggedin)
-		{
-			req.getRequestDispatcher("/_view/advisor/advisorHome.jsp").forward(req, resp);
-		} else {
-			resp.sendRedirect(req.getContextPath() + "/login");
-		}
+		req.getRequestDispatcher("/_view/advisor/advisorHome.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		if(req.getSession().getAttribute("loggedin") == null)
-		{
-			req.getSession().setAttribute("loggedin", false);
+		Advisor model = null;
+		try {
+			model = new Advisor();
+		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
+		AdvisorHomeController controller = new AdvisorHomeController();
+		controller.setModel(model);
 		
-		boolean loggedin = (boolean) req.getSession().getAttribute("loggedin");
+		req.setAttribute("game", model);
 		
-		if(loggedin)
-		{
-			Advisor model = new Advisor();
-	
-			AdvisorHomeController controller = new AdvisorHomeController();
-			controller.setModel(model);
-			
-			if (req.getParameter("startGame") != null) {
-				controller.startGame();
-			} else {
-				//
-				Integer numStu = getInteger(req, "min");
-				
-				model.setNumStudents(numStu);
-	
-				if (req.getParameter("gotIt") != null) {
-					controller.setNumStudents();
-				} else {
-					throw new ServletException("Unknown command");
-				}
-			}
-			
-			req.setAttribute("game", model);
-			
-			req.getRequestDispatcher("/_view/advisor/advisorHome.jsp").forward(req, resp);
-		}
-		else{
-			resp.sendRedirect(req.getContextPath() + "/login");
-		}
+		req.getRequestDispatcher("/_view/advisor/advisorHome.jsp").forward(req, resp);
 	}
 
 	private int getInteger(HttpServletRequest req, String name) {
