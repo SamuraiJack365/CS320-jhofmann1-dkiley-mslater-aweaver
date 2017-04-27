@@ -59,14 +59,38 @@
 	    <div class="form-group">
 	   	 <label class="control-label col-sm-2" for="maj">Major(s):</label>
 	   	    <div class="col-sm-10">          
-	        	<input type="string" class="form-control" id="maj" placeholder="Major(s)">
+	        	<select name="major1" class="form-control" id="major1">
+	        		<option value="">Major</option>
+	        		<c:forEach var="major" items="${major}"> 
+	        			<option value="${major.key}">${major.value}</option>
+	        		</c:forEach>
+        		</select>
+        		
+        		<select name="major2" class="form-control" id="major2">
+        			<option value="">Second Major (Optional)</option>
+	        		<c:forEach var="major" items="${major}"> 
+	        			<option value="${major.key}">${major.value}</option>
+	        		</c:forEach>
+        		</select>
     	 	</div>
    		 </div>
    		 
    		 <div class="form-group">
 	   	 <label class="control-label col-sm-2" for="min">Minor(s):</label>
 	   	    <div class="col-sm-10">          
-	        	<input type="string" class="form-control" id="min" placeholder="Minor(s)">
+	        	<select name="minor1" class="form-control" id="minor1">
+	        		<option value="">First Minor (Optional)</option>
+	        		<c:forEach var="minor" items="${minor}"> 
+	        			<option value="${minor.key}">${minor.value}</option>
+	        		</c:forEach>
+        		</select>
+        		
+        		<select name="minor2" class="form-control" id="minor2">
+        			<option value="">Second Minor (Optional)</option>
+	        		<c:forEach var="minor" items="${minor}"> 
+	        			<option value="${minor.key}">${minor.value}</option>
+	        		</c:forEach>
+        		</select>
     	 	</div>
    		 </div>
    		 
@@ -87,14 +111,45 @@
    		 <div class="form-group">
 	   	 <label class="control-label col-sm-2" for="sports">Sports:</label>
 	   	    <div class="col-sm-10">          
-	        	<input type="string" class="form-control" id="sports" placeholder="Sports (if applicable)">
+	        	<select name="sport1" class="form-control" id="sport1">
+	        		<option value="">First Sport (Optional)</option>
+	        		<c:forEach var="sport" items="${sport}"> 
+	        			<option value="${sport.key}">${sport.value}</option>
+	        		</c:forEach>
+        		</select>
+        		
+        		<select name="sport2" class="form-control" id="sport2">
+        			<option value="">Second Sport (Optional)</option>
+	        		<c:forEach var="sport" items="${sport}"> 
+	        			<option value="${sport.key}">${sport.value}</option>
+	        		</c:forEach>
+        		</select>
     	 	</div>
    		 </div>
    		 
    		 <div class="form-group">
 	   	 <label class="control-label col-sm-2" for="clubs">Clubs:</label>
 	   	    <div class="col-sm-10">          
-	        	<input type="string" class="form-control" id="clubs" placeholder="Clubs (if applicable)">
+	        	<select name="club1" class="form-control" id="club1">
+	        	<option value="">First Club (Optional)</option>
+	        		<c:forEach var="club" items="${club}"> 
+	        			<option value="${club.key}">${club.value}</option>
+	        		</c:forEach>
+	        	</select>
+	        	
+	        	<select name="club2" class="form-control" id="club1">
+	        	<option value="">Second Club (Optional)</option>
+	        		<c:forEach var="club" items="${club}"> 
+	        			<option value="${club.key}">${club.value}</option>
+	        		</c:forEach>
+	        	</select>
+	        	
+	        	<select name="club3" class="form-control" id="club1">
+	        	<option value="">Third Club (Optional)</option>
+	        		<c:forEach var="club" items="${club}"> 
+	        			<option value="${club.key}">${club.value}</option>
+	        		</c:forEach>
+	        	</select>
     	 	</div>
    		 </div>  
    		 
