@@ -9,8 +9,6 @@ import xyz.jhofmann1.cs320.model.main.User;
 public class Student extends User {
 
 	private int studentIDNum; 	// 903 or 902 number for each student
-	private String studentLastName;
-	private String studentFirstName; 
 	private int[] majors; 		// This holds the IDs of the student's major(s)
 	private String accolades; 	// This holds misc. achievements of the student
 	private int[] minors; 		// This holds the IDs of the student's minor(s)
@@ -25,7 +23,7 @@ public class Student extends User {
 	private String studentPic;
 
 	public Student() throws NoSuchAlgorithmException, InvalidKeySpecException {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public Student(String username, String password, ArrayList<Object> fields) throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -54,8 +52,8 @@ public class Student extends User {
 		setDisplayGPA((boolean) fields.get(8));
 		setReviewed((boolean) fields.get(9));
 		setApprovalState((boolean) fields.get(10));
-		setStudentFirstName((String) fields.get(11));
-		setStudentLastName((String) fields.get(12));
+		setFirstName((String) fields.get(11));
+		setLastName((String) fields.get(12));
 	}
 
 	/**
@@ -200,22 +198,6 @@ public class Student extends User {
 	 */
 	public void setApprovalState(boolean approvalState) {
 		this.approvalState = approvalState;
-	}
-
-	public String getStudentLastName() {
-		return studentLastName;
-	}
-
-	public void setStudentLastName(String studentLastName) {
-		this.studentLastName = studentLastName;
-	}
-
-	public String getStudentFirstName() {
-		return studentFirstName;
-	}
-
-	public void setStudentFirstName(String studentFirstName) {
-		this.studentFirstName = studentFirstName;
 	}
 
 	public String getStudentPic() {
