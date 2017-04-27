@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import xyz.jhofmann1.cs320.database.studentsdb.model.Student;
+import xyz.jhofmann1.cs320.model.student.Student;
 import xyz.jhofmann1.cs320.database.studentsdb.model.StudentAdvisor;
 import xyz.jhofmann1.cs320.database.studentsdb.model.Advisor;
 import xyz.jhofmann1.cs320.model.main.Credentials;
@@ -203,7 +203,7 @@ public class InitialData {
 	}
 	
 	// reads initial Author data from CSV file and returns a List of Authors
-		public static List<Student> getStudents() throws IOException {
+		public static List<Student> getStudents() throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
 			List<Student> studentList = new ArrayList<Student>();
 			ReadCSV readStudents = new ReadCSV("students.csv");
 			try {
@@ -219,21 +219,21 @@ public class InitialData {
 
 					// read author ID from CSV file, but don't use it
 					// it's there for reference purposes, just make sure that it is correct
-					// when setting up the BookAuthors CSV file				
-					Integer.parseInt(i.next());
+					// when setting up the BookAuthors CSV file		
 					// auto-generate author ID, instead
-					student.setStudentId(studentId++);	
-					student.setYcpId(Integer.parseInt(i.next()));
-					student.setFirstName(i.next());
-					student.setLastName(i.next());
-					student.setMajor(Integer.parseInt(i.next()));
-					student.setPicture(i.next());
-					student.setSport(Integer.parseInt(i.next()));
-					student.setClub(Integer.parseInt(i.next()));
+					
+					i.next();
+					student.setStudentIDNum(Integer.parseInt(i.next()));
+					student.setUsername(i.next());
+					student.setStudentFirstName(i.next());
+					student.setStudentLastName(i.next());
+					student.setMajors(new int[]{Integer.parseInt(i.next())});
+					student.setStudentPic(i.next());
+					student.setClubs(new int[] {Integer.parseInt(i.next())});
+					student.setSports(new int[] {Integer.parseInt(i.next())});
 					student.setGPA(Double.parseDouble(i.next()));
 					student.setDisplayGPA(Boolean.parseBoolean(i.next()));
-					student.setIsReviewed(Boolean.parseBoolean(i.next()));
-					student.setUserName(i.next());
+					student.setApprovalState(Boolean.parseBoolean(i.next()));
 					studentList.add(student);
 				}
 				System.out.println("studentList loaded from CSV file");

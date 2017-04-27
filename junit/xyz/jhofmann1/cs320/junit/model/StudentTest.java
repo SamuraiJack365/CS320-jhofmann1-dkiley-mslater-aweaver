@@ -44,7 +44,6 @@ public class StudentTest {
 		fields.add(true);
 		fields.add(false);
 		fields.add(1);
-		fields.add("jsmith@ycp.edu");
 		fields.add("Joe");
 		fields.add("Smith");
 		
@@ -52,18 +51,16 @@ public class StudentTest {
 		
 		model = new Student("Username", "Password", fields);
 	}
-	
+	 
 	public void testGetters() {
-		assertEquals("903589175",model.getStudentID());
+		assertEquals("903589175",model.getStudentIDNum());
 		assertEquals("GOOD STUDENT",model.getAccolades());
 		assertEquals(majors,model.getMajors());
 		assertEquals(minors,model.getMinors());
-		assertEquals(activities,model.getActivities());
 		assertEquals(officer,model.getOfficer());
 		assertEquals(16,model.getStudentIDNum());
 		assertEquals(true,model.isDisplayGPA());
 		assertEquals(false,model.isReviewed());
-		assertEquals("jsmith@ycp.edu",model.getEmail());
 		assertEquals("Joe",model.getStudentFirstName());
 		assertEquals("Smith",model.getStudentLastName());
 	}
