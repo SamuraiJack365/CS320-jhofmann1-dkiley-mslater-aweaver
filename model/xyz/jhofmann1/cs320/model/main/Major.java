@@ -78,10 +78,13 @@ public enum Major
 	
 	//Reverse look up map for int into String
 	private static final Map<Integer, Major> reverse = new HashMap<Integer, Major>();
+	private static final Map<Integer, String> reverseString = new HashMap<Integer, String>();
 	
 	static {
-		for(Major m : Major.values())
+		for(Major m : Major.values()){
 			reverse.put(m.getID(), m);
+			reverseString.put(m.getID(), m.getTitle());
+		}
 	}
 	
 	Major(String title, int ID){
@@ -99,5 +102,12 @@ public enum Major
 	
 	public String toString(int ID){
 		return reverse.get(ID).getTitle();
+	}
+	
+	public Map<Integer, Major> getReverse(){
+		return reverse;
+	}
+	public Map<Integer, String> getReverseString(){
+		return reverseString;
 	}
 }
