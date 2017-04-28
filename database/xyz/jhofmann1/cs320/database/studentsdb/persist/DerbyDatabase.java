@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.jhofmann1.cs320.model.student.Student;
-import xyz.jhofmann1.cs320.database.studentsdb.model.StudentAdvisor;
 import xyz.jhofmann1.cs320.model.main.Credentials;
 import xyz.jhofmann1.cs320.model.advisor.Advisor;
 import xyz.jhofmann1.cs320.model.main.Activity;
 import xyz.jhofmann1.cs320.model.main.Major;
 import xyz.jhofmann1.cs320.model.main.Minor;
 import xyz.jhofmann1.cs320.model.main.Sport;
+import xyz.jhofmann1.cs320.model.main.StudentAdvisor;
 
 public class DerbyDatabase implements IDatabase {
 	static {
@@ -383,8 +383,8 @@ public class DerbyDatabase implements IDatabase {
 					
 					insertStudentAdvisor = conn.prepareStatement("insert into studentAdvisors (student_id, advisor_id) values (?,?)");
 					for (StudentAdvisor studentAdvisor : studentAdvisorList) {
-						insertStudentAdvisor.setInt(1, studentAdvisor.getStudentId());
-						insertStudentAdvisor.setInt(2, studentAdvisor.getAdvisorId());
+						insertStudentAdvisor.setInt(1, studentAdvisor.getStudentID());
+						insertStudentAdvisor.setInt(2, studentAdvisor.getAdvisorID());
 						insertStudentAdvisor.addBatch();
 					}
 					insertStudentAdvisor.executeBatch();

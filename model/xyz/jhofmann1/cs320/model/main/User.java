@@ -15,7 +15,7 @@ public class User {
 	
 	private Credentials cred;
 	private String firstName, lastName;
-	private int UserID;
+	private int userID;
 	public Credentials getCred() {
 		return cred;
 	}
@@ -41,11 +41,11 @@ public class User {
 	}
 
 	public int getUserID() {
-		return UserID;
+		return userID;
 	}
 
 	public void setUserID(int userID) {
-		UserID = userID;
+		this.userID = userID;
 	}
 
 	/**
