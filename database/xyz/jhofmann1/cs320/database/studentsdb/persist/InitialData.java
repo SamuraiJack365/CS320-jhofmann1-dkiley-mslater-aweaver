@@ -139,6 +139,7 @@ public class InitialData {
 					studentList.add(student);
 				}
 				System.out.println("studentList loaded from CSV file");
+				System.out.println(studentList);
 				return studentList;
 			} finally {
 				readStudents.close();

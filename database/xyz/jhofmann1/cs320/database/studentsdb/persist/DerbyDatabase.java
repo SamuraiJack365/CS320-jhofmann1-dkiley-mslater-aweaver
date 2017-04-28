@@ -30,8 +30,7 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	public DerbyDatabase() {
-		createTables();
-		loadInitialData();
+		
 	}
 	
 	private interface Transaction<ResultType> {
@@ -281,7 +280,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement insertMajor			= null;
 				PreparedStatement insertMinor 			= null;
 				PreparedStatement insertSport			= null;
-				PreparedStatement insertActivity			= null;
+				PreparedStatement insertActivity		= null;
 				PreparedStatement insertUser			= null;
 				PreparedStatement insertAdvisor			= null;
 				PreparedStatement insertStudent     	= null;
@@ -357,7 +356,9 @@ public class DerbyDatabase implements IDatabase {
 							+ ") "
 							+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 					for (Student student : studentList) {
-//							insertAuthor.setInt(1, student.getStudentId());	// auto-generated primary key, don't insert this
+						System.out.println(student.getFirstName()+" "+student.getLastName()+" "+student.getUsername());
+						
+//						insertAuthor.setInt(1, student.getStudentId());	// auto-generated primary key, don't insert this
 						insertStudent.setInt(1, student.getStudentIDNum());
 						insertStudent.setString(2, student.getUsername());
 						insertStudent.setString(3, student.getLastName());

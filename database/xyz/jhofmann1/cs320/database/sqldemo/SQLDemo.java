@@ -62,7 +62,7 @@ public class SQLDemo {
 		while (!done) {
 			System.out.print("SQL> ");
 			String sql = stmtReader.nextStatement(); // keyboard.nextLine();
-
+			System.out.println("Using sql: "+sql);
 			if (sql == null) {
 				done = true;
 			} else {
@@ -87,8 +87,8 @@ public class SQLDemo {
 					}
 				} else {
 					try {
-//						System.out.println("Executing SQL:");
-//						System.out.println(sql);
+						System.out.println("Executing SQL:");
+						System.out.println(sql);
 						executeSQL(conn, sql);
 					} catch (SQLException e) {
 						System.out.println("Error: " + e.getMessage());
@@ -156,8 +156,10 @@ public class SQLDemo {
 	private static RowList getRows(ResultSet resultSet, int numColumns) throws SQLException {
 		RowList rowList = new RowList();
 		while (resultSet.next()) {
+			System.out.println("HIT");
 			List<String> row = new ArrayList<String>();
 			for (int i = 1; i <= numColumns; i++) {
+				System.out.println(i+":"+resultSet.getObject(i).toString());
 				row.add(resultSet.getObject(i).toString());
 			}
 			rowList.add(row);
