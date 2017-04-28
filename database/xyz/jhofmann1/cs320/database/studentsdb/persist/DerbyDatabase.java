@@ -29,6 +29,11 @@ public class DerbyDatabase implements IDatabase {
 		}
 	}
 	
+	public DerbyDatabase() {
+		createTables();
+		loadInitialData();
+	}
+	
 	private interface Transaction<ResultType> {
 		public ResultType execute(Connection conn) throws SQLException;
 	}
