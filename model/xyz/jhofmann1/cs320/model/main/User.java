@@ -15,7 +15,7 @@ public class User {
 	
 	private Credentials cred;
 	private String firstName, lastName;
-	private int UserID;
+	private int userID;
 	public Credentials getCred() {
 		return cred;
 	}
@@ -41,11 +41,11 @@ public class User {
 	}
 
 	public int getUserID() {
-		return UserID;
+		return userID;
 	}
 
 	public void setUserID(int userID) {
-		UserID = userID;
+		this.userID = userID;
 	}
 
 	/**
@@ -69,6 +69,11 @@ public class User {
 	{
 		cred = new Credentials(username, password);
 	}
+	
+	public User(Credentials cred)
+	{
+		this.cred = cred;
+	}
 	/**
 	 * @return the username
 	 */
@@ -90,12 +95,12 @@ public class User {
 	{
 		PasswordHashingService encrypt = new PasswordHashingService();
 		password = encrypt.hashPassword(password);
-		cred.setEncryptedPassword(password);
+		cred.setHashedPassword(password);
 	}
 	
 	public void setPasswordHashed(String passsword)
 	{
-		cred.setEncryptedPassword(passsword);
+		cred.setHashedPassword(passsword);
 	}
 
 }
