@@ -5,3 +5,4 @@ war/**/*.class
 /*.class
 .classpath
 .project
+derby.log
