@@ -62,7 +62,7 @@ public class SQLDemo {
 		while (!done) {
 			System.out.print("SQL> ");
 			String sql = stmtReader.nextStatement(); // keyboard.nextLine();
-
+			System.out.println("Using sql: "+sql);
 			if (sql == null) {
 				done = true;
 			} else {
@@ -87,8 +87,8 @@ public class SQLDemo {
 					}
 				} else {
 					try {
-//						System.out.println("Executing SQL:");
-//						System.out.println(sql);
+						System.out.println("Executing SQL:");
+						System.out.println(sql);
 						executeSQL(conn, sql);
 					} catch (SQLException e) {
 						System.out.println("Error: " + e.getMessage());
@@ -134,11 +134,21 @@ public class SQLDemo {
 	}
 
 	private static void printRow(List<String> row, List<Integer> colWidths) {
+		
+
+		String item;
 		for (int i = 0; i < row.size(); i++) {
 			if (i > 0) {
-				System.out.print(" ");
+				System.out.print("");
 			}
-			String item = row.get(i);
+			if(row.get(i) == null)
+			{
+				item = "";
+			}
+			else
+			{
+				item = row.get(i);
+			}
 			System.out.print(PAD.substring(0, colWidths.get(i) - item.length()));
 			System.out.print(item);
 		}
@@ -158,7 +168,16 @@ public class SQLDemo {
 		while (resultSet.next()) {
 			List<String> row = new ArrayList<String>();
 			for (int i = 1; i <= numColumns; i++) {
-				row.add(resultSet.getObject(i).toString());
+				if(resultSet.getObject(i) != null)
+				{
+					System.out.println(i+":"+resultSet.getObject(i).toString());
+					row.add(resultSet.getObject(i).toString());
+				}
+				else
+				{
+					System.out.println(i+": ");
+					row.add("");
+				}
 			}
 			rowList.add(row);
 		}
@@ -168,7 +187,7 @@ public class SQLDemo {
 	private static List<Integer> getColumnWidths(List<String> colNames, RowList rowList) {
 		List<Integer> colWidths = new ArrayList<Integer>();
 		for (String colName : colNames) {
-			colWidths.add(colName.length());
+			colWidths.add(colName.length()+2);
 		}
 		for (List<String> row: rowList) {
 			for (int i = 0; i < row.size(); i++) {
