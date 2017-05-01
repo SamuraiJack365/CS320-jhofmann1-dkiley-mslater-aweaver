@@ -3,7 +3,7 @@ package xyz.jhofmann1.cs320.model.main;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Sport {
+public enum Sport  implements EnumInter{
 	BASE 	(1, "Baseball"),
 	BASKET	(2, "Basketball"),
 	CC 		(3, "Cross Country"),
