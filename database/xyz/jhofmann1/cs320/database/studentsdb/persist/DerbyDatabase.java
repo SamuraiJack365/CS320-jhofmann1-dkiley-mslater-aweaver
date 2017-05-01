@@ -12,14 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.jhofmann1.cs320.model.student.Student;
-import xyz.jhofmann1.cs320.database.studentsdb.model.StudentAdvisor;
 import xyz.jhofmann1.cs320.model.main.Credentials;
 import xyz.jhofmann1.cs320.model.advisor.Advisor;
 import xyz.jhofmann1.cs320.model.main.Activity;
 import xyz.jhofmann1.cs320.model.main.Major;
 import xyz.jhofmann1.cs320.model.main.Minor;
 import xyz.jhofmann1.cs320.model.main.Sport;
+import xyz.jhofmann1.cs320.model.main.StudentAdvisor;
 
+
+//the structure of this class was retrieved from CS320_Library, created by Dr. Hake
 public class DerbyDatabase implements IDatabase {
 	static {
 		try {
@@ -27,10 +29,6 @@ public class DerbyDatabase implements IDatabase {
 		} catch (Exception e) {
 			throw new IllegalStateException("Could not load Derby driver");
 		}
-	}
-	
-	public DerbyDatabase() {
-		
 	}
 	
 	private interface Transaction<ResultType> {
@@ -99,6 +97,7 @@ public class DerbyDatabase implements IDatabase {
 		executeTransaction(new Transaction<Boolean>() {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
+				//initialize prepared statements
 				PreparedStatement stmt1 = null;	
 				PreparedStatement stmt2 = null;
 				PreparedStatement stmt3 = null;
@@ -109,6 +108,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt8 = null;
 			
 				try {
+					//create majors table
 					stmt1 = conn.prepareStatement(
 						"create table majors (" +
 						" 	major_id integer primary key " +
@@ -121,6 +121,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Majors table created");
 					
+					//create minors table
 					stmt2 = conn.prepareStatement(
 							"create table minors (" +
 							" 	minor_id integer primary key " +
@@ -133,6 +134,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Minors table created");
 					
+					//create sports table
 					stmt3 = conn.prepareStatement(
 							"create table sports (" +
 							" 	sport_id integer primary key " +
@@ -145,6 +147,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Sports table created");
 					
+					//create activities table
 					stmt4 = conn.prepareStatement(
 							"create table Activities (" +
 							" 	activity_id integer primary key " +
@@ -157,6 +160,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Activities table created");
 					
+					//create users table
 					stmt5 = conn.prepareStatement(
 							"create table users (" +
 							"	username varchar(40) primary key, " +
@@ -168,6 +172,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Users table created");
 					
+					//create advisors table
 					stmt6 = conn.prepareStatement(
 							"create table advisors (" +
 							" 	advisor_id integer primary key " +
@@ -182,6 +187,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Advisors table created");
 					
+					//create students table
 					stmt7 = conn.prepareStatement(
 							"CREATE TABLE STUDENTS ("
 							+ "STUDENT_ID int PRIMARY KEY NOT NULL "
@@ -218,6 +224,7 @@ public class DerbyDatabase implements IDatabase {
 						
 					System.out.println("Students table created");
 					
+					//create studentAdvisors lookup table
 					stmt8 = conn.prepareStatement(
 							"create table studentAdvisors (" +
 							"	student_id integer references students(student_id), " +
@@ -231,6 +238,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					return true;
 				} finally {
+					//close prepared statements
 					DBUtil.closeQuietly(stmt1);
 					DBUtil.closeQuietly(stmt2);
 					DBUtil.closeQuietly(stmt3);
@@ -249,6 +257,7 @@ public class DerbyDatabase implements IDatabase {
 		executeTransaction(new Transaction<Boolean>() {
 			@Override
 			public Boolean execute(Connection conn) throws SQLException {
+				//setup lists to be used for table population
 				Major[] majorList;
 				Minor[]	minorList;
 				Sport[]	sportList;
@@ -259,6 +268,7 @@ public class DerbyDatabase implements IDatabase {
 				List<StudentAdvisor> studentAdvisorList;
 				
 				try {
+					//populate each list
 					majorList			= InitialData.getMajors();
 					minorList			= InitialData.getMinors();
 					sportList 			= InitialData.getSports();
@@ -277,6 +287,7 @@ public class DerbyDatabase implements IDatabase {
 					e.printStackTrace();
 				}
 
+				//prepared statements for inserting information into the tables
 				PreparedStatement insertMajor			= null;
 				PreparedStatement insertMinor 			= null;
 				PreparedStatement insertSport			= null;
@@ -286,10 +297,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement insertStudent     	= null;
 				PreparedStatement insertStudentAdvisor 	= null;
 				try {
-					// must completely populate Authors table before populating BookAuthors table because of primary keys
-					
-					// must completely populate Books table before populating BookAuthors table because of primary keys
-					
+					//insert information into majors table
 					insertMajor = conn.prepareStatement("insert into majors (major) values (?)");
 					for (int i = 1; i < majorList.length; i++) {
 						insertMajor.setString(1, majorList[i].getTitle());
@@ -298,8 +306,8 @@ public class DerbyDatabase implements IDatabase {
 					insertMajor.executeBatch();
 					
 					System.out.println("Majors table populated");					
-//					
-					// must completely populate Books table before populating BookAuthors table because of primary keys
+
+					//insert information into minors table
 					insertMinor = conn.prepareStatement("insert into minors (minor) values (?)");
 					for(int i = 1; i < minorList.length; i++)
 					{
@@ -309,6 +317,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Minors table populated");	
 					
+					//insert information into the sports table
 					insertSport = conn.prepareStatement("insert into sports (sport) values (?)");
 					for (int i = 1; i < sportList.length; i++) {
 						insertSport.setString(1, sportList[i].getTitle());
@@ -318,6 +327,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Sports table populated");
 					
+					//insert information into the activities table
 					insertActivity = conn.prepareStatement("insert into activities (activity) values (?)");
 					for (int i = 1; i < activityList.length; i++) {
 						insertActivity.setString(1, activityList[i].getTitle());
@@ -327,6 +337,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Activities table populated");
 					
+					//insert information into the users table
 					insertUser = conn.prepareStatement("insert into users (username, password) values (?,?)");
 					for (Credentials cred : userList) {
 						insertUser.setString(1, cred.getUsername());
@@ -337,18 +348,19 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Users table populated");
 					
+					//insert information into the advisors table
 					insertAdvisor = conn.prepareStatement("insert into advisors (firstname, lastname, username) values (?,?,?)");
 					for (Advisor advisor : advisorList) {
 						insertAdvisor.setString(1, advisor.getFirstName());
 						insertAdvisor.setString(2, advisor.getLastName());
 						insertAdvisor.setString(3, advisor.getUsername());
-						//insertAdvisor.setString(3,  advisor.getEmail());
 						insertAdvisor.addBatch();
 					}
 					insertAdvisor.executeBatch();
 					
 					System.out.println("Advisors table populated");
 					
+					//insert information into students table
 					insertStudent = conn.prepareStatement("insert into students ("
 							+ "studentidnum, ycpusername, lastname, firstname, studentpic, "
 							+ "majorid1, sportid1, clubid1, gpa, displaygpa, "
@@ -356,9 +368,6 @@ public class DerbyDatabase implements IDatabase {
 							+ ") "
 							+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 					for (Student student : studentList) {
-						System.out.println(student.getFirstName()+" "+student.getLastName()+" "+student.getUsername());
-						
-//						insertAuthor.setInt(1, student.getStudentId());	// auto-generated primary key, don't insert this
 						insertStudent.setInt(1, student.getStudentIDNum());
 						insertStudent.setString(2, student.getUsername());
 						insertStudent.setString(3, student.getLastName());
@@ -375,22 +384,12 @@ public class DerbyDatabase implements IDatabase {
 					insertStudent.executeBatch();
 					
 					System.out.println("Students table populated");
-				
-//					// must wait until all Books and all Authors are inserted into tables before creating BookAuthor table
-//					// since this table consists entirely of foreign keys, with constraints applied
-//					insertBookAuthor = conn.prepareStatement("insert into bookAuthors (book_id, author_id) values (?, ?)");
-//					for (BookAuthor bookAuthor : bookAuthorList) {
-//						insertBookAuthor.setInt(1, bookAuthor.getBookId());
-//						insertBookAuthor.setInt(2, bookAuthor.getAuthorId());
-//					}
-//					insertBookAuthor.executeBatch();	
-//					
-//					System.out.println("BookAuthors table populated");		
 					
+					//insert information into the studentAdvisors table
 					insertStudentAdvisor = conn.prepareStatement("insert into studentAdvisors (student_id, advisor_id) values (?,?)");
 					for (StudentAdvisor studentAdvisor : studentAdvisorList) {
-						insertStudentAdvisor.setInt(1, studentAdvisor.getStudentId());
-						insertStudentAdvisor.setInt(2, studentAdvisor.getAdvisorId());
+						insertStudentAdvisor.setInt(1, studentAdvisor.getStudentID());
+						insertStudentAdvisor.setInt(2, studentAdvisor.getAdvisorID());
 						insertStudentAdvisor.addBatch();
 					}
 					insertStudentAdvisor.executeBatch();
@@ -399,6 +398,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					return true;
 				} finally {
+					//close insert statements
 					DBUtil.closeQuietly(insertMajor);
 					DBUtil.closeQuietly(insertMinor);
 					DBUtil.closeQuietly(insertSport);

@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import xyz.jhofmann1.cs320.model.student.Student;
-import xyz.jhofmann1.cs320.database.studentsdb.model.StudentAdvisor;
 import xyz.jhofmann1.cs320.model.advisor.Advisor;
 import xyz.jhofmann1.cs320.model.main.Credentials;
 import xyz.jhofmann1.cs320.model.main.User;
@@ -16,6 +15,7 @@ import xyz.jhofmann1.cs320.model.main.Activity;
 import xyz.jhofmann1.cs320.model.main.Major;
 import xyz.jhofmann1.cs320.model.main.Minor;
 import xyz.jhofmann1.cs320.model.main.Sport;
+import xyz.jhofmann1.cs320.model.main.StudentAdvisor;
 
 public class InitialData {
 	
@@ -139,7 +139,6 @@ public class InitialData {
 					studentList.add(student);
 				}
 				System.out.println("studentList loaded from CSV file");
-				System.out.println(studentList);
 				return studentList;
 			} finally {
 				readStudents.close();
@@ -158,8 +157,8 @@ public class InitialData {
 					Iterator<String> i = tuple.iterator();
 					StudentAdvisor studentAdvisor = new StudentAdvisor();
 		
-					studentAdvisor.setStudentId(Integer.parseInt(i.next()));
-					studentAdvisor.setAdvisorId(Integer.parseInt(i.next()));
+					studentAdvisor.setStudentID(Integer.parseInt(i.next()));
+					studentAdvisor.setAdvisorID(Integer.parseInt(i.next()));
 					studentAdvisorList.add(studentAdvisor);
 				}
 				System.out.println("studentAdvisorList loaded from CSV file");

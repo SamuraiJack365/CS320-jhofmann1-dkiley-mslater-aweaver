@@ -31,6 +31,10 @@ public class Credentials {
 		hashededPassword = encrypt.hashPassword(password);
 		this.username = username;
 	}
+	
+	public Credentials() throws NoSuchAlgorithmException, InvalidKeySpecException {
+		
+	}
 
 	/**
 	 * Getter for the hashed password
@@ -49,10 +53,10 @@ public class Credentials {
 	}
 
 	/**
-	 * @param encryptedPassword the encryptedPassword to set
+	 * @param hashedPassword the hashededPassword to set
 	 */
-	public void setEncryptedPassword(String encryptedPassword) {
-		this.hashededPassword = encryptedPassword;
+	public void setHashedPassword(String hashedPassword) {
+		this.hashededPassword = hashedPassword;
 	}
 
 	/**
