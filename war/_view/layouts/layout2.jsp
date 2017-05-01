@@ -18,56 +18,64 @@
                 <div class="container-fluid jumbotron">
                     <div class="row">
                         <div class="col-sm-6">
-                            <table class="table table-striped text-center">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Sport(s)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Sport</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Club</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table class="table table-striped text-center">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">Club(s)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Sport</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Club</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <c:if test="${not empty sports[0]}">
+                                <table class="table table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Sport<c:if test="${not empty sports[1]}">s</c:if></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>${sports[0]}</td>
+                                        </tr>
+                                        <c:if test="${not empty sports[1]}">
+                                        <tr>
+                                            <td>${sports[1]}</td>
+                                        </tr>
+                                        </c:if>
+                                    </tbody>
+                                </table>
+                            </c:if>
+                            <c:if test="${not empty clubs[0]}">
+                                <table class="table table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Club<c:if test="${not empty clubs[1]}">s</c:if></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>${clubs[0]}</td>
+                                        </tr>
+                                        <c:if test="${not empty clubs[1]}">
+                                        <tr>
+                                            <td>${clubs[1]}</td>
+                                        </tr>
+                                        </c:if>
+                                    </tbody>
+                                </table>
+                            </c:if>
                         </div>
                         <div class="col-sm-6"><img src="${studentpic}" class="img-rounded img-responsive center-block" alt="Student Picture"></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"></div>
                         <div class="col-sm-4">
-                            <h1 class="text-center">${firstname} ${lastname}</h1>
+                            <h1 class="text-center">${firstname} ${lastname} <c:if test="${isGPA}"><small>GPA: <small>${GPA}</small></small></c:if></h1>
                         </div>
                         <div class="col-sm-4"></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"></div>
                         <div class="col-sm-4 text-center">
-                            <h3>${major1} <small><c:out value="${ not empty minor1 ? minor1 : null }"></c:out></small></h3>
+                            <h3>${majors[0]} <small><c:out value="${ not empty minors[0] ? minors[0] : null }"></c:out></small></h3>
                         </div>
                         <div class="col-sm-4"></div>
                     </div>
                 </div>
-                <%@include file="../../includes/nav2.jspf"%>
             </div>
+                <%@include file="../../includes/nav2.jspf"%>
     </body>
 
     </html>

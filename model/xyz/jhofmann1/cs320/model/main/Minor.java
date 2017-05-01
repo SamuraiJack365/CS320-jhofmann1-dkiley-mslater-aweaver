@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Minor  implements EnumInter{
-	test 	(null, 0),
+	TEST 	(null, 0),
 	Adv	 	("Advertising", 1),
 	AAAS 	("African and African-American Studies", 2),
 	AH		("American History", 3),

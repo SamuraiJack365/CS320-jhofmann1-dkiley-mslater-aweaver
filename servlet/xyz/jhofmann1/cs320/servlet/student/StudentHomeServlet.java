@@ -48,7 +48,7 @@ public class StudentHomeServlet extends HttpServlet {
 			req.setAttribute("minor", minor);
 			
 			DerbyDatabase data = new DerbyDatabase();
-			Student model = data.findStudentByUsername((String) req.getAttribute("username")).get(0);
+			Student model = data.findStudentByUsername((String) req.getSession().getAttribute("user")).get(0);
 			
 			req.setAttribute("firstName", model.getFirstName());
 			req.setAttribute("lastName", model.getLastName());
@@ -57,6 +57,7 @@ public class StudentHomeServlet extends HttpServlet {
 		}
 		else
 		{
+			req.getSession().setAttribute("origin", "student");
 			resp.sendRedirect(req.getContextPath() + "/login");
 		}
 	}

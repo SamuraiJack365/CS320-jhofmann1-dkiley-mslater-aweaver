@@ -20,7 +20,7 @@
                         <table class="table table-striped text-center">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Major(s)</th>
+                                    <th class="text-center">Major<c:if test="${not empty majors[1]}">s</c:if></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,7 +46,7 @@
                             <table class="table table-striped text-center">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Minor(s)</th>
+                                        <th class="text-center">Minor<c:if test="${not empty minors[1]}">s</c:if></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -71,14 +71,14 @@
                 <div class="row">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-4">
-                        <h1 class="text-center">${firstname} ${lastname}</h1>
+                        <h1 class="text-center">${firstname} ${lastname} <c:if test="${isGPA}"><small>GPA: <small>${GPA}</small></small></c:if></h1>
                     </div>
                     <div class="col-sm-4"></div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-4 text-center">
-                        <c:if test="${not empty club}">
+                        <c:if test="${not empty clubs[0]}">
                             <h3>${clubs[0]}
                                 <c:if test="${not empty offices[0] && offices[0] != 0 && offices[0] != member}"><small>${offices[0]}</small></c:if>
                             </h3>
@@ -86,8 +86,8 @@
                     </div>
                     <div class="col-sm-4"></div>
                 </div>
-                <%@include file="../../includes/nav2.jspf"%>
             </div>
+                <%@include file="../../includes/nav2.jspf"%>
     </body>
 
     </html>
