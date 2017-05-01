@@ -38,51 +38,23 @@
                        </tr>
 			    </thead>
 			    <tbody>
-                       <tr>
-                           <td>John</td>
-                           <td>Doe</td>
-                           <td>555555555</td>
-                           <td>john@ycp.edu</td>
-                           <td>
-                               <button type="button" class="btn btn-default">Default</button>
-                           </td>
-                           <td>
-                               <button type="button" class="btn btn-success">Approve</button>
-                           </td>
-                           <td>
-                               <button type="button" class="btn btn-danger">Reject</button>
-                           </td>
-                       </tr>
-                       <tr>
-                           <td>Mary</td>
-                           <td>Moe</td>
-                           <td>555555555</td>
-                           <td>mary@ycp.edu</td>
-                           <td>
-                               <button type="button" class="btn btn-default">Default</button>
-                           </td>
-                           <td>
-                               <button type="button" class="btn btn-success">Approve</button>
-                           </td>
-                           <td>
-                               <button type="button" class="btn btn-danger">Reject</button>
-                           </td>
-                       </tr>
-                       <tr>
-                           <td>July</td>
-                           <td>Dooley</td>
-                           <td>555555555</td>
-                           <td>july@ycp.edu</td>
-                           <td>
-                               <button type="button" class="btn btn-default">Default</button>
-                           </td>
-                           <td>
-                               <button type="button" class="btn btn-success">Approve</button>
-                           </td>
-                           <td>
-                               <button type="button" class="btn btn-danger">Reject</button>
-                           </td>
-                       </tr>
+                      <c:forEach items="${students}" var="student">
+                      	   <tr>
+	                           <td>${student.firstName}</td>
+	                           <td>${student.lastName}</td>
+	                           <td>${student.studentIDNum}</td>
+	                           <td>${credentials.username}@ycp.edu</td>
+	                           <td>
+	                               <button type="button" class="btn btn-default">Default</button>
+	                           </td>
+	                           <td>
+	                               <button type="button" class="btn btn-success">Approve</button>
+	                           </td>
+	                           <td>
+	                               <button type="button" class="btn btn-danger">Reject</button>
+	                           </td>
+                       	  </tr>
+                      </c:forEach>
 			    </tbody>
 		    </table>
           	</div>
