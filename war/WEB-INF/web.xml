@@ -27,6 +27,10 @@
   	<servlet-class>xyz.jhofmann1.cs320.servlet.advisor.AdvisorAllStudentsServlet</servlet-class>
   </servlet>
   <servlet>
+  	<servlet-name>AdvisorStudentsAwaitingApprovalServlet</servlet-name>
+  	<servlet-class>xyz.jhofmann1.cs320.servlet.advisor.AdvisorStudentsAwaitingApprovalServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>StudentHomeServlet</servlet-name>
     <servlet-class>xyz.jhofmann1.cs320.servlet.student.StudentHomeServlet</servlet-class>
   </servlet>
@@ -61,6 +65,10 @@
   <servlet-mapping>
     <servlet-name>AdvisorAllStudentsServlet</servlet-name>
     <url-pattern>/advisorAllStudents</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdvisorStudentsAwaitingApprovalServlet</servlet-name>
+    <url-pattern>/advisorStudentsAwaitingApproval</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>StudentHomeServlet</servlet-name>

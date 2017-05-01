@@ -8,4 +8,5 @@ public interface IDatabase {
 	public List<Student> findStudentByUsername(String username);
 	public List<Student> firstFiveUnapprovedStudents(String advisorUsername);
 	public List<Student> getAllStudents(String advisorUsername);
+	public List<Student> getAllStudentsAwaitingApproval(String advisorUsername);
 }

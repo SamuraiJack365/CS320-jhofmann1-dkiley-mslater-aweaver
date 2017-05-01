@@ -18,6 +18,7 @@
         <ul class="dropdown-menu">
           <li><a href="advisor">Home</a></li>
           <li><a href="advisorAllStudents">All Students</a></li>
+          <li><a href="advisorStudentsAwaitingApproval">Students Awaiting Approval</a></li>
         </ul>
       </li>
         <li class="dropdown <c:if test="${page == 'layout'}">active</c:if>">
