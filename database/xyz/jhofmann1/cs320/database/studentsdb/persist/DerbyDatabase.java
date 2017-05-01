@@ -482,7 +482,7 @@ public class DerbyDatabase implements IDatabase {
 							e.printStackTrace();
 						}
 						loadStudent(student, resultSet, 2);
-						
+						//System.out.println(student.getUsername());
 						result.add(student);
 					}
 					
@@ -501,6 +501,42 @@ public class DerbyDatabase implements IDatabase {
 				return result;
 			} 
 			
+		});
+	}
+
+	public void updateStudent(Student model) {
+		executeTransaction(new Transaction<Boolean>() {
+			@Override
+			public Boolean execute(Connection conn) throws SQLException {
+				PreparedStatement update = null;
+				
+				update = conn.prepareStatement(""
+			+	"UPDATE STUDENTS "
+			+	"SET LASTNAME = ?, FIRSTNAME = ?, MAJORID1 = ?, MAJORID2 = ?, MINORID1 = ?, "
+			+ 	"MINORID2 = ?, SPORTID1 = ?, SPORTID2 = ?, CLUBID1 = ?, CLUBID2 = ?, GPA = ?, "
+			+ 	"DISPLAYGPA = ? "
+			+ 	"WHERE YCPUSERNAME = ?");
+				
+				update.setString(1, model.getLastName());
+				update.setString(2, model.getFirstName());
+				update.setInt(3, model.getMajors()[0]);
+				update.setInt(4, model.getMajors()[1]);
+				update.setInt(5, model.getMinors()[0]);
+				update.setInt(6, model.getMinors()[1]);
+				update.setInt(7, model.getSports()[0]);
+				update.setInt(8, model.getSports()[1]);
+				update.setInt(9, model.getClubs()[0]);
+				update.setInt(10, model.getClubs()[1]);
+				update.setDouble(11, model.getGPA());
+				update.setString(12, model.getUsername());
+				
+				update.execute();
+				
+				DBUtil.closeQuietly(update);
+				DBUtil.closeQuietly(conn);
+				
+				return true;
+			}
 		});
 	}
 			
