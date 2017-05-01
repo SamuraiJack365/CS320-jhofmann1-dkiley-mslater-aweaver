@@ -1,8 +1,6 @@
 package xyz.jhofmann1.cs320.servlet.advisor;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.Queue;
 
 import javax.servlet.ServletException;
@@ -10,14 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import xyz.jhofmann1.cs320.controller.advisor.AdvisorHomeController;
-import xyz.jhofmann1.cs320.model.advisor.Advisor;
+import xyz.jhofmann1.cs320.controller.advisor.AdvisorAllStudentsController;
 import xyz.jhofmann1.cs320.model.student.Student;
 
-public class AdvisorHomeServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class AdvisorAllStudentsServlet extends HttpServlet {
+
+private static final long serialVersionUID = 1L;
 	
-	private AdvisorHomeController controller = null;
+	private AdvisorAllStudentsController controller = null;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -38,9 +36,9 @@ public class AdvisorHomeServlet extends HttpServlet {
 		Student student = null;
 		String errorMessage = null;
 		
-		controller = new AdvisorHomeController();
+		controller = new AdvisorAllStudentsController();
 		
-		students = controller.getFiveUnnaprovedStudents(user);
+		students = controller.getAllStudents(user);
 		
 		if (students == null) {
 			errorMessage = "No students were found";
@@ -55,6 +53,6 @@ public class AdvisorHomeServlet extends HttpServlet {
 		req.setAttribute("student",   student);
 		req.setAttribute("students",  students);
 		
-		req.getRequestDispatcher("/_view/advisor/advisorHome.jsp").forward(req, resp);
+		req.getRequestDispatcher("/_view/advisor/advisorAllStudents.jsp").forward(req, resp);
 	}
 }
