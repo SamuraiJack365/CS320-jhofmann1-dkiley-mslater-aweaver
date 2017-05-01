@@ -14,7 +14,6 @@ public class Student extends User {
 	private int[] minors; 		// This holds the IDs of the student's minor(s)
 	private int[] sports;
 	private int[] clubs;
-	
 	private int[] officer; 		// Contains the int IDs of the offices the student held
 	private double GPA;			
 	private boolean displayGPA;
@@ -51,8 +50,7 @@ public class Student extends User {
 		setMajors((int[]) fields.get(2));
 		setMinors((int[]) fields.get(3));
 		setSports((int[]) fields.get(4));
-		setClubs((int[]) fields.get(13));
-		setOfficer((int[]) fields.get(5));
+		setClubs((int[]) fields.get(5));
 		setStudentIDNum((int) fields.get(6));
 		setGPA((double) fields.get(7));
 		setDisplayGPA((boolean) fields.get(8));
