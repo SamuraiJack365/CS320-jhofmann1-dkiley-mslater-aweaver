@@ -3,7 +3,7 @@ package xyz.jhofmann1.cs320.model.main;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Club {
+public enum Club  implements EnumInter{
 	AGAD	(1,"AIGA, Graphic Arts & Design"),
 	AC		(2,"Alpha Chi"),
 	ACJA	(3,"American Criminal Justice Association"),

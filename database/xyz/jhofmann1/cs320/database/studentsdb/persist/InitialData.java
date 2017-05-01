@@ -14,6 +14,7 @@ import xyz.jhofmann1.cs320.model.main.User;
 import xyz.jhofmann1.cs320.model.main.Activity;
 import xyz.jhofmann1.cs320.model.main.Major;
 import xyz.jhofmann1.cs320.model.main.Minor;
+import xyz.jhofmann1.cs320.model.main.Officer;
 import xyz.jhofmann1.cs320.model.main.Sport;
 import xyz.jhofmann1.cs320.model.main.StudentAdvisor;
 
@@ -35,6 +36,10 @@ public class InitialData {
 		return Activity.values();		
 	}
 	
+	public static Officer[] getOfficers()
+	{
+		return Officer.values();
+	}
 	public static List<Credentials> getUsers() throws IOException {
 		System.out.println("Hashing passwords...");
 		List<Credentials> userList = new ArrayList<Credentials>();

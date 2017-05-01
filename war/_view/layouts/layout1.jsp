@@ -12,7 +12,7 @@
     </head>
 
     <body>
-        <c:set var="page" scope="session" value="${'student'}" />
+        <c:set var="page" scope="session" value="${'layout'}" />
         <%@include file="../../includes/nav.jspf"%>
             <div class="container-fluid jumbotron">
                 <div class="row">
@@ -25,11 +25,16 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>${major1}</td>
+                                    <td>${majors[0]}</td>
                                 </tr>
-                                <c:if test="${not empty major2 && major2 != 0}">
+                                <c:if test="${not empty majors[1] && majors[1] != 0}">
                                     <tr>
-                                        <td>${major2}</td>
+                                        <td>${majors[1]}</td>
+                                    </tr>
+                                </c:if>
+                                <c:if test="${not empty majors[2]  && majors[2] != 0}">
+                                    <tr>
+                                        <td>${majors[2]}</td>
                                     </tr>
                                 </c:if>
                             </tbody>
@@ -37,7 +42,7 @@
                     </div>
                     <div class="col-sm-4"><img src="${studentpic}" class="img-rounded img-responsive center-block" alt="Student Picture"></div>
                     <div class="col-sm-4">
-                        <c:if test="${not empty minor1}">
+                        <c:if test="${not empty minors[0]}">
                             <table class="table table-striped text-center">
                                 <thead>
                                     <tr>
@@ -46,11 +51,16 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>${minor1}</td>
+                                        <td>${minors[0]}</td>
                                     </tr>
-                                    <c:if test="${not empty minor2}">
+                                    <c:if test="${not empty minors[1] && minors[1] != 0}">
                                         <tr>
-                                            <td>${minor2}</td>
+                                            <td>${minors[1]}</td>
+                                        </tr>
+                                    </c:if>
+                                    <c:if test="${not empty minors[2]  && minors[2] != 0}">
+                                        <tr>
+                                            <td>${minors[2]}</td>
                                         </tr>
                                     </c:if>
                                 </tbody>
@@ -69,8 +79,8 @@
                     <div class="col-sm-4"></div>
                     <div class="col-sm-4 text-center">
                         <c:if test="${not empty club}">
-                            <h3>${club}
-                                <c:if test="${not empty office}"><small>${office}</small></c:if>
+                            <h3>${clubs[0]}
+                                <c:if test="${not empty offices[0] && offices[0] != 0 && offices[0] != member}"><small>${offices[0]}</small></c:if>
                             </h3>
                         </c:if>
                     </div>

@@ -3,7 +3,7 @@ package xyz.jhofmann1.cs320.model.main;
 import java.util.HashMap;
 import java.util.Map;
 //random comment to push with
-public enum Major 
+public enum Major implements EnumInter
 {
 	TEST	(null, 0),
 	AC		("Accounting", 1),
