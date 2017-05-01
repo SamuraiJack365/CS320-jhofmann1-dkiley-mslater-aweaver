@@ -12,7 +12,13 @@ import javax.servlet.http.HttpSession;
 
 import xyz.jhofmann1.cs320.controller.main.LoginController;
 import xyz.jhofmann1.cs320.controller.student.LayoutDemoController;
+import xyz.jhofmann1.cs320.model.main.Activity;
+import xyz.jhofmann1.cs320.model.main.Club;
+import xyz.jhofmann1.cs320.model.main.EnumInter;
 import xyz.jhofmann1.cs320.model.main.Major;
+import xyz.jhofmann1.cs320.model.main.Minor;
+import xyz.jhofmann1.cs320.model.main.Officer;
+import xyz.jhofmann1.cs320.model.main.Sport;
 import xyz.jhofmann1.cs320.model.student.Student;
 import xyz.jhofmann1.cs320.servlet.main.MasterServlet;
 
@@ -29,34 +35,39 @@ public class LayoutDemoServlet extends MasterServlet {
 		System.out.println("In the LayoutDemo servlet");
 		checkLogged(req);
 		boolean loggedin = (boolean) req.getSession().getAttribute("loggedin");
+		String showLayout = (req.getParameter("layout") != null ? req.getParameter("layout") : "1");
 		if(loggedin)
 		{
+			System.out.println(showLayout);
 			LayoutDemoController controller = new LayoutDemoController();
 			Student student = controller.getStudent(getStringFromParameter((String) req.getSession().getAttribute("user")));
+//			System.out.println(student.getStudentIDNum());
+//			System.out.println(student.getMajors()[0]);
+//			System.out.println(student.getMajors()[1]);
+//			System.out.println(student.getMajors()[2]);
+//			System.out.println(student.getMinors()[0]);
+//			System.out.println(student.getMinors()[1]);
+//			System.out.println(student.getMinors()[2]);
+//			System.out.println(student.getSports()[0]);
+//			System.out.println(student.getSports()[1]);
+//			System.out.println(student.getClubs()[0]);
+//			System.out.println(student.getClubs()[1]);
+//			System.out.println(student.getApprovalState());
+//			System.out.println(student.isDisplayGPA());
+//			System.out.println(student.isReviewed());
+//			System.out.println(student.getStudentPic());
 			req.setAttribute("firstname", student.getFirstName());
 			req.setAttribute("lastname", student.getLastName());
-			req.setAttribute("major1", Major.CompSci.toString(student.getMajors()[0]));
-			if(student.getMajors().length > 1)
-			{
-				req.setAttribute("major2", student.getMajors()[1]);
-			}
-			if(student.getMinors() != null)
-			{
-				switch(student.getMinors().length)
-				{
-					case 1:
-						req.setAttribute("minor1", student.getMinors()[0]);
-						break;
-					case 2:
-						req.setAttribute("minor1", student.getMinors()[0]);
-						req.setAttribute("minor2", student.getMinors()[1]);
-						break;
-				}
-			}
-			System.out.println(req.getAttribute("major2"));
+			req.setAttribute("majors", this.getList(student.getMajors(), Major.AaDM));
+			req.setAttribute("minors", this.getList(student.getMinors(), Minor.AAAS));
+			req.setAttribute("offices", this.getList(student.getOfficer(), Officer.MEMBER));
+			req.setAttribute("clubs", this.getList(student.getClubs(), Activity.AC));
+			req.setAttribute("sports", this.getList(student.getSports(), Sport.BASE));
+			req.setAttribute("GPA", student.getGPA());
+			req.setAttribute("isGPA", student.isDisplayGPA());
+			req.setAttribute("accolades", student.getAccolades());
 			req.setAttribute("studentpic", student.getStudentPic());
-			req.setAttribute("club", "Temp");
-			req.getRequestDispatcher("/_view/layouts/layout1.jsp").forward(req, resp);
+			req.getRequestDispatcher("/_view/layouts/layout" + showLayout+".jsp").forward(req, resp);
 		}
 		else
 		{
@@ -104,6 +115,17 @@ public class LayoutDemoServlet extends MasterServlet {
 			// Forward to view to render the result HTML document
 			resp.sendRedirect(req.getContextPath() + "/home");
 		}
+	}
+	
+	private String[] getList(int[] list, EnumInter enumeration)
+	{
+		String[] list2 = new String[list.length];
+		
+		for(int i = 0; i < list.length; i++)
+		{
+			list2[i] = enumeration.toString(list[i]);
+		}
+		return list2;
 	}
 	
 

@@ -17,6 +17,7 @@ import xyz.jhofmann1.cs320.model.advisor.Advisor;
 import xyz.jhofmann1.cs320.model.main.Activity;
 import xyz.jhofmann1.cs320.model.main.Major;
 import xyz.jhofmann1.cs320.model.main.Minor;
+import xyz.jhofmann1.cs320.model.main.Officer;
 import xyz.jhofmann1.cs320.model.main.Sport;
 import xyz.jhofmann1.cs320.model.main.StudentAdvisor;
 
@@ -106,6 +107,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement stmt6 = null;
 				PreparedStatement stmt7 = null;
 				PreparedStatement stmt8 = null;
+				PreparedStatement stmt9 = null;
 			
 				try {
 					//create majors table
@@ -160,6 +162,17 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Activities table created");
 					
+					//create activities table
+					stmt9 = conn.prepareStatement(
+							"create table Officers (" +
+							" 	officer_id integer primary key " +
+							"		generated always as identity (start with 1, increment by 1), " +
+							"	officer varchar(60)" +
+							")"
+						);
+					
+					stmt9.executeUpdate();
+					System.out.println("Officers table created");
 					//create users table
 					stmt5 = conn.prepareStatement(
 							"create table users (" +
@@ -207,6 +220,8 @@ public class DerbyDatabase implements IDatabase {
 							+ "SPORTID2 int, "
 							+ "CLUBID1 int, "
 							+ "CLUBID2 int, "
+							+ "OFFICERID1 int, "
+							+ "OFFICERID2 int, "
 							+ "GPA float(52), "
 							+ "DISPLAYGPA smallint, "
 							+ "ISREVIEWED smallint, "
@@ -266,6 +281,7 @@ public class DerbyDatabase implements IDatabase {
 				List<Advisor> advisorList;
 				List<Student> studentList = null;
 				List<StudentAdvisor> studentAdvisorList;
+				Officer[] officerList;
 				
 				try {
 					//populate each list
@@ -276,6 +292,7 @@ public class DerbyDatabase implements IDatabase {
 					userList			= InitialData.getUsers();
 					advisorList 		= InitialData.getAdvisors();
 					studentAdvisorList 	= InitialData.getStudentAdvisors();
+					officerList			= InitialData.getOfficers();
 					
 				} catch (IOException e) {
 					throw new SQLException("Couldn't read initial data", e);
@@ -296,6 +313,7 @@ public class DerbyDatabase implements IDatabase {
 				PreparedStatement insertAdvisor			= null;
 				PreparedStatement insertStudent     	= null;
 				PreparedStatement insertStudentAdvisor 	= null;
+				PreparedStatement insertOfficer = null;
 				try {
 					//insert information into majors table
 					insertMajor = conn.prepareStatement("insert into majors (major) values (?)");
@@ -307,6 +325,16 @@ public class DerbyDatabase implements IDatabase {
 					
 					System.out.println("Majors table populated");					
 
+					//insert information into majors table
+					insertOfficer = conn.prepareStatement("insert into officers (officer) values (?)");
+					for (int i = 0; i < officerList.length; i++) {
+						insertOfficer.setString(1, officerList[i].getTitle());
+						insertOfficer.addBatch();
+					}
+					insertOfficer.executeBatch();
+					
+					System.out.println("Officer table populated");
+					
 					//insert information into minors table
 					insertMinor = conn.prepareStatement("insert into minors (minor) values (?)");
 					for(int i = 1; i < minorList.length; i++)
@@ -439,6 +467,8 @@ public class DerbyDatabase implements IDatabase {
 		student.setSports(sports);
 		int[] clubs = {rs.getInt(index++), rs.getInt(index++)};
 		student.setClubs(clubs);
+		int[] officers = {rs.getInt(index++), rs.getInt(index++)};
+		student.setOfficer(officers);
 		student.setGPA(rs.getDouble(index++));
 		student.setDisplayGPA(rs.getBoolean(index++));
 		student.setReviewed(rs.getBoolean(index++));
@@ -488,7 +518,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					if(!found)
 					{
-						System.out.println("No student found with that username");
+						System.out.println("No student found with the username: " + username);
 					}
 					
 				}
@@ -503,31 +533,31 @@ public class DerbyDatabase implements IDatabase {
 			
 		});
 	}
-
+	
 	@Override
-	public List<Student> firstFiveUnapprovedStudents(String advisorUsername) {
+	public List<Student> findStudentByUsername(String username) {
 		return executeTransaction(new Transaction<List<Student>>() {
+
 			@Override
 			public List<Student> execute(Connection conn) throws SQLException {
-				PreparedStatement stmt		= null; 
-				ResultSet resultSet 		= null;
+				PreparedStatement stmt = null; 
+				ResultSet resultSet = null;
 				
 				List<Student> result = new ArrayList<Student>();
 				
 				try
 				{
 					stmt = conn.prepareStatement(
-							"select students.firstname, students.lastname, students.studentidnum, students.ycpusername "
-							+ "from students, advisors, studentAdvisors "
-							+ "where advisors.username = ? "
-							+ "and advisors.advisor_id = studentAdvisors.advisor_id "
-							+ "and students.student_id = studentAdvisors.student_id "
-					);
-					stmt.setString(1, advisorUsername);
+							"SELECT * "
+							+ "FROM STUDENTS "
+							+ "WHERE YCPUSERNAME = ?"
+							);
+					
+					stmt.setString(1, username);
 					
 					resultSet = stmt.executeQuery();
 					
-					boolean found = true;
+					Boolean found = false; 
 					
 					while(resultSet.next())
 					{
@@ -540,18 +570,16 @@ public class DerbyDatabase implements IDatabase {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						student.setFirstName(resultSet.getString(1));
-						student.setLastName(resultSet.getString(2));
-						student.setStudentIDNum(resultSet.getInt(3));
-						student.setUsername(resultSet.getString(4));
+						loadStudent(student, resultSet, 2);
 						
 						result.add(student);
 					}
 					
 					if(!found)
 					{
-						System.out.println("No student found for that advisor");
+						System.out.println("No student found with the username: " + username);
 					}
+					
 				}
 				finally
 				{
@@ -560,8 +588,10 @@ public class DerbyDatabase implements IDatabase {
 					DBUtil.closeQuietly(conn);
 				}
 				return result;
-			}
+			} 
+			
 		});
-	}		
+	}
+			
 
 }

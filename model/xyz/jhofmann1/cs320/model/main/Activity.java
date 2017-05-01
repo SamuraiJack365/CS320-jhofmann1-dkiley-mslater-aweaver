@@ -3,7 +3,7 @@ package xyz.jhofmann1.cs320.model.main;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Activity { //54 Activities added, we should probably do a sweep and check if I missed some. I hope I didn't.
+public enum Activity  implements EnumInter{ //54 Activities added, we should probably do a sweep and check if I missed some. I hope I didn't.
 	TEST	(null, 0),
 	AIGA 	("AIGA", 1),
 	AC 		("Alpha Chi", 2),

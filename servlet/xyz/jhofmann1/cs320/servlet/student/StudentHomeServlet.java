@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import xyz.jhofmann1.cs320.controller.student.StudentController;
+import xyz.jhofmann1.cs320.database.studentsdb.persist.DerbyDatabase;
 import xyz.jhofmann1.cs320.model.main.Club;
 import xyz.jhofmann1.cs320.model.main.Major;
 import xyz.jhofmann1.cs320.model.main.Minor;
 import xyz.jhofmann1.cs320.model.main.Sport;
+import xyz.jhofmann1.cs320.model.student.Student;
 import xyz.jhofmann1.cs320.servlet.main.MasterServlet;
 /**
  * @author Andy
@@ -36,11 +38,6 @@ public class StudentHomeServlet extends HttpServlet {
 		
 		if(loggedin)
 		{
-			System.out.println("Logged In");
-//			ArrayList<String> sport = new ArrayList<String>();
-//			for(int i = 1; i < Sport.BASE.getReverse().size(); i++){
-//				sport.add(Sport.BASE.toString(i));
-//			} 
 			HashMap sport = (HashMap) Sport.BASE.getReverseString();
 			req.setAttribute("sport", sport);
 			HashMap club = (HashMap) Club.AC.getReverseString();
@@ -49,10 +46,18 @@ public class StudentHomeServlet extends HttpServlet {
 			req.setAttribute("major", major);
 			HashMap minor = (HashMap) Minor.AAAS.getReverseString();
 			req.setAttribute("minor", minor);
+			
+			DerbyDatabase data = new DerbyDatabase();
+			Student model = data.findStudentByUsername((String) req.getSession().getAttribute("user")).get(0);
+			
+			req.setAttribute("firstName", model.getFirstName());
+			req.setAttribute("lastName", model.getLastName());
+			
 			req.getRequestDispatcher("/_view/student/studentHome.jsp").forward(req, resp);
 		}
 		else
 		{
+			req.getSession().setAttribute("origin", "student");
 			resp.sendRedirect(req.getContextPath() + "/login");
 		}
 	}

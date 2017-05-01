@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 		boolean result = false;
 		String username = getStringFromParameter(req.getParameter("username"));
 		String password = getStringFromParameter(req.getParameter("password"));
-
+		
 		if (username == null || password == null) {
 			errorMessage = "Please specify both username and password";
 		} else {
@@ -67,6 +67,7 @@ public class LoginServlet extends HttpServlet {
 		else
 		{
 			req.getSession().setAttribute("loggedin", true);
+			System.out.println(username);
 			req.getSession().setAttribute("user", username);
 			// Forward to view to render the result HTML document
 			if(req.getSession().getAttribute("origin") == null)
