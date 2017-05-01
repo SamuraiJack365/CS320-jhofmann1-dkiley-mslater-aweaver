@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Club  implements EnumInter{
+	TEST	(0, null),
 	AGAD	(1,"AIGA, Graphic Arts & Design"),
 	AC		(2,"Alpha Chi"),
 	ACJA	(3,"American Criminal Justice Association"),

@@ -518,7 +518,7 @@ public class DerbyDatabase implements IDatabase {
 					
 					if(!found)
 					{
-						System.out.println("No student found with that username");
+						System.out.println("No student found with the username: " + username);
 					}
 					
 				}
