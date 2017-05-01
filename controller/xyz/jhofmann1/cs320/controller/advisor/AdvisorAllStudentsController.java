@@ -7,46 +7,38 @@ import java.util.Queue;
 import xyz.jhofmann1.cs320.database.studentsdb.persist.DatabaseProvider;
 import xyz.jhofmann1.cs320.database.studentsdb.persist.DerbyDatabase;
 import xyz.jhofmann1.cs320.database.studentsdb.persist.IDatabase;
-import xyz.jhofmann1.cs320.model.advisor.Advisor;
 import xyz.jhofmann1.cs320.model.student.Student;
 
-//Controller for the advisor home page
-public class AdvisorHomeController {
-	
+public class AdvisorAllStudentsController {
+
 	private IDatabase db = null;
 	
-	public AdvisorHomeController() {
+	public AdvisorAllStudentsController() {
 		
 		//creating database instance here
 		DatabaseProvider.setInstance(new DerbyDatabase());
 		db = DatabaseProvider.getInstance();
 	}
 	
-	public Queue<Student> getFiveUnnaprovedStudents(String advisorUsername) {
+	public Queue<Student> getAllStudents(String advisorUsername) {
 		
 		//get list of students from database
-		List<Student> studentsList = db.firstFiveUnapprovedStudents(advisorUsername);
-		Queue<Student> firstFiveStudentsList = null;
+		List<Student> studentsList = db.getAllStudents(advisorUsername);
+		Queue<Student> allStudents = null;
 		
 		if (studentsList.isEmpty()) {
 			System.out.println("No students found for advisor <" + advisorUsername + ">");
 		}
 		else {
-			firstFiveStudentsList = new LinkedList<Student>();
-			int i = 0;
+			allStudents = new LinkedList<Student>();
+			
 			for (Student student : studentsList) {
-				if (i == 5) {
-					break;
-				}
-				else {
-					firstFiveStudentsList.add(student);
-					i++;
-				}
+				allStudents.add(student);
 			}
 		}
 		
-		//return the first five students for the advisor
-		return firstFiveStudentsList;
+		//return all of the students for the advisor
+		return allStudents;
 		
 	}
 }
