@@ -67,8 +67,7 @@ public class LoginServlet extends HttpServlet {
 		else
 		{
 			req.getSession().setAttribute("loggedin", true);
-			System.out.println(username);
-			req.getSession().setAttribute("user", username);
+			req.getSession().setAttribute("user", username); // I, ALASKA, DISLIKE THIS LINE OF CODE
 			// Forward to view to render the result HTML document
 			if(req.getSession().getAttribute("origin") == null)
 			{
