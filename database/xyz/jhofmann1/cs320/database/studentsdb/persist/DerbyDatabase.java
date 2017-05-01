@@ -535,63 +535,62 @@ public class DerbyDatabase implements IDatabase {
 	}
 	
 	@Override
-	public List<Student> findStudentByUsername(String username) {
-		return executeTransaction(new Transaction<List<Student>>() {
-
-			@Override
-			public List<Student> execute(Connection conn) throws SQLException {
-				PreparedStatement stmt = null; 
-				ResultSet resultSet = null;
+ 	public List<Student> firstFiveUnapprovedStudents(String advisorUsername) {
+ 		return executeTransaction(new Transaction<List<Student>>() {
+ 			@Override
+ 			public List<Student> execute(Connection conn) throws SQLException {
+				PreparedStatement stmt		= null; 
+				ResultSet resultSet 		= null;
 				
-				List<Student> result = new ArrayList<Student>();
-				
-				try
-				{
-					stmt = conn.prepareStatement(
-							"SELECT * "
-							+ "FROM STUDENTS "
-							+ "WHERE YCPUSERNAME = ?"
-							);
-					
-					stmt.setString(1, username);
-					
-					resultSet = stmt.executeQuery();
-					
-					Boolean found = false; 
-					
-					while(resultSet.next())
-					{
-						found = true;
-						
-						Student student = null;
-						try {
+ 				List<Student> result = new ArrayList<Student>();
+ 				
+ 				try
+ 				{
+ 					stmt = conn.prepareStatement(
+ 							"select students.firstname, students.lastname, students.studentidnum, students.ycpusername "
+ 							+ "from students, advisors, studentAdvisors "
+ 							+ "where advisors.username = ? "
+ 							+ "and advisors.advisor_id = studentAdvisors.advisor_id "
+ 							+ "and students.student_id = studentAdvisors.student_id "
+ 					);
+ 					stmt.setString(1, advisorUsername);
+ 					
+ 					resultSet = stmt.executeQuery();
+ 					
+ 					boolean found = true;
+ 					
+ 					while(resultSet.next())
+ 					{
+ 						found = true;
+ 						
+ 						Student student = null;
+ 						try {
 							student = new Student();
-						} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						loadStudent(student, resultSet, 2);
-						
+ 						} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+ 							// TODO Auto-generated catch block
+ 							e.printStackTrace();
+ 						}
+ 						student.setFirstName(resultSet.getString(1));
+ 						student.setLastName(resultSet.getString(2));
+ 						student.setStudentIDNum(resultSet.getInt(3));
+ 						student.setUsername(resultSet.getString(4));
+ 						
 						result.add(student);
 					}
 					
-					if(!found)
-					{
-						System.out.println("No student found with the username: " + username);
-					}
-					
-				}
-				finally
-				{
-					DBUtil.closeQuietly(stmt);
-					DBUtil.closeQuietly(resultSet);
-					DBUtil.closeQuietly(conn);
-				}
-				return result;
-			} 
-			
-		});
-	}
-			
-
+ 					if(!found)
+ 					{
+ 						System.out.println("No student found for that advisor");
+ 					}
+ 				}
+ 				finally
+ 				{
+ 					DBUtil.closeQuietly(stmt);
+ 					DBUtil.closeQuietly(resultSet);
+ 					DBUtil.closeQuietly(conn);
+ 				}
+ 				return result;
+ 			}
+ 		});
+ 	}		
 }
