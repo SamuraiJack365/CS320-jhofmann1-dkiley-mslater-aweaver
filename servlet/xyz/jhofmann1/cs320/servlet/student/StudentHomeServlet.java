@@ -80,10 +80,10 @@ public class StudentHomeServlet extends HttpServlet {
 				req.setAttribute("major2", "0");
 			}
 			if(model.getMinors().length > 0 && model.getMinors()[0] != 0){
-				req.setAttribute("minor1title", (Minor.test.toString(model.getMinors()[0])));
+				req.setAttribute("minor1title", (Minor.TEST.toString(model.getMinors()[0])));
 				req.setAttribute("minor1", ((model.getMinors()[0])));
 				if(model.getMinors().length > 1 && model.getMinors()[1] != 0){
-					req.setAttribute("minor2title", (Minor.test.toString(model.getMinors()[1])));
+					req.setAttribute("minor2title", (Minor.TEST.toString(model.getMinors()[1])));
 					req.setAttribute("minor2", ((model.getMinors()[1])));
 				}
 				else{
@@ -116,13 +116,13 @@ public class StudentHomeServlet extends HttpServlet {
 				req.setAttribute("sport2", "0");
 			}
 			if(model.getClubs().length > 0 && model.getClubs()[0] != 0){
-				req.setAttribute("club1title", (Club.test.toString(model.getClubs()[0])));
+				req.setAttribute("club1title", (Club.TEST.toString(model.getClubs()[0])));
 				req.setAttribute("club1", ((model.getClubs()[0])));
 				if(model.getClubs().length > 1 && model.getClubs()[1] != 0){
-					req.setAttribute("club2title", (Club.test.toString(model.getClubs()[1])));
+					req.setAttribute("club2title", (Club.TEST.toString(model.getClubs()[1])));
 					req.setAttribute("club2", ((model.getClubs()[1])));
 					if(model.getClubs().length > 2 && model.getClubs()[2] != 0){
-						req.setAttribute("club3title", (Club.test.toString(model.getClubs()[2])));
+						req.setAttribute("club3title", (Club.TEST.toString(model.getClubs()[2])));
 						req.setAttribute("club3", ((model.getClubs()[2])));
 					}
 					else{
