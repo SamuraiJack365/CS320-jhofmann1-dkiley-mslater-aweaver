@@ -3,8 +3,8 @@ package xyz.jhofmann1.cs320.model.main;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Minor {
-	test 	(null, 0),
+public enum Minor  implements EnumInter{
+	TEST 	(null, 0),
 	Adv	 	("Advertising", 1),
 	AAAS 	("African and African-American Studies", 2),
 	AH		("American History", 3),

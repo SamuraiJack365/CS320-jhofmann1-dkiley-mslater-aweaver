@@ -157,6 +157,7 @@ public class StudentHomeServlet extends HttpServlet {
 		}
 		else
 		{
+			req.getSession().setAttribute("origin", "student");
 			resp.sendRedirect(req.getContextPath() + "/login");
 		}
 	}

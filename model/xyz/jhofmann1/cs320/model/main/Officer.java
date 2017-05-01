@@ -3,7 +3,7 @@ package xyz.jhofmann1.cs320.model.main; // Is this in the right spot?
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Officer {
+public enum Officer  implements EnumInter{
 	MEMBER		("Member", 0),
 	PRESIDENT	("President", 1),
 	VICE		("Vice-President", 2),

@@ -27,6 +27,12 @@ public class Student extends User {
 
 	public Student(String username, String password, ArrayList<Object> fields) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		super(username, password);
+		minors = new int[]{0, 0, 0};
+		majors = new int[]{0, 0, 0};
+		sports = new int[]{0, 0};
+		clubs = new int[]{0, 0};
+		officer = new int[]{0, 0};
+		
 		setFields(fields);
 		// TODO Auto-generated constructor stub
 	}
