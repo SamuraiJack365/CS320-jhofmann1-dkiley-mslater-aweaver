@@ -16,6 +16,7 @@ public class User {
 	private Credentials cred;
 	private String firstName, lastName;
 	private int userID;
+	
 	public Credentials getCred() {
 		return cred;
 	}
@@ -55,7 +56,7 @@ public class User {
 	 */
 	public User() throws NoSuchAlgorithmException, InvalidKeySpecException
 	{
-		cred = new Credentials("username", "password");
+		cred = new Credentials();
 	}
 	
 	/**

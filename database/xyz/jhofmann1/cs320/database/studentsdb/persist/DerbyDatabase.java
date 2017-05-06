@@ -20,6 +20,7 @@ import xyz.jhofmann1.cs320.model.main.Minor;
 import xyz.jhofmann1.cs320.model.main.Officer;
 import xyz.jhofmann1.cs320.model.main.Sport;
 import xyz.jhofmann1.cs320.model.main.StudentAdvisor;
+import xyz.jhofmann1.cs320.model.main.User;
 
 
 //the structure of this class was retrieved from CS320_Library, created by Dr. Hake
@@ -592,7 +593,7 @@ public class DerbyDatabase implements IDatabase {
  					
  					resultSet = stmt.executeQuery();
  					
- 					boolean found = true;
+ 					boolean found = false;
  					
  					while(resultSet.next())
  					{
@@ -652,7 +653,7 @@ public class DerbyDatabase implements IDatabase {
  					
  					resultSet = stmt.executeQuery();
  					
- 					boolean found = true;
+ 					boolean found = false;
  					
  					while(resultSet.next())
  					{
@@ -713,7 +714,7 @@ public class DerbyDatabase implements IDatabase {
  					
  					resultSet = stmt.executeQuery();
  					
- 					boolean found = true;
+ 					boolean found = false;
  					
  					while(resultSet.next())
  					{
@@ -737,6 +738,124 @@ public class DerbyDatabase implements IDatabase {
  					if(!found)
  					{
  						System.out.println("No student found for that advisor");
+ 					}
+ 				}
+ 				finally
+ 				{
+ 					DBUtil.closeQuietly(stmt);
+ 					DBUtil.closeQuietly(resultSet);
+ 					DBUtil.closeQuietly(conn);
+ 				}
+ 				return result;
+ 			}
+ 		});
+	}
+
+	@Override
+	public String getUserType(String username) {
+		return executeTransaction(new Transaction<String>() {
+ 			@Override
+ 			public String execute(Connection conn) throws SQLException {
+ 				PreparedStatement stmt		= null; 
+				PreparedStatement stmt2     = null;
+				ResultSet resultSet 		= null;
+				ResultSet resultSet2 		= null;
+				
+ 				String result = "none";
+ 				
+ 				try
+ 				{
+ 					stmt = conn.prepareStatement(
+ 							 "select * "
+							+"FROM STUDENTS "
+							+ "WHERE YCPUSERNAME = ?"
+ 					);
+ 					stmt.setString(1, username);
+ 					
+ 					resultSet = stmt.executeQuery();
+ 					
+ 					boolean found = false;
+ 					
+ 					while(resultSet.next())
+ 					{
+ 						found = true;
+ 						result = "student";
+					}
+					
+ 					if(!found)
+ 					{
+ 						stmt2 = conn.prepareStatement(
+	 							 "select * "
+								+"FROM ADVISORS "
+								+ "WHERE USERNAME = ?"
+	 					);
+						stmt2.setString(1, username);
+	 					
+	 					resultSet2 = stmt2.executeQuery();
+	 					while(resultSet2.next())
+	 					{
+	 						found = true;
+	 						result = "advisor";
+						}
+ 					}
+ 				}
+ 				finally
+ 				{
+ 					DBUtil.closeQuietly(stmt);
+ 					DBUtil.closeQuietly(stmt2);
+ 					DBUtil.closeQuietly(resultSet);
+ 					DBUtil.closeQuietly(resultSet2);
+ 					DBUtil.closeQuietly(conn);
+ 				}
+ 				return result;
+ 			}
+ 		});
+	}		
+	private void loadUser(User user, ResultSet rs, int index) throws NoSuchAlgorithmException, InvalidKeySpecException, SQLException
+	{
+		Credentials cred = new Credentials();
+		cred.setUsername(rs.getString(index++));
+		cred.setHashedPassword(rs.getString(index));
+		user.setCred(cred);
+	}
+	@Override
+	public User getUserByUsername(String username) {
+		return executeTransaction(new Transaction<User>() {
+ 			@Override
+ 			public User execute(Connection conn) throws SQLException {
+				PreparedStatement stmt		= null;
+				ResultSet resultSet 		= null;
+				
+ 				User result = null;
+ 				
+ 				try
+ 				{
+ 					stmt = conn.prepareStatement(
+ 							 "select * "
+							+"FROM USERS "
+							+ "WHERE USERNAME = ?"
+ 					);
+ 					stmt.setString(1, username);
+ 					
+ 					resultSet = stmt.executeQuery();
+ 					
+ 					boolean found = false;
+ 					
+ 					while(resultSet.next())
+ 					{
+ 						found = true;
+ 						try {
+							result = new User();
+	 						loadUser(result, resultSet, 1);
+						} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					
+ 					if(!found)
+ 					{
+ 						
  					}
  				}
  				finally

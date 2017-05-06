@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import xyz.jhofmann1.cs320.controller.main.LoginController;
+import xyz.jhofmann1.cs320.database.studentsdb.persist.DatabaseProvider;
+import xyz.jhofmann1.cs320.database.studentsdb.persist.DerbyDatabase;
+import xyz.jhofmann1.cs320.database.studentsdb.persist.IDatabase;
 
 /**
  * @author Jackson
@@ -40,6 +43,10 @@ public class LoginServlet extends HttpServlet {
 		boolean result = false;
 		String username = getStringFromParameter(req.getParameter("username"));
 		String password = getStringFromParameter(req.getParameter("password"));
+		
+		DatabaseProvider.setInstance(new DerbyDatabase());
+		IDatabase db = DatabaseProvider.getInstance();
+		String userType = db.getUserType(username);
 		
 		if (username == null || password == null) {
 			errorMessage = "Please specify both username and password";
@@ -68,6 +75,7 @@ public class LoginServlet extends HttpServlet {
 		{
 			req.getSession().setAttribute("loggedin", true);
 			req.getSession().setAttribute("user", username); // I, ALASKA, DISLIKE THIS LINE OF CODE
+			req.getSession().setAttribute("userType", userType);
 			// Forward to view to render the result HTML document
 			if(req.getSession().getAttribute("origin") == null)
 			{
