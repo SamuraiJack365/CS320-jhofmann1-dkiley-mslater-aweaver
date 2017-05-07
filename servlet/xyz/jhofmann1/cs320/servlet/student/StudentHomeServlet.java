@@ -367,7 +367,7 @@ public class StudentHomeServlet extends HttpServlet {
 			req.setAttribute("errorMessage", errorMessage);
 			req.setAttribute("result", result);
 			// Forward to view to render the result HTML document
-			req.getRequestDispatcher("/_view/student/StudentHome.jsp").forward(req, resp);
+			req.getRequestDispatcher("/_view/student/studentHome.jsp").forward(req, resp); //fixed case
 		}
 		else
 		{
