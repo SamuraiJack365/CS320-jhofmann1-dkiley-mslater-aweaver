@@ -50,21 +50,21 @@
                                     <td>${student.studentIDNum}</td>
                                     <td>${student.username}@ycp.edu</td>
                                     <td>
-                                        <form action="${pageContext.servletContext.contextPath}/advisor" method="post">
+                                        <form action="${pageContext.servletContext.contextPath}/advisorStudentsAwaitingApproval" method="post">
                                             <input type="hidden" name="studentOption" value="preview" />
                                             <input type="hidden" name="studentSelect" value="${student.username}" />
                                             <button type="submit" id="btn1" class="btn btn-default">Preview</button>
                                         </form>
                                     </td>
                                     <td>
-                                        <form action="${pageContext.servletContext.contextPath}/advisor" method="post">
+                                        <form action="${pageContext.servletContext.contextPath}/advisorStudentsAwaitingApproval" method="post">
                                             <input type="hidden" name="studentOption" value="approve" />
                                             <input type="hidden" name="studentSelect" value="${student.username}" />
                                             <button type="submit" class="btn btn-success" name="approve">Approve</button>
                                         </form>
                                     </td>
                                     <td>
-                                        <form action="${pageContext.servletContext.contextPath}/advisor" method="post">
+                                        <form action="${pageContext.servletContext.contextPath}/advisorStudentsAwaitingApproval" method="post">
                                             <input type="hidden" name="studentOption" value="reject" />
                                             <input type="hidden" name="studentSelect" value="${student.username}" />
                                             <button type="submit" class="btn btn-danger">Reject</button>
