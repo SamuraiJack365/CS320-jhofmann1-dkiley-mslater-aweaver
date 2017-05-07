@@ -7,6 +7,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 
+import xyz.jhofmann1.cs320.database.studentsdb.persist.DatabaseProvider;
+import xyz.jhofmann1.cs320.database.studentsdb.persist.DerbyDatabase;
+import xyz.jhofmann1.cs320.database.studentsdb.persist.IDatabase;
 import xyz.jhofmann1.cs320.model.main.Credentials;
 /**
  * @author Jackson
@@ -23,7 +26,6 @@ public class LoginController {
 	public LoginController()
 	{
 		users = new ArrayList<Credentials>();
-		generateUserTable();
 	}
 	
 	/**
@@ -41,47 +43,13 @@ public class LoginController {
 		//sets return to default to false
 		boolean result = false;
 		
-		//searches database for user data
-		//will later search database for the specific user then check the password for just that user
-		for(Credentials cred : users)
+		DatabaseProvider.setInstance(new DerbyDatabase());
+		IDatabase db = DatabaseProvider.getInstance();
+		if(encrypt.checkPassword(password, db.getUserByUsername(username).getCred().getHashedPassword()))
 		{
-			if(cred.getUsername().equalsIgnoreCase(username))
-			{
-				if(encrypt.checkPassword(password, cred.getHashedPassword()))
-				{
-					result = true;
-				}
-			}
+			result = true;
 		}
 		return result;
-	}
-	
-	/**
-	 * Temporary implementation of a fake database
-	 */
-	private void generateUserTable()
-	{
-		for(int i = 0; i < 10; i++)
-		{
-			try {
-				users.add(new Credentials("username"+i, "password"+i));
-			} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		try {
-			users.add(new Credentials("jhofmann1", "derp"));
-		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	//used only for junit, will be removed once database is implemented
-	public ArrayList<Credentials> getUsers()
-	{
-		return users;
 	}
 	
 
