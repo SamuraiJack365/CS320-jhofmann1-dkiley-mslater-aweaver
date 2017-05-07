@@ -97,7 +97,7 @@ public class AdvisorHomeServlet extends HttpServlet {
 		
 		
 		String studentUsername = (String) req.getParameter("studentSelect");
-		switch((String)req.getParameter("studentOption"))
+		switch(((String)req.getParameter("studentOption") != null) ? (String)req.getParameter("studentOption") : "")
 		{
 		case "preview":
 			previewStudent(studentUsername);
@@ -107,6 +107,8 @@ public class AdvisorHomeServlet extends HttpServlet {
 			break;
 		case "reject":
 			rejectStudent(studentUsername);
+			break;
+		default:
 			break;
 		}
 		req.getRequestDispatcher("/_view/advisor/advisorHome.jsp").forward(req, resp);
