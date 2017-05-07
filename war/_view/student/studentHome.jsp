@@ -42,6 +42,7 @@
 			  <h2>Commencement Info</h2>
 		
 		  <form class="form-horizontal">
+		  <form action="${pageContext.servletContext.contextPath}/student" method="post">
 	      <div class="form-group">
 	      <label class="control-label col-sm-2" for="firstName">First Name:</label>
 	      <div class="col-sm-10">
@@ -159,7 +160,7 @@
 	      		<div class="col-sm-offset-2 col-sm-10">
 	        		<button type="submit" class="btn btn-default">Submit</button>
 	      		</div>
-	    	</div>
+    	</div>
 	  		</form>
 		</div>
    		</div>

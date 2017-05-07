@@ -68,7 +68,6 @@ public class StudentHomeServlet extends HttpServlet {
 					req.setAttribute("major2", ((model.getMajors()[1])));
 				}
 				else{
-					//System.out.println("Hell0!"); please ignore this line
 					req.setAttribute("major2title", "Second Major (Optional)");
 					req.setAttribute("major2", "0");
 				}
@@ -208,7 +207,7 @@ public class StudentHomeServlet extends HttpServlet {
 				ArrayList<Object> fields = new ArrayList<Object>();
 				//studentID, accolades, majors, minors, activities, officer, studentIDNum, GPA, displayGPA, reviewed, approvalState
 				fields.add(model.getUsername());
-				if(accolades.equals("")){
+				if(accolades == null || accolades.equals("")){
 					fields.add(model.getAccolades());
 				} else {
 					fields.add(accolades);
