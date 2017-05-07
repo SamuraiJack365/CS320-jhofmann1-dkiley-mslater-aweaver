@@ -77,6 +77,7 @@ public class AdvisorHomeServlet extends HttpServlet {
 		Student student = null;
 		String errorMessage = null;
 		
+		
 		controller = new AdvisorHomeController();
 		
 		students = controller.getFiveUnnaprovedStudents(user);
@@ -115,13 +116,15 @@ public class AdvisorHomeServlet extends HttpServlet {
 		System.out.println(studentUsername + " Preview");
 	}
 	
+	//approve the student in the database and set reviewed to true
 	protected void approveStudent(String studentUsername)
 	{
-		System.out.println(studentUsername + " approve");
+		controller.approveStudent(studentUsername);
 	}
 	
+	//reject the student in the database and set reviewed to true
 	protected void rejectStudent(String studentUsername)
 	{
-		System.out.println(studentUsername + " reject");
+		controller.rejectStudent(studentUsername);
 	}
 }

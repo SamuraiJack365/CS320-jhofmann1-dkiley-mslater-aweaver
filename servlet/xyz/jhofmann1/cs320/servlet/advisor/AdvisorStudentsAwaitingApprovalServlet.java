@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import xyz.jhofmann1.cs320.controller.advisor.AdvisorAllStudentsController;
+import xyz.jhofmann1.cs320.controller.advisor.AdvisorStudentsAwaitingApprovalController;
 import xyz.jhofmann1.cs320.database.studentsdb.persist.DatabaseProvider;
 import xyz.jhofmann1.cs320.database.studentsdb.persist.DerbyDatabase;
 import xyz.jhofmann1.cs320.database.studentsdb.persist.IDatabase;
@@ -20,7 +21,7 @@ public class AdvisorStudentsAwaitingApprovalServlet extends HttpServlet {
 
 private static final long serialVersionUID = 1L;
 	
-	private AdvisorAllStudentsController controller = null;
+	private AdvisorStudentsAwaitingApprovalController controller = null;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -41,7 +42,7 @@ private static final long serialVersionUID = 1L;
 		Student student = null;
 		String errorMessage = null;
 		
-		controller = new AdvisorAllStudentsController();
+		controller = new AdvisorStudentsAwaitingApprovalController();
 		
 		students = controller.getAllStudents(user);
 		
@@ -58,6 +59,37 @@ private static final long serialVersionUID = 1L;
 		req.setAttribute("student",   student);
 		req.setAttribute("students",  students);
 		
+		String studentUsername = (String) req.getParameter("studentSelect");
+		switch((String)req.getParameter("studentOption"))
+		{
+		case "preview":
+			previewStudent(studentUsername);
+			break;
+		case "approve":
+			approveStudent(studentUsername);
+			break;
+		case "reject":
+			rejectStudent(studentUsername);
+			break;
+		}
+		
 		req.getRequestDispatcher("/_view/advisor/advisorStudentsAwaitingApproval.jsp").forward(req, resp);
+	}
+	
+	protected void previewStudent(String studentUsername)
+	{
+		System.out.println(studentUsername + " Preview");
+	}
+	
+	//approve the student in the database and set reviewed to true
+	protected void approveStudent(String studentUsername)
+	{
+		controller.approveStudent(studentUsername);
+	}
+	
+	//reject the student in the database and set reviewed to true
+	protected void rejectStudent(String studentUsername)
+	{
+		controller.rejectStudent(studentUsername);
 	}
 }

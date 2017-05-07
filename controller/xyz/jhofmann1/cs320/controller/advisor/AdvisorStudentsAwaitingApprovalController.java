@@ -41,4 +41,12 @@ private IDatabase db = null;
 		return allStudents;
 		
 	}
+
+	public void approveStudent(String studentUsername) {
+		db.updateDatabaseApproveStudent(studentUsername);
+	}
+
+	public void rejectStudent(String studentUsername) {
+		db.updateDatabaseRejectStudent(studentUsername);
+	}
 }

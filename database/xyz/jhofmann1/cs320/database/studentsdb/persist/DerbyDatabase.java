@@ -867,5 +867,65 @@ public class DerbyDatabase implements IDatabase {
  				return result;
  			}
  		});
+	}
+
+	@Override
+	public void updateDatabaseApproveStudent(String username) {
+		executeTransaction(new Transaction<Boolean>() {
+			@Override
+			public Boolean execute(Connection conn) throws SQLException {
+				//initialize prepared statements
+				PreparedStatement stmt1 = null;	
+			
+				try {
+					//update table to approve student
+					stmt1 = conn.prepareStatement(
+						"UPDATE students " +
+						"SET isreviewed = 1, isapproved = 1 " +
+						"WHERE ycpusername = ?"
+					);
+					
+					stmt1.setString(1, username);
+					
+					stmt1.executeUpdate();
+				} finally {
+					DBUtil.closeQuietly(stmt1);
+					DBUtil.closeQuietly(conn);
+				}
+				
+				System.out.println(username + " approved in database");
+				return true;
+			}
+		});
+	}
+
+	@Override
+	public void updateDatabaseRejectStudent(String username) {
+		executeTransaction(new Transaction<Boolean>() {
+			@Override
+			public Boolean execute(Connection conn) throws SQLException {
+				//initialize prepared statements
+				PreparedStatement stmt1 = null;	
+			
+				try {
+					//update table to approve student
+					stmt1 = conn.prepareStatement(
+						"UPDATE students " +
+						"SET isreviewed = 1, isapproved = 0 " +
+						"WHERE ycpusername = ?"
+					);
+					
+					stmt1.setString(1, username);
+					
+					stmt1.executeUpdate();
+				} finally {
+					DBUtil.closeQuietly(stmt1);
+					DBUtil.closeQuietly(conn);
+				}
+				
+				System.out.println(username + " rejected in database");
+				return true;
+			}
+		});
 	}		
 }

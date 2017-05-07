@@ -53,6 +53,36 @@ private static final long serialVersionUID = 1L;
 		req.setAttribute("student",   student);
 		req.setAttribute("students",  students);
 		
+		String studentUsername = (String) req.getParameter("studentSelect");
+		switch((String)req.getParameter("studentOption"))
+		{
+		case "preview":
+			previewStudent(studentUsername);
+			break;
+		case "approve":
+			approveStudent(studentUsername);
+			break;
+		case "reject":
+			rejectStudent(studentUsername);
+			break;
+		}
 		req.getRequestDispatcher("/_view/advisor/advisorAllStudents.jsp").forward(req, resp);
+	}
+
+	protected void previewStudent(String studentUsername)
+	{
+		System.out.println(studentUsername + " Preview");
+	}
+	
+	//approve the student in the database and set reviewed to true
+	protected void approveStudent(String studentUsername)
+	{
+		controller.approveStudent(studentUsername);
+	}
+	
+	//reject the student in the database and set reviewed to true
+	protected void rejectStudent(String studentUsername)
+	{
+		controller.rejectStudent(studentUsername);
 	}
 }
