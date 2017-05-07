@@ -94,7 +94,7 @@ public class AdvisorHomeServlet extends HttpServlet {
 		req.setAttribute("student",   student);
 		req.setAttribute("students",  students);
 		
-		req.getRequestDispatcher("/_view/advisor/advisorHome.jsp").forward(req, resp);
+		
 		String studentUsername = (String) req.getParameter("studentSelect");
 		switch((String)req.getParameter("studentOption"))
 		{
@@ -108,6 +108,7 @@ public class AdvisorHomeServlet extends HttpServlet {
 			rejectStudent(studentUsername);
 			break;
 		}
+		req.getRequestDispatcher("/_view/advisor/advisorHome.jsp").forward(req, resp);
 	}
 	protected void previewStudent(String studentUsername)
 	{
