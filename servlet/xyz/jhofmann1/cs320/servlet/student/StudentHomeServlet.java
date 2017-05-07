@@ -68,7 +68,6 @@ public class StudentHomeServlet extends HttpServlet {
 					req.setAttribute("major2", ((model.getMajors()[1])));
 				}
 				else{
-					//System.out.println("Hell0!"); please ignore this line
 					req.setAttribute("major2title", "Second Major (Optional)");
 					req.setAttribute("major2", "0");
 				}
@@ -153,6 +152,8 @@ public class StudentHomeServlet extends HttpServlet {
 				req.setAttribute("honors", model.getAccolades());
 			}
 			
+			
+			
 			req.getRequestDispatcher("/_view/student/studentHome.jsp").forward(req, resp);
 		}
 		else
@@ -206,7 +207,7 @@ public class StudentHomeServlet extends HttpServlet {
 				ArrayList<Object> fields = new ArrayList<Object>();
 				//studentID, accolades, majors, minors, activities, officer, studentIDNum, GPA, displayGPA, reviewed, approvalState
 				fields.add(model.getUsername());
-				if(accolades.equals("")){
+				if(accolades == null || accolades.equals("")){
 					fields.add(model.getAccolades());
 				} else {
 					fields.add(accolades);
@@ -235,9 +236,109 @@ public class StudentHomeServlet extends HttpServlet {
 					fields.add(lastName);
 				}
 				
+				for(int i = 0; i < fields.size(); i++){
+					System.out.println(fields.get(i));
+				}
+				
 				model = new Student((String) req.getSession().getAttribute("user"), model.getPassword(), fields);
 				
 				data.updateStudent(model);
+				
+				req.setAttribute("firstName", model.getFirstName());
+				req.setAttribute("lastName", model.getLastName());
+				
+				if(model.getMajors().length > 0 && model.getMajors()[0] != 0){
+					req.setAttribute("major1title", (Major.AaDM.toString(model.getMajors()[0])));
+					req.setAttribute("major1", ((model.getMajors()[0])));
+					if(model.getMajors().length > 1 && model.getMajors()[1] != 0){
+						req.setAttribute("major2title", (Major.AaDM.toString(model.getMajors()[1])));
+						req.setAttribute("major2", ((model.getMajors()[1])));
+					}
+					else{
+						//System.out.println("Hell0!"); please ignore this line
+						req.setAttribute("major2title", "Second Major (Optional)");
+						req.setAttribute("major2", "0");
+					}
+				} 
+				else{
+					req.setAttribute("major1title", "Major");
+					req.setAttribute("major1", "0");
+					req.setAttribute("major2title", "Second Major (Optional)");
+					req.setAttribute("major2", "0");
+				}
+				if(model.getMinors().length > 0 && model.getMinors()[0] != 0){
+					req.setAttribute("minor1title", (Minor.TEST.toString(model.getMinors()[0])));
+					req.setAttribute("minor1", ((model.getMinors()[0])));
+					if(model.getMinors().length > 1 && model.getMinors()[1] != 0){
+						req.setAttribute("minor2title", (Minor.TEST.toString(model.getMinors()[1])));
+						req.setAttribute("minor2", ((model.getMinors()[1])));
+					}
+					else{
+						req.setAttribute("minor2title", "Second Minor (Optional)");
+						req.setAttribute("minor2", "0");
+					}
+				} 
+				else{
+					req.setAttribute("minor1title", "First Minor (Optional)");
+					req.setAttribute("minor1", "0");
+					req.setAttribute("minor2title", "Second Minor (Optional)");
+					req.setAttribute("minor2", "0");
+				}
+				if(model.getSports().length > 0 && model.getSports()[0] != 0){
+					req.setAttribute("sport1title", (Sport.BASE.toString(model.getSports()[0])));
+					req.setAttribute("sport1", ((model.getSports()[0])));
+					if(model.getSports().length > 1 && model.getSports()[1] != 0){
+						req.setAttribute("sport2title", (Sport.BASE.toString(model.getSports()[1])));
+						req.setAttribute("sport2", ((model.getSports()[1])));
+					}
+					else{
+						req.setAttribute("sport2title", "Second Sport (Optional)");
+						req.setAttribute("sport2", "0");
+					}
+				} 
+				else{
+					req.setAttribute("sport1title", "First Sport (Optional)");
+					req.setAttribute("sport1", "Sport");
+					req.setAttribute("sport2title", "Second Sport (Optional)");
+					req.setAttribute("sport2", "0");
+				}
+				if(model.getClubs().length > 0 && model.getClubs()[0] != 0){
+					req.setAttribute("club1title", (Club.TEST.toString(model.getClubs()[0])));
+					req.setAttribute("club1", ((model.getClubs()[0])));
+					if(model.getClubs().length > 1 && model.getClubs()[1] != 0){
+						req.setAttribute("club2title", (Club.TEST.toString(model.getClubs()[1])));
+						req.setAttribute("club2", ((model.getClubs()[1])));
+						if(model.getClubs().length > 2 && model.getClubs()[2] != 0){
+							req.setAttribute("club3title", (Club.TEST.toString(model.getClubs()[2])));
+							req.setAttribute("club3", ((model.getClubs()[2])));
+						}
+						else{
+							req.setAttribute("club3title", "Third Club (Optional)");
+							req.setAttribute("club3", "0");
+						}	
+					}
+					else{
+						req.setAttribute("club2title", "Second Club (Optional)");
+						req.setAttribute("club2", "0");
+						req.setAttribute("club3title", "Third Club (Optional)");
+						req.setAttribute("club3", "0");
+					}
+				} 
+				else{
+					req.setAttribute("club1title", "First Club (Optional)");
+					req.setAttribute("club1", "0");
+					req.setAttribute("club2title", "Second Club (Optional)");
+					req.setAttribute("club2", "0");
+					req.setAttribute("club3title", "Third Club (Optional)");
+					req.setAttribute("club3", "0");
+				}
+				req.setAttribute("gpa", model.getGPA());
+				if(model.getAccolades() == null){
+					req.setAttribute("honors", "Honors (100 characters or less)");
+				}
+				else{
+					req.setAttribute("honors", model.getAccolades());
+				}
 			} catch (NumberFormatException e) {
 				errorMessage = "Invalid double";
 			} catch (NoSuchAlgorithmException e) {
@@ -247,19 +348,6 @@ public class StudentHomeServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			// Add parameters as request attributes
-			
-			req.setAttribute("firstName", req.getParameter("firstName"));
-			req.setAttribute("lastName", req.getParameter("lastName"));
-			req.setAttribute("major1", req.getParameter("major1"));
-			req.setAttribute("gpa", req.getParameter("gpa"));
-			/*
-			if("minors" != null){		req.setAttribute("minors", req.getParameter("minors"));}
-			if("honors" != null){		req.setAttribute("honors", req.getParameter("honors"));}
-			if("sports" != null){		req.setAttribute("sports", req.getParameter("sports"));}
-			if("clubs" != null){		req.setAttribute("clubs", req.getParameter("clubs"));}
-			*/
 			
 			HashMap sport = (HashMap) Sport.BASE.getReverseString();
 			sport.remove(0);
@@ -279,7 +367,7 @@ public class StudentHomeServlet extends HttpServlet {
 			req.setAttribute("errorMessage", errorMessage);
 			req.setAttribute("result", result);
 			// Forward to view to render the result HTML document
-			req.getRequestDispatcher("/_view/student/StudentHome.jsp").forward(req, resp);
+			req.getRequestDispatcher("/_view/student/studentHome.jsp").forward(req, resp); //fixed case
 		}
 		else
 		{

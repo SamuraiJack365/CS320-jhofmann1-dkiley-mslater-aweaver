@@ -558,7 +558,8 @@ public class DerbyDatabase implements IDatabase {
 				update.setInt(9, model.getClubs()[0]);
 				update.setInt(10, model.getClubs()[1]);
 				update.setDouble(11, model.getGPA());
-				update.setString(12, model.getUsername());
+				update.setBoolean(12, model.isDisplayGPA());
+				update.setString(13, model.getUsername());
 				
 				update.execute();
 				
