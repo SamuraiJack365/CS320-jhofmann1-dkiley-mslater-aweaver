@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+
+
 <html>
 	<head>
 		<title>Advisor Home</title>
@@ -12,6 +14,7 @@
 	</head>
 
 	<body>
+		<p id="test">This is some shit and it finally works</p>
 		<c:set var="page" scope="session" value="${'advisor'}"/>
        	<%@include file="../../includes/nav.jspf"%>
            <div class="container-fluid">
@@ -45,10 +48,12 @@
 	                           <td>${student.studentIDNum}</td>
 	                           <td>${credentials.username}@ycp.edu</td>
 	                           <td>
-	                               <button type="button" class="btn btn-default">Default</button>
+	                           	   <form action="${pageContext.servletContext.contextPath}/home" method="get">
+	                               		<button type="submit" id="btn1" class="btn btn-default">Preview</button>
+	                               </form>
 	                           </td>
 	                           <td>
-	                               <button type="button" class="btn btn-success">Approve</button>
+	                               <button type="submit" class="btn btn-success" name="approve">Approve</button>
 	                           </td>
 	                           <td>
 	                               <button type="button" class="btn btn-danger">Reject</button>
