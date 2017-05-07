@@ -44,7 +44,7 @@ private static final long serialVersionUID = 1L;
 			errorMessage = "No students were found";
 		}
 		else {
-			student  = students.poll();
+			student  = students.peek();
 		}
 		
 		// Add objects as request attributes

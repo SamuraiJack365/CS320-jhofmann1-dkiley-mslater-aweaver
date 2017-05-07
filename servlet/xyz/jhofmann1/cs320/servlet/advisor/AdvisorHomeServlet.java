@@ -46,7 +46,7 @@ public class AdvisorHomeServlet extends HttpServlet {
 			errorMessage = "No students were found";
 		}
 		else {
-			student  = students.poll();
+			student  = students.peek();
 		}
 		
 		// Add objects as request attributes

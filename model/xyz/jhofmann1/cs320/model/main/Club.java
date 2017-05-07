@@ -46,7 +46,7 @@ public enum Club  implements EnumInter{
 	SEA		(39,"Student Education Association"),
 	SaOC	(40,"Ski and Outdoor Club"),
 	SNAoP	(41,"Student Nurses Association of PA"),
-	SMSA	(42,"Club Management Student Association"),
+	SMSA	(42,"Sport Management Student Association"),
 	SS		(43,"Student Senate"),
 	TSTYCN	(44,"The Spartan: The York College Newspaper"),
 	UF		(45,"Ultimate Frisbee"),
