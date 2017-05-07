@@ -49,4 +49,12 @@ public class AdvisorHomeController {
 		return firstFiveStudentsList;
 		
 	}
+	
+	public void approveStudent(String studentUsername) {
+		db.updateDatabaseApproveStudent(studentUsername);
+	}
+
+	public void rejectStudent(String studentUsername) {
+		db.updateDatabaseRejectStudent(studentUsername);
+	}
 }

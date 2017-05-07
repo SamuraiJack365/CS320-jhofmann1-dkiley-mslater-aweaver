@@ -12,4 +12,6 @@ public interface IDatabase {
 	public List<Student> getAllStudentsAwaitingApproval(String advisorUsername);
 	public String getUserType(String username);
 	public User getUserByUsername(String username);
+	public void updateDatabaseApproveStudent(String username);
+	public void updateDatabaseRejectStudent(String username);
 }

@@ -57,4 +57,76 @@ public class AdvisorHomeServlet extends HttpServlet {
 		
 		req.getRequestDispatcher("/_view/advisor/advisorHome.jsp").forward(req, resp);
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+		String user = (String) req.getSession().getAttribute("user");
+		if (user == null) {
+			System.out.println("   User: <" + user + "> not logged in or session timed out");
+			
+			// user is not logged in, or the session expired
+			resp.sendRedirect(req.getContextPath() + "/login");
+			return;
+		}
+		
+		System.out.println("In the Advisor Home servlet");
+		
+		Queue<Student> students = null;
+		Student student = null;
+		String errorMessage = null;
+		
+		
+		controller = new AdvisorHomeController();
+		
+		students = controller.getFiveUnnaprovedStudents(user);
+		
+		if (students == null) {
+			errorMessage = "No students were found";
+		}
+		else {
+			student  = students.peek();
+		}
+		
+		// Add objects as request attributes
+		req.setAttribute("advisor_username", user);
+		req.setAttribute("errorMessage", errorMessage);
+		req.setAttribute("student",   student);
+		req.setAttribute("students",  students);
+		
+		
+		String studentUsername = (String) req.getParameter("studentSelect");
+		switch(((String)req.getParameter("studentOption") != null) ? (String)req.getParameter("studentOption") : "")
+		{
+		case "preview":
+			previewStudent(studentUsername);
+			break;
+		case "approve":
+			approveStudent(studentUsername);
+			break;
+		case "reject":
+			rejectStudent(studentUsername);
+			break;
+		default:
+			break;
+		}
+		req.getRequestDispatcher("/_view/advisor/advisorHome.jsp").forward(req, resp);
+	}
+	protected void previewStudent(String studentUsername)
+	{
+		System.out.println(studentUsername + " Preview");
+	}
+	
+	//approve the student in the database and set reviewed to true
+	protected void approveStudent(String studentUsername)
+	{
+		controller.approveStudent(studentUsername);
+	}
+	
+	//reject the student in the database and set reviewed to true
+	protected void rejectStudent(String studentUsername)
+	{
+		controller.rejectStudent(studentUsername);
+	}
 }
