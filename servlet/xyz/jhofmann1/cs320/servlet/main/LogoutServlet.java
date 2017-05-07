@@ -24,6 +24,7 @@ public class LogoutServlet extends HttpServlet {
 		System.out.println("In the Logout servlet");
 		req.getSession().setAttribute("loggedin", false);
 		req.getSession().setAttribute("user", null);
+		req.getSession().setAttribute("userType", null);
 		resp.sendRedirect(req.getContextPath() + "/home");
 	}
 	
